@@ -131,6 +131,20 @@ app.get('/api/mock-exam', (req: Request, res: Response) => {
     });
 });
 
+// 2d. Federal State Practice Session (10 state-specific questions, Aufgaben 301 to 310)
+app.get('/api/state-session/:state', (req: Request, res: Response) => {
+    const rawState = req.params.state;
+    const state = (typeof rawState === 'string' ? rawState : (Array.isArray(rawState) ? String(rawState[0]) : 'BY')).trim().toUpperCase();
+    const allQuestions = getQuestions();
+    const stateQuestions = allQuestions.filter(q => q.num && q.num.startsWith(`${state}-`));
+
+    res.json({
+        state,
+        total: stateQuestions.length,
+        questionsList: stateQuestions
+    });
+});
+
 // 3. Current evaluation
 app.get('/api/evaluation', (_req: Request, res: Response) => {
     const data = readJsonFile<any>('data/current-evaluation.json', {});

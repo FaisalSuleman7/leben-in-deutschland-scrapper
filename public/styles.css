@@ -82,3 +82,14 @@ body {
 .badge-flag-de {
   background: linear-gradient(180deg, #111827 33%, #dc2626 33%, #dc2626 66%, #facc15 66%);
 }
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.question-image-container {
+  display: flex;
+  justify-content: center;
+}

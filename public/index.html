@@ -426,15 +426,15 @@
         </div>
 
         <!-- 4. State-Specific Card (e.g. "Bayern") -->
-        <div class="theme-card rounded-2xl border p-5 shadow-sm flex flex-col justify-between">
+        <div id="card-state-container" onclick="loadStateQuestions()" class="theme-card rounded-2xl border p-5 shadow-sm flex flex-col justify-between hover:shadow-md transition cursor-pointer group hover:border-indigo-300">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <h4 id="state-chart-title" class="text-sm font-bold">Bundesland</h4>
+              <h4 id="state-chart-title" class="text-sm font-bold group-hover:text-indigo-600 transition">Bundesland</h4>
               <span id="card-state-code" class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-800">BY</span>
             </div>
             <div class="my-3 space-y-2">
               <div class="flex items-center space-x-2">
-                <span class="text-2xl">🦁</span>
+                <span id="card-state-icon" class="text-2xl">🦁</span>
                 <span id="card-state-name" class="font-extrabold text-base">Bayern</span>
               </div>
               <p id="state-card-desc" class="text-xs theme-text-muted">
@@ -442,9 +442,16 @@
               </p>
             </div>
           </div>
-          <button id="state-card-btn" onclick="openSettingsModal()" class="w-full py-2 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-xs font-semibold transition">
-            Bundesland wechseln &rarr;
-          </button>
+          <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <button id="state-start-btn" onclick="event.stopPropagation(); loadStateQuestions();" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-sm transition flex items-center justify-center space-x-1.5">
+              <span id="state-start-btn-text">Bundesland üben (10 Fragen)</span>
+              <span>&rarr;</span>
+            </button>
+            <button id="state-card-btn" onclick="event.stopPropagation(); openSettingsModal('state');" class="w-full py-1.5 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 transition flex items-center justify-center space-x-1">
+              <span id="state-change-btn-text">Bundesland wechseln</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
         </div>
 
       </div>

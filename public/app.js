@@ -24,22 +24,22 @@ const OFFICIAL_SESSIONS = [
 ];
 
 const GERMAN_STATES = [
-  { code: 'BW', name: 'Baden-Württemberg' },
-  { code: 'BY', name: 'Bayern' },
-  { code: 'BE', name: 'Berlin' },
-  { code: 'BB', name: 'Brandenburg' },
-  { code: 'HB', name: 'Bremen' },
-  { code: 'HH', name: 'Hamburg' },
-  { code: 'HE', name: 'Hessen' },
-  { code: 'MV', name: 'Mecklenburg-Vorpommern' },
-  { code: 'NI', name: 'Niedersachsen' },
-  { code: 'NW', name: 'Nordrhein-Westfalen' },
-  { code: 'RP', name: 'Rheinland-Pfalz' },
-  { code: 'SL', name: 'Saarland' },
-  { code: 'SN', name: 'Sachsen' },
-  { code: 'ST', name: 'Sachsen-Anhalt' },
-  { code: 'SH', name: 'Schleswig-Holstein' },
-  { code: 'TH', name: 'Thüringen' }
+  { code: 'BW', name: 'Baden-Württemberg', icon: '🦌' },
+  { code: 'BY', name: 'Bayern', icon: '🦁' },
+  { code: 'BE', name: 'Berlin', icon: '🐻' },
+  { code: 'BB', name: 'Brandenburg', icon: '🦅' },
+  { code: 'HB', name: 'Bremen', icon: '🗝️' },
+  { code: 'HH', name: 'Hamburg', icon: '🏰' },
+  { code: 'HE', name: 'Hessen', icon: '🦁' },
+  { code: 'MV', name: 'Mecklenburg-Vorpommern', icon: '🐂' },
+  { code: 'NI', name: 'Niedersachsen', icon: '🐎' },
+  { code: 'NW', name: 'Nordrhein-Westfalen', icon: '🏛️' },
+  { code: 'RP', name: 'Rheinland-Pfalz', icon: '🍇' },
+  { code: 'SL', name: 'Saarland', icon: '⚒️' },
+  { code: 'SN', name: 'Sachsen', icon: '⚔️' },
+  { code: 'ST', name: 'Sachsen-Anhalt', icon: '🐻' },
+  { code: 'SH', name: 'Schleswig-Holstein', icon: '⛵' },
+  { code: 'TH', name: 'Thüringen', icon: '🌲' }
 ];
 
 // Global State Object
@@ -71,7 +71,7 @@ let stateStore = {
 };
 
 // Quiz Module State
-let activeQuizMode = 'session'; // 'session' | 'mock'
+let activeQuizMode = 'session'; // 'session' | 'mock' | 'state'
 let activeSessionId = null;
 let sessionQueue = []; // FIFO queue
 let activeQuestion = null;
@@ -80,6 +80,13 @@ let activeQuestionSelectedOpt = null;
 let currentLanguage = 'de';
 let mockTimerInterval = null;
 let mockTimeRemaining = 3600; // 60 mins
+
+// Active In-Memory Variables for State Management
+let userProgress = {};
+let answersMap = {};
+let completedSessions = new Set();
+let flaggedSet = new Set();
+let skippedQueue = [];
 
 // Chart references
 let todayChartInstance = null;
@@ -140,6 +147,15 @@ function loadStateFromStorage() {
 
     // Synchronize stats.attempted with unique answered question count
     stateStore.stats.attempted = stateStore.answeredQuestionIds.length;
+
+    // Synchronize active in-memory variables
+    userProgress = { ...(stateStore.sessionProgress || {}) };
+    answersMap = { ...(stateStore.userAnswers || {}) };
+    completedSessions = new Set(
+      Object.keys(userProgress).filter(id => userProgress[id]?.completed)
+    );
+    flaggedSet = new Set(stateStore.flaggedQuestionIds || []);
+    skippedQueue = [...(stateStore.skippedQuestions || [])];
   } catch (e) {
     console.warn("Storage load error:", e);
   }
@@ -149,14 +165,32 @@ function saveStateToStorage() {
   try {
     localStorage.setItem('lid_state_v3', JSON.stringify(stateStore));
     localStorage.setItem('appLanguage', stateStore.appLanguage || 'de');
-    localStorage.setItem('userProgress', JSON.stringify(stateStore.sessionProgress || {}));
-    localStorage.setItem('userAnswers', JSON.stringify(stateStore.userAnswers || {}));
-    localStorage.setItem('flaggedQuestions', JSON.stringify(stateStore.flaggedQuestionIds || []));
-    localStorage.setItem('skippedQuestions', JSON.stringify(stateStore.skippedQuestions || []));
+    localStorage.setItem('userProgress', JSON.stringify(userProgress || {}));
+    localStorage.setItem('userAnswers', JSON.stringify(answersMap || {}));
+    localStorage.setItem('flaggedQuestions', JSON.stringify([...flaggedSet]));
+    localStorage.setItem('skippedQuestions', JSON.stringify(skippedQueue || []));
     localStorage.setItem('mockExamHistory', JSON.stringify(stateStore.mockExamHistory || []));
   } catch (e) {
     console.warn("Storage save error:", e);
   }
+}
+
+// Calculate solved count for a session strictly from answersMap / stateStore
+function getSolvedCountForSession(sessionId) {
+  const session = OFFICIAL_SESSIONS.find(s => s.id === Number(sessionId));
+  if (!session) return 0;
+  const questionIds = (session.questions || session.questionIds || []).map(n => String(n));
+
+  let solved = 0;
+  questionIds.forEach(id => {
+    if (answersMap && answersMap[id]) {
+      solved++;
+    } else if (stateStore.answeredQuestionIds && stateStore.answeredQuestionIds.includes(id)) {
+      solved++;
+    }
+  });
+
+  return Math.min(solved, session.count || questionIds.length);
 }
 
 // Helper: Calculate progress for a specific official BAMF session without overflow
@@ -164,27 +198,20 @@ function getCategoryProgress(sessionId) {
   const session = OFFICIAL_SESSIONS.find(s => s.id === Number(sessionId));
   if (!session) return { uniqueCount: 0, total: 0, percent: 0, completed: false, isStarted: false };
 
-  const totalSessionQuestions = session.count;
-  const sessionQuestionNumbers = session.questions.map(n => String(n));
-
-  // Calculate completed questions based strictly on unique question IDs
-  const answeredQuestionIds = (stateStore.answeredQuestionIds || []).map(id => String(id));
-  const uniqueAnswered = new Set(
-    answeredQuestionIds.filter(id => sessionQuestionNumbers.includes(id))
-  ).size;
-
-  // Cap the completion count so it NEVER exceeds totalSessionQuestions
-  const cappedAnswered = Math.min(uniqueAnswered, totalSessionQuestions);
-  const percent = totalSessionQuestions > 0 ? Math.min(100, Math.round((cappedAnswered / totalSessionQuestions) * 100)) : 0;
+  const totalSessionQuestions = session.count || (session.questions ? session.questions.length : 0);
+  const solvedCount = getSolvedCountForSession(sessionId);
+  const percent = totalSessionQuestions > 0 ? Math.min(100, Math.round((solvedCount / totalSessionQuestions) * 100)) : 0;
   
-  const completed = (stateStore.sessionProgress?.[sessionId]?.completed) || (cappedAnswered >= totalSessionQuestions);
+  // A category can ONLY be completed if solvedCount equals totalSessionQuestions (and > 0)
+  const completed = (solvedCount >= totalSessionQuestions) && (totalSessionQuestions > 0);
+  const isStarted = (solvedCount > 0) && (solvedCount < totalSessionQuestions);
 
   return {
-    uniqueCount: cappedAnswered,
+    uniqueCount: solvedCount,
     total: totalSessionQuestions,
     percent,
     completed,
-    isStarted: cappedAnswered > 0 && !completed
+    isStarted
   };
 }
 
@@ -304,6 +331,8 @@ const I18N_DICTIONARY = {
     stateChartTitle: "Bundesland",
     stateCardDesc: "10 bundeslandspezifische Fragen. In jeder BAMF-Prüfung erscheinen genau 3 Fragen zu Ihrem Bundesland.",
     stateCardBtn: "Bundesland wechseln &rarr;",
+    stateStartBtn: "Bundesland üben (10 Fragen)",
+    stateChangeBtn: "Bundesland wechseln",
     curriculumTitle: "Themenbereiche & Langzeittrend",
     curriculumDesc: "Übersicht der Fachgebiete nach BAMF-Rahmencurriculum und Trendanalyse.",
     area1Tag: "Bereich 1",
@@ -412,7 +441,7 @@ const I18N_DICTIONARY = {
     sessionTasks: "Tasks",
     sessionMore: "more",
     sessionBtnReview: "Review",
-    sessionBtnContinue: "Continue",
+    sessionBtnContinue: "Continue Session",
     sessionBtnStart: "Start Session",
     chartsHeading: "Activity & Learning Analytics",
     todayChartTitle: "Today",
@@ -437,6 +466,8 @@ const I18N_DICTIONARY = {
     stateChartTitle: "Federal State",
     stateCardDesc: "10 state-specific questions. Every BAMF exam contains exactly 3 questions about your federal state.",
     stateCardBtn: "Change State &rarr;",
+    stateStartBtn: "Start State Session (10 Questions)",
+    stateChangeBtn: "Change State",
     curriculumTitle: "Curriculum Areas & Long-Term Trend",
     curriculumDesc: "Overview of subject areas according to BAMF curriculum framework and trend analysis.",
     area1Tag: "Area 1",
@@ -587,6 +618,8 @@ function applyAppLanguage(lang) {
   setTxt('state-chart-title', dict.stateChartTitle);
   setTxt('state-card-desc', dict.stateCardDesc);
   setHtml('state-card-btn', dict.stateCardBtn);
+  setTxt('state-start-btn-text', dict.stateStartBtn);
+  setTxt('state-change-btn-text', dict.stateChangeBtn);
 
   // Curriculum Area
   setTxt('curriculum-title', dict.curriculumTitle);
@@ -760,6 +793,8 @@ function updateDashboardTopStats() {
   if (stateNameEl) stateNameEl.textContent = stateObj.name;
   const stateCodeEl = document.getElementById('card-state-code');
   if (stateCodeEl) stateCodeEl.textContent = stateObj.code;
+  const stateIconEl = document.getElementById('card-state-icon');
+  if (stateIconEl) stateIconEl.textContent = stateObj.icon || '🏛️';
 }
 
 // Fetch BAMF Evaluation & Stats
@@ -824,13 +859,30 @@ function renderOfficialSessionsGrid() {
   }
 
   container.innerHTML = filtered.map(session => {
-    const progress = getCategoryProgress(session.id);
-    const percent = progress.percent;
-    const isCompleted = progress.completed;
-    const isInProgress = progress.isStarted;
+    const solvedCount = getSolvedCountForSession(session.id);
+    const totalQuestions = (session.questions || session.questionIds || []).length || session.count || 0;
+    const currentLang = stateStore.appLanguage || 'de';
+
+    let buttonText = "";
+    let buttonClass = "";
+
+    if (solvedCount === 0) {
+      buttonText = (currentLang === 'en') ? "Start Session →" : "Session starten →";
+      buttonClass = "btn-primary w-full py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center space-x-1.5 transition bg-slate-900 text-white hover:bg-slate-800";
+    } else if (solvedCount < totalQuestions) {
+      buttonText = (currentLang === 'en') ? "Continue Session →" : "Fortsetzen →";
+      buttonClass = "btn-secondary w-full py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center space-x-1.5 transition bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm";
+    } else {
+      buttonText = (currentLang === 'en') ? "Review →" : "Wiederholen →";
+      buttonClass = "btn-outline-success w-full py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center space-x-1.5 transition bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200";
+    }
+
+    const isCompleted = (solvedCount === totalQuestions) && totalQuestions > 0;
+    const isInProgress = (solvedCount > 0) && (solvedCount < totalQuestions);
+    const percent = totalQuestions > 0 ? Math.min(100, Math.round((solvedCount / totalQuestions) * 100)) : 0;
 
     // Range preview
-    const qList = session.questions;
+    const qList = session.questions || session.questionIds || [];
     let rangePreview = '';
     const taskPrefix = isEn ? 'Tasks' : 'Aufgaben';
     const moreSuffix = isEn ? 'more' : 'weitere';
@@ -844,9 +896,8 @@ function renderOfficialSessionsGrid() {
     const circ = 2 * Math.PI * radius;
     const offset = circ - (percent / 100) * circ;
 
-    const btnLabel = isCompleted ? dict.sessionBtnReview : (isInProgress ? dict.sessionBtnContinue : dict.sessionBtnStart);
     const countLabel = `${session.count} ${dict.sessionQuestionsUnit}`;
-    const solvedLabel = dict.sessionSolved(progress.uniqueCount, progress.total);
+    const solvedLabel = dict.sessionSolved(solvedCount, totalQuestions);
     const displayName = isEn && session.name_en ? session.name_en : session.name;
     const displayDesc = isEn && session.desc_en ? session.desc_en : session.desc;
 
@@ -863,7 +914,7 @@ function renderOfficialSessionsGrid() {
             <div class="relative w-10 h-10 flex items-center justify-center">
               <svg class="w-10 h-10" viewBox="0 0 44 44">
                 <circle cx="22" cy="22" r="${radius}" fill="transparent" stroke="currentColor" stroke-opacity="0.1" stroke-width="3.5"></circle>
-                <circle class="progress-ring-circle" cx="22" cy="22" r="${radius}" fill="transparent" stroke="${isCompleted ? '#10b981' : '#4f46e5'}" stroke-width="3.5" stroke-dasharray="${circ}" stroke-dashoffset="${offset}" stroke-linecap="round"></circle>
+                <circle class="progress-ring-circle" cx="22" cy="22" r="${radius}" fill="transparent" stroke="${isCompleted ? '#10b981' : (isInProgress ? '#4f46e5' : 'currentColor')}" stroke-width="3.5" stroke-dasharray="${circ}" stroke-dashoffset="${offset}" stroke-linecap="round"></circle>
               </svg>
               <span class="absolute text-[10px] font-bold ${isCompleted ? 'text-emerald-700' : 'theme-text-muted'}">${percent}%</span>
             </div>
@@ -887,9 +938,8 @@ function renderOfficialSessionsGrid() {
         </div>
 
         <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-          <button onclick="startOfficialSession(${session.id})" class="w-full py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center space-x-1.5 transition ${isCompleted ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200' : (isInProgress ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm' : 'bg-slate-900 text-white hover:bg-slate-800')}">
-            <span>${btnLabel}</span>
-            <span>&rarr;</span>
+          <button onclick="startSession(${session.id})" class="${buttonClass}">
+            <span>${buttonText}</span>
           </button>
         </div>
       </div>
@@ -1099,6 +1149,54 @@ async function startMockExam() {
   }
 }
 
+// Start Federal State Practice Session (Aufgaben 301 to 310)
+async function loadStateQuestions(selectedStateCode) {
+  const code = (selectedStateCode || stateStore.userState || 'BY').toUpperCase();
+  const stateObj = GERMAN_STATES.find(s => s.code === code) || GERMAN_STATES[1];
+  activeQuizMode = 'state';
+  activeSessionId = `state-${code}`;
+  currentLanguage = 'de';
+
+  try {
+    const res = await fetch(`/api/state-session/${code}`);
+    if (!res.ok) throw new Error("Could not load state questions");
+    const data = await res.json();
+
+    const questions = data.questionsList || [];
+    if (questions.length === 0) {
+      alert("Keine landesspezifischen Fragen für dieses Bundesland gefunden.");
+      return;
+    }
+
+    sessionQueue = [...questions];
+    activeQuestion = null;
+    activeQuestionAnswered = false;
+    activeQuestionSelectedOpt = null;
+
+    const isEn = stateStore.appLanguage === 'en';
+    const title = isEn 
+      ? `${stateObj.icon || '🏛️'} State Session: ${stateObj.name} (Tasks 301–310)` 
+      : `${stateObj.icon || '🏛️'} Bundesland-Session: ${stateObj.name} (Aufgaben 301–310)`;
+
+    const modalTitle = document.getElementById('modal-session-title');
+    if (modalTitle) modalTitle.textContent = title;
+
+    openQuizModal();
+    loadNextFromQueue();
+  } catch (err) {
+    alert("Fehler beim Starten der Bundesland-Session: " + err.message);
+  }
+}
+
+function startSession(sessionTarget) {
+  if (typeof sessionTarget === 'string' && sessionTarget.startsWith('state-')) {
+    const code = sessionTarget.replace('state-', '');
+    loadStateQuestions(code);
+  } else {
+    startOfficialSession(Number(sessionTarget));
+  }
+}
+
 function startMockTimer() {
   clearInterval(mockTimerInterval);
   mockTimeRemaining = 3600; // 60 mins
@@ -1162,10 +1260,11 @@ function renderActiveQuestionUI() {
 
   const isEn = stateStore.appLanguage === 'en';
   const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  const taskLabel = activeQuestion.taskNum || activeQuestion.num;
 
   // Queue info
   const countEl = document.getElementById('quiz-queue-info');
-  if (countEl) countEl.textContent = dict.taskInfoLabel(activeQuestion.num, sessionQueue.length);
+  if (countEl) countEl.textContent = dict.taskInfoLabel(taskLabel, sessionQueue.length);
 
   // Check Flag state
   const isFlagged = (stateStore.flaggedQuestionIds || []).includes(String(activeQuestion.num));
@@ -1197,7 +1296,7 @@ function renderActiveQuestionUI() {
       <div class="flex items-start justify-between gap-3">
         <div>
           <span class="inline-block px-2.5 py-1 rounded bg-indigo-100 text-indigo-800 text-xs font-bold mb-2">
-            ${dict.taskBadgeLabel(activeQuestion.num)}
+            ${dict.taskBadgeLabel(taskLabel)}
           </span>
           <span class="text-xs theme-text-muted ml-2">${activeQuestion.category || ''}</span>
           <h3 class="text-base sm:text-lg font-bold leading-relaxed whitespace-pre-line">
@@ -1206,12 +1305,24 @@ function renderActiveQuestionUI() {
         </div>
       </div>
 
-      <!-- Optional Image -->
-      ${activeQuestion.image ? `
-        <div class="my-3 p-2 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center">
-          <img src="/${activeQuestion.image}" alt="Aufgabenbild" class="max-h-48 object-contain rounded" onerror="this.style.display='none'">
-        </div>
-      ` : ''}
+      <!-- Question Image Container (Coat of Arms, Maps, Diagrams) -->
+      ${(() => {
+        const rawImg = activeQuestion.image || activeQuestion.imageUrl || activeQuestion.img;
+        if (!rawImg || rawImg === '-' || rawImg === 'null' || rawImg.trim() === '') {
+          return '';
+        }
+        const trimmed = rawImg.trim();
+        const imgSrc = trimmed.startsWith('http') || trimmed.startsWith('/') ? trimmed : '/images/' + trimmed;
+        const taskNum = activeQuestion.num || activeQuestion.taskNum || '';
+        return `
+          <div class="question-image-container my-3 text-center">
+            <img src="${imgSrc}" 
+                 alt="Aufgabe ${taskNum} Abbildung" 
+                 class="img-fluid rounded border shadow-sm max-h-60 mx-auto"
+                 onerror="if (!this.dataset.fallback && this.src.startsWith('http')) { this.dataset.fallback = '1'; this.src = '/images/' + this.src.split('/').pop(); } else if (!this.dataset.fallback && this.src.includes('/images/')) { this.dataset.fallback = '1'; this.src = '${trimmed}'; } else { this.parentElement.style.display = 'none'; }" />
+          </div>
+        `;
+      })()}
 
       <!-- Options A, B, C, D (Always original official German) -->
       <div class="space-y-2.5 pt-2">
@@ -1292,6 +1403,7 @@ function selectOption(optKey) {
     solution: sol,
     timestamp: Date.now()
   };
+  answersMap[qNum] = stateStore.userAnswers[qNum];
 
   // Update session progress
   if (activeQuizMode === 'session' && activeSessionId) {
@@ -1306,11 +1418,28 @@ function selectOption(optKey) {
     const sessionDef = OFFICIAL_SESSIONS.find(s => s.id === activeSessionId);
     if (sessionDef && sp.answeredQuestionIds.length >= sessionDef.count) {
       sp.completed = true;
+      completedSessions.add(activeSessionId);
     }
     stateStore.sessionProgress[activeSessionId] = sp;
     
     if (!stateStore.userProgress) stateStore.userProgress = {};
     stateStore.userProgress[activeSessionId] = sp;
+    userProgress[activeSessionId] = sp;
+  } else if (activeQuizMode === 'state' && activeSessionId) {
+    if (!stateStore.sessionProgress) stateStore.sessionProgress = {};
+    const sp = stateStore.sessionProgress[activeSessionId] || { answeredQuestionIds: [], completed: false };
+    if (!sp.answeredQuestionIds) sp.answeredQuestionIds = [];
+    if (!sp.answeredQuestionIds.includes(qNum)) {
+      sp.answeredQuestionIds.push(qNum);
+    }
+    if (sp.answeredQuestionIds.length >= 10) {
+      sp.completed = true;
+      completedSessions.add(activeSessionId);
+    }
+    stateStore.sessionProgress[activeSessionId] = sp;
+    if (!stateStore.userProgress) stateStore.userProgress = {};
+    stateStore.userProgress[activeSessionId] = sp;
+    userProgress[activeSessionId] = sp;
   }
 
   saveStateToStorage();
@@ -1372,7 +1501,8 @@ function skipActiveQuestion() {
   if (toast) {
     toast.classList.remove('hidden');
     const toastInfo = document.getElementById('skip-toast-info');
-    if (toastInfo) toastInfo.textContent = dict.skipToastLabel(skipped.num, sessionQueue.length);
+    const taskLabel = skipped.taskNum || skipped.num;
+    if (toastInfo) toastInfo.textContent = dict.skipToastLabel(taskLabel, sessionQueue.length);
     setTimeout(() => { toast.classList.add('hidden'); }, 3000);
   }
 
@@ -1387,13 +1517,21 @@ function nextQuestionInQuiz() {
 
 function finishActiveQuiz() {
   clearInterval(mockTimerInterval);
+  const isEn = stateStore.appLanguage === 'en';
   if (activeQuizMode === 'session' && activeSessionId) {
     if (!stateStore.sessionProgress) stateStore.sessionProgress = {};
     const sp = stateStore.sessionProgress[activeSessionId] || { answeredQuestionIds: [], completed: false };
     sp.completed = true;
     stateStore.sessionProgress[activeSessionId] = sp;
     saveStateToStorage();
-    alert(`🎉 Glückwunsch! Sie haben Session ${activeSessionId} abgeschlossen!`);
+    alert(isEn ? `🎉 Congratulations! You have completed Session ${activeSessionId}!` : `🎉 Glückwunsch! Sie haben Session ${activeSessionId} abgeschlossen!`);
+  } else if (activeQuizMode === 'state') {
+    const userState = stateStore.userState || 'BY';
+    const stateObj = GERMAN_STATES.find(s => s.code === userState) || GERMAN_STATES[1];
+    saveStateToStorage();
+    alert(isEn 
+      ? `🎉 Congratulations! You completed all 10 federal state questions for ${stateObj.name}!` 
+      : `🎉 Glückwunsch! Sie haben alle 10 Bundeslandfragen für ${stateObj.name} abgeschlossen!`);
   } else if (activeQuizMode === 'mock') {
     stateStore.stats.testAttempted = (stateStore.stats.testAttempted || 0) + 1;
     // Mock exam threshold: 17 out of 33
@@ -1669,8 +1807,10 @@ function toggleFlagActiveQuestion() {
 
   if (idx >= 0) {
     stateStore.flaggedQuestionIds.splice(idx, 1);
+    flaggedSet.delete(numStr);
   } else {
     stateStore.flaggedQuestionIds.push(numStr);
+    flaggedSet.add(numStr);
   }
 
   saveStateToStorage();
@@ -1681,13 +1821,22 @@ function toggleFlagActiveQuestion() {
 // -------------------------------------------------------------
 // SETTINGS MODAL & RESET ALL USER DATA
 // -------------------------------------------------------------
-function openSettingsModal() {
+function openSettingsModal(focusTarget) {
   const modal = document.getElementById('settings-modal');
   if (modal) modal.classList.remove('hidden');
   const langSel = document.getElementById('settings-language-select');
   if (langSel) langSel.value = stateStore.appLanguage || 'de';
   const stateSel = document.getElementById('settings-state-select');
-  if (stateSel) stateSel.value = stateStore.userState || 'BY';
+  if (stateSel) {
+    stateSel.value = stateStore.userState || 'BY';
+    if (focusTarget === 'state') {
+      setTimeout(() => {
+        stateSel.focus();
+        stateSel.classList.add('ring-2', 'ring-indigo-500', 'border-indigo-500');
+        setTimeout(() => stateSel.classList.remove('ring-2', 'ring-indigo-500', 'border-indigo-500'), 2500);
+      }, 100);
+    }
+  }
 }
 
 function closeSettingsModal() {
@@ -1711,7 +1860,7 @@ function saveSettings() {
   closeSettingsModal();
 }
 
-function resetAllUserData() {
+function resetAllData() {
   const isEn = stateStore.appLanguage === 'en';
   const confirmMsg = isEn 
     ? "Are you sure you want to reset all training data and statistics?" 
@@ -1721,31 +1870,21 @@ function resetAllUserData() {
     return;
   }
 
-  // 1. Clear all designated localStorage keys
-  const keysToRemove = [
-    'userProgress',
-    'userAnswers',
-    'flaggedQuestions',
-    'skippedQuestions',
-    'sessionQueue',
-    'mockExamHistory',
-    'activeState',
-    'lid_state_v3',
-    'lid_user_state_v2',
-    'lid_state_v2'
-  ];
-  keysToRemove.forEach(k => {
-    try { localStorage.removeItem(k); } catch (e) {}
-  });
+  // 1. Clear Local Storage
+  try {
+    localStorage.clear();
+  } catch (e) {
+    console.error("Storage clear error:", e);
+  }
 
-  // 2. Reset in-memory session and active question state
-  sessionQueue = [];
-  activeQuestion = null;
-  activeSessionId = null;
-  activeQuestionAnswered = false;
-  activeQuestionSelectedOpt = null;
+  // 2. Clear In-Memory Variables
+  userProgress = {};
+  answersMap = {};
+  completedSessions = new Set();
+  flaggedSet = new Set();
+  skippedQueue = [];
 
-  // 3. Reset stateStore object completely
+  // Also clear stateStore object completely
   stateStore.stats = {
     skipped: 0,
     flagged: 0,
@@ -1767,17 +1906,21 @@ function resetAllUserData() {
   stateStore.sessionProgress = {};
   stateStore.dailyHistory = {};
 
-  // 4. Persist fresh state
+  sessionQueue = [];
+  activeQuestion = null;
+  activeSessionId = null;
+  activeQuestionAnswered = false;
+  activeQuestionSelectedOpt = null;
+
+  // Persist fresh empty state
   saveStateToStorage();
 
-  // 5. Automatically close the Settings modal
+  // Close Settings modal if open
   closeSettingsModal();
 
-  // 6. Instantly re-render the Dashboard and all components
-  applyAppLanguage(stateStore.appLanguage || 'de');
-  updateGreeting();
-  updateDashboardTopStats();
-  renderOfficialSessionsGrid();
+  // 3. Re-calculate metrics and force a clean UI re-render
+  updateDashboardStats();
+  renderCategoryCards();
   renderCharts();
 
   const successMsg = isEn 
@@ -1785,6 +1928,13 @@ function resetAllUserData() {
     : "Alle Statistiken und Trainingsfortschritte wurden erfolgreich auf 0 zurückgesetzt.";
   alert(successMsg);
 }
+
+// Function aliases
+const updateDashboardStats = updateDashboardTopStats;
+const renderCategoryCards = renderOfficialSessionsGrid;
+const clearAllProgress = resetAllData;
+const resetAllUserData = resetAllData;
+const startStatePracticeSession = loadStateQuestions;
 
 // Initialization on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -1813,3 +1963,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// Window global function exports
+window.userProgress = userProgress;
+window.answersMap = answersMap;
+window.completedSessions = completedSessions;
+window.flaggedSet = flaggedSet;
+window.skippedQueue = skippedQueue;
+window.getSolvedCountForSession = getSolvedCountForSession;
+window.updateDashboardStats = updateDashboardStats;
+window.renderCategoryCards = renderCategoryCards;
+window.clearAllProgress = clearAllProgress;
+window.resetAllData = resetAllData;
+window.resetAllUserData = resetAllData;
+window.startSession = startSession;
+window.loadStateQuestions = loadStateQuestions;
+window.startStatePracticeSession = startStatePracticeSession;
+window.startOfficialSession = startOfficialSession;
+window.startMockExam = startMockExam;
+window.openSettingsModal = openSettingsModal;
+window.closeSettingsModal = closeSettingsModal;
+window.saveSettings = saveSettings;

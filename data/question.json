@@ -21900,7 +21900,7 @@
     "sessionName": "Session 9: Migrationsgeschichte"
   },
   {
-    "num": "BB-1",
+    "num": "BB-301",
     "question": "Welches Wappen gehört zum Bundesland Brandenburg?",
     "a": "1",
     "b": "2",
@@ -21970,10 +21970,11 @@
     "context": "In einem Quiz werden mehrere Wappen mit Nummern angezeigt. Die Aufgabe besteht darin, das richtige Wappen einem deutschen Bundesland zuzuordnen. Dafür ist Grundwissen über die Symbole der Bundesländer hilfreich. Besonders sollte man das Wappen von Brandenburg kennen, das durch seinen roten Adler gekennzeichnet ist. Man soll entscheiden, welche der nummerierten Abbildungen dazu passt.",
     "id": "80f3803dfec84ae9c8854cebe7dc3912c2871c101ee4bd9c28dc00e42225bd40",
     "sessionId": 0,
-    "sessionName": "In einem Quiz werden mehrere Wappen mit Nummern angezeigt. Die Aufgabe besteht darin, das richtige Wappen einem deutschen Bundesland zuzuordnen. Dafür ist Grundwissen über die Symbole der Bundesländer hilfreich. Besonders sollte man das Wappen von Brandenburg kennen, das durch seinen roten Adler gekennzeichnet ist. Man soll entscheiden, welche der nummerierten Abbildungen dazu passt."
+    "sessionName": "In einem Quiz werden mehrere Wappen mit Nummern angezeigt. Die Aufgabe besteht darin, das richtige Wappen einem deutschen Bundesland zuzuordnen. Dafür ist Grundwissen über die Symbole der Bundesländer hilfreich. Besonders sollte man das Wappen von Brandenburg kennen, das durch seinen roten Adler gekennzeichnet ist. Man soll entscheiden, welche der nummerierten Abbildungen dazu passt.",
+    "taskNum": 301
   },
   {
-    "num": "BB-2",
+    "num": "BB-302",
     "question": "Welches ist ein Landkreis in Brandenburg?",
     "a": "Amberg-Sulzbach",
     "b": "Rhein-Sieg-Kreis",
@@ -22043,10 +22044,11 @@
     "context": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Brandenburg ist ein Bundesland im Osten Deutschlands. In der Multiple-Choice-Frage werden verschiedene Landkreise genannt, die zu unterschiedlichen Bundesländern gehören können. Ziel ist es, den Landkreis zu erkennen, der zum Bundesland Brandenburg zählt, im Unterschied zu Landkreisen aus anderen Regionen Deutschlands.",
     "id": "b00fd8c6397202f2f3aa1549b18ae457686df6ede74733ccb227283eb225bfb8",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Brandenburg ist ein Bundesland im Osten Deutschlands. In der Multiple-Choice-Frage werden verschiedene Landkreise genannt, die zu unterschiedlichen Bundesländern gehören können. Ziel ist es, den Landkreis zu erkennen, der zum Bundesland Brandenburg zählt, im Unterschied zu Landkreisen aus anderen Regionen Deutschlands."
+    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Brandenburg ist ein Bundesland im Osten Deutschlands. In der Multiple-Choice-Frage werden verschiedene Landkreise genannt, die zu unterschiedlichen Bundesländern gehören können. Ziel ist es, den Landkreis zu erkennen, der zum Bundesland Brandenburg zählt, im Unterschied zu Landkreisen aus anderen Regionen Deutschlands.",
+    "taskNum": 302
   },
   {
-    "num": "BB-2",
+    "num": "BB-303",
     "question": "Für wie viele Jahre wird der Landtag in Brandenburg gewählt?",
     "a": "3",
     "b": "4",
@@ -22116,10 +22118,11 @@
     "context": "Die Frage bezieht sich auf das parlamentarische System des Bundeslandes Brandenburg. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen gewählt. Je nach Bundesland unterscheiden sich die Wahlperioden der Landtage. Die Aufgabe prüft das Wissen über die Dauer einer Legislaturperiode in Brandenburg und bietet mehrere Antwortmöglichkeiten zur Auswahl an.",
     "id": "2d7d0bf0b48dfe0bbf5ef5eeb922d245faf787e032cd6aa6c75700149efe8f57",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf das parlamentarische System des Bundeslandes Brandenburg. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen gewählt. Je nach Bundesland unterscheiden sich die Wahlperioden der Landtage. Die Aufgabe prüft das Wissen über die Dauer einer Legislaturperiode in Brandenburg und bietet mehrere Antwortmöglichkeiten zur Auswahl an."
+    "sessionName": "Die Frage bezieht sich auf das parlamentarische System des Bundeslandes Brandenburg. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen gewählt. Je nach Bundesland unterscheiden sich die Wahlperioden der Landtage. Die Aufgabe prüft das Wissen über die Dauer einer Legislaturperiode in Brandenburg und bietet mehrere Antwortmöglichkeiten zur Auswahl an.",
+    "taskNum": 303
   },
   {
-    "num": "BB-2",
+    "num": "BB-304",
     "question": "Ab welchem Alter darf man in Brandenburg bei Kommunalwahlen\n                  wählen?",
     "a": "14",
     "b": "16",
@@ -22189,10 +22192,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "d987e359386844c77210991dd5b736361b31fec3a75d7272deedb4e7c30a886f",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "BE-1",
+    "num": "BE-301",
     "question": "Welches Wappen gehört zum Bundesland Berlin?",
     "a": "1",
     "b": "2",
@@ -22262,10 +22266,11 @@
     "context": "In dieser Aufgabe geht es um die deutschen Bundesländer und ihre offiziellen Wappen. Jedes Bundesland besitzt ein eigenes Hoheitszeichen, das historische und kulturelle Bedeutungen hat. Auf dem Bild oder in der Aufgabe sind mehrere Wappen mit Nummern dargestellt. Die Frage fordert dazu auf, das Wappen zu identifizieren, das offiziell zum Bundesland Berlin gehört, und die passende Nummer auszuwählen.",
     "id": "f4a62081577688642c89d71f777dfb322488b8550ec983daed79ee33b56e2f43",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe geht es um die deutschen Bundesländer und ihre offiziellen Wappen. Jedes Bundesland besitzt ein eigenes Hoheitszeichen, das historische und kulturelle Bedeutungen hat. Auf dem Bild oder in der Aufgabe sind mehrere Wappen mit Nummern dargestellt. Die Frage fordert dazu auf, das Wappen zu identifizieren, das offiziell zum Bundesland Berlin gehört, und die passende Nummer auszuwählen."
+    "sessionName": "In dieser Aufgabe geht es um die deutschen Bundesländer und ihre offiziellen Wappen. Jedes Bundesland besitzt ein eigenes Hoheitszeichen, das historische und kulturelle Bedeutungen hat. Auf dem Bild oder in der Aufgabe sind mehrere Wappen mit Nummern dargestellt. Die Frage fordert dazu auf, das Wappen zu identifizieren, das offiziell zum Bundesland Berlin gehört, und die passende Nummer auszuwählen.",
+    "taskNum": 301
   },
   {
-    "num": "BE-2",
+    "num": "BE-302",
     "question": "Welches ist ein Bezirk von Berlin?",
     "a": "Pankow",
     "b": "Prignitz",
@@ -22335,10 +22340,11 @@
     "context": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Berlin ist in mehrere Bezirke unterteilt, die eine besondere Form der kommunalen Verwaltung darstellen. Die Antwortmöglichkeiten enthalten verschiedene geografische Bezeichnungen: Einige sind Berliner Bezirke, andere sind Landkreise oder Stadtteile in anderen Bundesländern oder Städten. Ziel ist es, den Bezirk zu erkennen, der tatsächlich zu Berlin gehört.",
     "id": "ffd628cb6e9b1916b6fe9a0fe7059b7c65effb279b4bece2709848765b01a663",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Berlin ist in mehrere Bezirke unterteilt, die eine besondere Form der kommunalen Verwaltung darstellen. Die Antwortmöglichkeiten enthalten verschiedene geografische Bezeichnungen: Einige sind Berliner Bezirke, andere sind Landkreise oder Stadtteile in anderen Bundesländern oder Städten. Ziel ist es, den Bezirk zu erkennen, der tatsächlich zu Berlin gehört."
+    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Berlin ist in mehrere Bezirke unterteilt, die eine besondere Form der kommunalen Verwaltung darstellen. Die Antwortmöglichkeiten enthalten verschiedene geografische Bezeichnungen: Einige sind Berliner Bezirke, andere sind Landkreise oder Stadtteile in anderen Bundesländern oder Städten. Ziel ist es, den Bezirk zu erkennen, der tatsächlich zu Berlin gehört.",
+    "taskNum": 302
   },
   {
-    "num": "BE-3",
+    "num": "BE-303",
     "question": "Für wie viele Jahre wird das Landesparlament in Berlin\n                  gewählt?",
     "a": "3",
     "b": "4",
@@ -22408,10 +22414,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "9fb746ea65f7047c54536fc149ebe45f032eeb0f33e7ce9eb535780757eda8fc",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "BB-6",
+    "num": "BB-305",
     "question": "Welche Farben hat die Landesflagge von Brandenburg?",
     "a": "rot-weiß",
     "b": "schwarz-gelb",
@@ -22481,10 +22488,11 @@
     "context": "Die Frage bezieht sich auf das Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Jedes Bundesland in Deutschland hat eine eigene Landesflagge mit bestimmten Farben und oft einem Wappen. Die Landesflaggen werden bei offiziellen Anlässen, an öffentlichen Gebäuden und bei regionalen Veranstaltungen gezeigt. Um die richtige Antwort zu finden, sollte man die Flagge des Bundeslandes Brandenburg kennen oder wissen, welche Farben traditionell mit diesem Bundesland verbunden sind.",
     "id": "4968b6a5510bceeec7c5f1907431875083daed550bef327c5c6b35a20d2125ba",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf das Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Jedes Bundesland in Deutschland hat eine eigene Landesflagge mit bestimmten Farben und oft einem Wappen. Die Landesflaggen werden bei offiziellen Anlässen, an öffentlichen Gebäuden und bei regionalen Veranstaltungen gezeigt. Um die richtige Antwort zu finden, sollte man die Flagge des Bundeslandes Brandenburg kennen oder wissen, welche Farben traditionell mit diesem Bundesland verbunden sind."
+    "sessionName": "Die Frage bezieht sich auf das Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Jedes Bundesland in Deutschland hat eine eigene Landesflagge mit bestimmten Farben und oft einem Wappen. Die Landesflaggen werden bei offiziellen Anlässen, an öffentlichen Gebäuden und bei regionalen Veranstaltungen gezeigt. Um die richtige Antwort zu finden, sollte man die Flagge des Bundeslandes Brandenburg kennen oder wissen, welche Farben traditionell mit diesem Bundesland verbunden sind.",
+    "taskNum": 305
   },
   {
-    "num": "BE-4",
+    "num": "BE-304",
     "question": "Ab welchem Alter darf man in Berlin bei Kommunalwahlen (Wahl\n                  der Bezirksverordnetenversammlung) wählen?",
     "a": "14",
     "b": "16",
@@ -22554,10 +22562,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "f69cb6a0d2c52857a9445cb6c0dc6b893d3a7189e68fcc2410e1d889f93e5bdc",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "BE-5",
+    "num": "BE-305",
     "question": "Welche Farben hat die Landesflagge von Berlin?",
     "a": "grün-weiß-rot",
     "b": "schwarz-gold",
@@ -22627,10 +22636,11 @@
     "context": "Die folgende Frage bezieht sich auf allgemeines Wissen über deutsche Bundesländer. Konkret geht es um die Landesflagge von Berlin, also die offizielle Flagge der deutschen Hauptstadt. Anhand der Antwortmöglichkeiten soll erkannt werden, aus welchen Farben diese Flagge besteht. Die Frage prüft Kenntnisse über nationale und regionale Symbole Deutschlands.",
     "id": "1a1ed5753f362791a79021a5c215f2d801c44d62adddf438f735a1086d0ec36b",
     "sessionId": 0,
-    "sessionName": "Die folgende Frage bezieht sich auf allgemeines Wissen über deutsche Bundesländer. Konkret geht es um die Landesflagge von Berlin, also die offizielle Flagge der deutschen Hauptstadt. Anhand der Antwortmöglichkeiten soll erkannt werden, aus welchen Farben diese Flagge besteht. Die Frage prüft Kenntnisse über nationale und regionale Symbole Deutschlands."
+    "sessionName": "Die folgende Frage bezieht sich auf allgemeines Wissen über deutsche Bundesländer. Konkret geht es um die Landesflagge von Berlin, also die offizielle Flagge der deutschen Hauptstadt. Anhand der Antwortmöglichkeiten soll erkannt werden, aus welchen Farben diese Flagge besteht. Die Frage prüft Kenntnisse über nationale und regionale Symbole Deutschlands.",
+    "taskNum": 305
   },
   {
-    "num": "BE-6",
+    "num": "BE-306",
     "question": "Wo können Sie sich in Berlin über politische Themen\n                  informieren?",
     "a": "beim Ordnungsamt der Gemeinde",
     "b": "bei den Kirchen",
@@ -22700,10 +22710,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "3451cd181f59c0930ed9d6b9f682cc76b777d23ebe63cda4199b509eaf1a51d3",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "BB-9",
+    "num": "BB-306",
     "question": "Wo können Sie sich in Brandenburg über politische Themen\n                  informieren?",
     "a": "beim Ordnungsamt der Gemeinde",
     "b": "bei der Landeszentrale für politische Bildung",
@@ -22773,10 +22784,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "354f6d78d216e24034aaf81d9a82383044468e571cdc678c133eccf58b99ecc1",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "BE-7",
+    "num": "BE-307",
     "question": "Welches Bundesland ist ein Stadtstaat?",
     "a": "Brandenburg",
     "b": "Berlin",
@@ -22846,10 +22858,11 @@
     "context": "In Deutschland gibt es 16 Bundesländer mit unterschiedlichen politischen und geografischen Strukturen. Einige Bundesländer bestehen aus mehreren Städten und Regionen, während andere nur aus einer einzigen großen Stadt bestehen und deshalb besondere Verwaltungsformen haben. Zu diesen sogenannten Stadtstaaten zählen nur wenige Bundesländer. Die folgende Frage prüft, ob man weiß, welches der genannten Bundesländer zu dieser speziellen Kategorie gehört.",
     "id": "3bf99f7fa6def86b0dc5c7104a7c16242d81d2ee6e3a04aeb5c933f565e19c0e",
     "sessionId": 0,
-    "sessionName": "In Deutschland gibt es 16 Bundesländer mit unterschiedlichen politischen und geografischen Strukturen. Einige Bundesländer bestehen aus mehreren Städten und Regionen, während andere nur aus einer einzigen großen Stadt bestehen und deshalb besondere Verwaltungsformen haben. Zu diesen sogenannten Stadtstaaten zählen nur wenige Bundesländer. Die folgende Frage prüft, ob man weiß, welches der genannten Bundesländer zu dieser speziellen Kategorie gehört."
+    "sessionName": "In Deutschland gibt es 16 Bundesländer mit unterschiedlichen politischen und geografischen Strukturen. Einige Bundesländer bestehen aus mehreren Städten und Regionen, während andere nur aus einer einzigen großen Stadt bestehen und deshalb besondere Verwaltungsformen haben. Zu diesen sogenannten Stadtstaaten zählen nur wenige Bundesländer. Die folgende Frage prüft, ob man weiß, welches der genannten Bundesländer zu dieser speziellen Kategorie gehört.",
+    "taskNum": 307
   },
   {
-    "num": "BB-10",
+    "num": "BB-307",
     "question": "Die Landeshauptstadt von Brandenburg heißt ...",
     "a": "",
     "b": "",
@@ -22919,10 +22932,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "769dfc2a692eccaccf0129d572d1c3eb125ab7652f965c0ad58c78d880817f74",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 307
   },
   {
-    "num": "BB-10",
+    "num": "BB-308",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Brandenburg?",
     "a": "Ministerpräsident / Ministerpräsidentin",
     "b": "Bürgermeister / Bürgermeisterin",
@@ -22992,10 +23006,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "547d1beea51dc1bc7ef5e42e1e4901d5f245f8e07fa8b809e484af91c488c9ed",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 308
   },
   {
-    "num": "BB-10",
+    "num": "BB-309",
     "question": "Welchen Minister / welche Ministerin hat Brandenburg nicht?",
     "a": "Finanzminister / Finanzministerin",
     "b": "Innenminister / Innenministerin",
@@ -23065,10 +23080,11 @@
     "context": "Die Frage bezieht sich auf die Landesregierung des Bundeslandes Brandenburg in Deutschland. Jedes Bundesland hat eigene Ministerien, die bestimmte Politikbereiche abdecken. Typische Ressorts sind zum Beispiel Finanzen, Inneres oder Justiz. Manche Ministerien gibt es jedoch nur auf Bundesebene, weil bestimmte Zuständigkeiten nicht bei den Ländern liegen. Vor diesem Hintergrund soll geprüft werden, welches der genannten Ministerämter es in Brandenburg nicht gibt.",
     "id": "d0015b24def1a6dfa0671d4aacd52d728f84f5bf7d323ff9679d14b95efe10a1",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Landesregierung des Bundeslandes Brandenburg in Deutschland. Jedes Bundesland hat eigene Ministerien, die bestimmte Politikbereiche abdecken. Typische Ressorts sind zum Beispiel Finanzen, Inneres oder Justiz. Manche Ministerien gibt es jedoch nur auf Bundesebene, weil bestimmte Zuständigkeiten nicht bei den Ländern liegen. Vor diesem Hintergrund soll geprüft werden, welches der genannten Ministerämter es in Brandenburg nicht gibt."
+    "sessionName": "Die Frage bezieht sich auf die Landesregierung des Bundeslandes Brandenburg in Deutschland. Jedes Bundesland hat eigene Ministerien, die bestimmte Politikbereiche abdecken. Typische Ressorts sind zum Beispiel Finanzen, Inneres oder Justiz. Manche Ministerien gibt es jedoch nur auf Bundesebene, weil bestimmte Zuständigkeiten nicht bei den Ländern liegen. Vor diesem Hintergrund soll geprüft werden, welches der genannten Ministerämter es in Brandenburg nicht gibt.",
+    "taskNum": 309
   },
   {
-    "num": "BB-10",
+    "num": "BB-310",
     "question": "Welches Bundesland ist Brandenburg?",
     "a": "1",
     "b": "2",
@@ -23138,10 +23154,11 @@
     "context": "In einem Quiz zur politischen Geografie Deutschlands geht es darum, die deutschen Bundesländer richtig einzuordnen. Dabei kann sich die Frage auf Karten, Nummerierungen oder Abbildungen beziehen, in denen die Bundesländer durchnummeriert dargestellt sind. Um die richtige Antwort zu wählen, muss man wissen, welches dieser nummerierten Gebiete dem Bundesland Brandenburg entspricht.",
     "id": "86a84b23752c6c8890c4662fba987aee693cff6380a4ef58af810175eceb19bd",
     "sessionId": 0,
-    "sessionName": "In einem Quiz zur politischen Geografie Deutschlands geht es darum, die deutschen Bundesländer richtig einzuordnen. Dabei kann sich die Frage auf Karten, Nummerierungen oder Abbildungen beziehen, in denen die Bundesländer durchnummeriert dargestellt sind. Um die richtige Antwort zu wählen, muss man wissen, welches dieser nummerierten Gebiete dem Bundesland Brandenburg entspricht."
+    "sessionName": "In einem Quiz zur politischen Geografie Deutschlands geht es darum, die deutschen Bundesländer richtig einzuordnen. Dabei kann sich die Frage auf Karten, Nummerierungen oder Abbildungen beziehen, in denen die Bundesländer durchnummeriert dargestellt sind. Um die richtige Antwort zu wählen, muss man wissen, welches dieser nummerierten Gebiete dem Bundesland Brandenburg entspricht.",
+    "taskNum": 310
   },
   {
-    "num": "BE-8",
+    "num": "BE-308",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin des\n                  Stadtstaates Berlin?",
     "a": "Regierender Bürgermeister / Regierende Bürgermeisterin",
     "b": "Präsident / Präsidentin des Senats",
@@ -23211,10 +23228,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "784341e62278f642c3bf11bfd5728f7adc2cff5388922923ccc7134b13193a6c",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 308
   },
   {
-    "num": "BE-9",
+    "num": "BE-309",
     "question": "Welchen Senator / welche Senatorin hat Berlin nicht?",
     "a": "Senator / Senatorin für Außenbeziehungen",
     "b": "Finanzsenator / Finanzsenatorin",
@@ -23284,10 +23302,11 @@
     "context": "Berlin ist ein deutsches Bundesland und zugleich Stadtstaat. Die Landesregierung heißt „Senat von Berlin“ und besteht aus dem Regierenden Bürgermeister bzw. der Regierenden Bürgermeisterin sowie mehreren Senatorinnen und Senatoren, die jeweils ein bestimmtes Ressort leiten, zum Beispiel Finanzen, Inneres oder Justiz. Nicht jedes politische Aufgabenfeld existiert auf Landesebene. Die Frage prüft, welches der genannten Senatorenämter es im Berliner Senat nicht gibt.",
     "id": "0d01fd3abf9f902bd0524eb8a1fcdfa66cafe5b0547598032f69cb9ca753dcd2",
     "sessionId": 0,
-    "sessionName": "Berlin ist ein deutsches Bundesland und zugleich Stadtstaat. Die Landesregierung heißt „Senat von Berlin“ und besteht aus dem Regierenden Bürgermeister bzw. der Regierenden Bürgermeisterin sowie mehreren Senatorinnen und Senatoren, die jeweils ein bestimmtes Ressort leiten, zum Beispiel Finanzen, Inneres oder Justiz. Nicht jedes politische Aufgabenfeld existiert auf Landesebene. Die Frage prüft, welches der genannten Senatorenämter es im Berliner Senat nicht gibt."
+    "sessionName": "Berlin ist ein deutsches Bundesland und zugleich Stadtstaat. Die Landesregierung heißt „Senat von Berlin“ und besteht aus dem Regierenden Bürgermeister bzw. der Regierenden Bürgermeisterin sowie mehreren Senatorinnen und Senatoren, die jeweils ein bestimmtes Ressort leiten, zum Beispiel Finanzen, Inneres oder Justiz. Nicht jedes politische Aufgabenfeld existiert auf Landesebene. Die Frage prüft, welches der genannten Senatorenämter es im Berliner Senat nicht gibt.",
+    "taskNum": 309
   },
   {
-    "num": "BE-10",
+    "num": "BE-310",
     "question": "Welches Bundesland ist Berlin?",
     "a": "1",
     "b": "2",
@@ -23357,10 +23376,11 @@
     "context": "Die Frage bezieht sich auf die föderale Struktur Deutschlands. Deutschland besteht aus 16 Bundesländern, von denen einige gleichzeitig Stadtstaaten sind. In einem Quiz oder Test sollen die Teilnehmenden anhand von vorgegebenen Antwortmöglichkeiten auswählen, welches Bundesland Berlin ist. Die Optionen a bis d stehen dabei für nummerierte Antworten, aus denen eine als richtig ausgewählt werden soll.",
     "id": "7502d511a028e069838392196caca6fa07282cc439ae0a2fb56cfdd4d3c5e73a",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die föderale Struktur Deutschlands. Deutschland besteht aus 16 Bundesländern, von denen einige gleichzeitig Stadtstaaten sind. In einem Quiz oder Test sollen die Teilnehmenden anhand von vorgegebenen Antwortmöglichkeiten auswählen, welches Bundesland Berlin ist. Die Optionen a bis d stehen dabei für nummerierte Antworten, aus denen eine als richtig ausgewählt werden soll."
+    "sessionName": "Die Frage bezieht sich auf die föderale Struktur Deutschlands. Deutschland besteht aus 16 Bundesländern, von denen einige gleichzeitig Stadtstaaten sind. In einem Quiz oder Test sollen die Teilnehmenden anhand von vorgegebenen Antwortmöglichkeiten auswählen, welches Bundesland Berlin ist. Die Optionen a bis d stehen dabei für nummerierte Antworten, aus denen eine als richtig ausgewählt werden soll.",
+    "taskNum": 310
   },
   {
-    "num": "BW-1",
+    "num": "BW-301",
     "question": "Welches Wappen gehört zum Bundesland Baden-Württemberg?",
     "a": "2",
     "b": "4",
@@ -23430,10 +23450,11 @@
     "context": "Die Frage bezieht sich auf deutsche Bundesländer und ihre offiziellen Wappen. Jedes Bundesland hat ein eigenes, historisch geprägtes Wappen mit bestimmten Symbolen, Farben und Motiven. In der Aufgabe werden mehrere nummerierte Abbildungen von Wappen gezeigt. Ziel ist es, das richtige Wappen zu identifizieren, das zum Bundesland Baden-Württemberg gehört. Dafür sind Kenntnisse über das Aussehen des Landeswappens sowie der Vergleich mit anderen möglichen Wappen hilfreich.",
     "id": "9ebef355924d52c847342c8a407d76a5b6bc684b3f9f768cce0d9242c9528148",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf deutsche Bundesländer und ihre offiziellen Wappen. Jedes Bundesland hat ein eigenes, historisch geprägtes Wappen mit bestimmten Symbolen, Farben und Motiven. In der Aufgabe werden mehrere nummerierte Abbildungen von Wappen gezeigt. Ziel ist es, das richtige Wappen zu identifizieren, das zum Bundesland Baden-Württemberg gehört. Dafür sind Kenntnisse über das Aussehen des Landeswappens sowie der Vergleich mit anderen möglichen Wappen hilfreich."
+    "sessionName": "Die Frage bezieht sich auf deutsche Bundesländer und ihre offiziellen Wappen. Jedes Bundesland hat ein eigenes, historisch geprägtes Wappen mit bestimmten Symbolen, Farben und Motiven. In der Aufgabe werden mehrere nummerierte Abbildungen von Wappen gezeigt. Ziel ist es, das richtige Wappen zu identifizieren, das zum Bundesland Baden-Württemberg gehört. Dafür sind Kenntnisse über das Aussehen des Landeswappens sowie der Vergleich mit anderen möglichen Wappen hilfreich.",
+    "taskNum": 301
   },
   {
-    "num": "BY-1",
+    "num": "BY-301",
     "question": "Welches Wappen gehört zum Freistaat Bayern?",
     "a": "1",
     "b": "2",
@@ -23503,10 +23524,11 @@
     "context": "In dieser Aufgabe sehen Sie mehrere nummerierte Abbildungen von Wappen. Jedes Wappen gehört zu einem anderen deutschen Bundesland oder einer historischen Region. Ihre Aufgabe ist es, anhand der typischen Symbole, Farben und Muster das offizielle Wappen des Freistaats Bayern zu erkennen. Wählen Sie die Nummer aus, die dem bayerischen Landeswappen entspricht.",
     "id": "1b60bdabea631949662b1904deb7e073b99537fb12a2a88f4ab033abf21e66ab",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe sehen Sie mehrere nummerierte Abbildungen von Wappen. Jedes Wappen gehört zu einem anderen deutschen Bundesland oder einer historischen Region. Ihre Aufgabe ist es, anhand der typischen Symbole, Farben und Muster das offizielle Wappen des Freistaats Bayern zu erkennen. Wählen Sie die Nummer aus, die dem bayerischen Landeswappen entspricht."
+    "sessionName": "In dieser Aufgabe sehen Sie mehrere nummerierte Abbildungen von Wappen. Jedes Wappen gehört zu einem anderen deutschen Bundesland oder einer historischen Region. Ihre Aufgabe ist es, anhand der typischen Symbole, Farben und Muster das offizielle Wappen des Freistaats Bayern zu erkennen. Wählen Sie die Nummer aus, die dem bayerischen Landeswappen entspricht.",
+    "taskNum": 301
   },
   {
-    "num": "BW-4",
+    "num": "BW-302",
     "question": "Welches ist ein Landkreis in Baden-Württemberg?",
     "a": "Neckar-Odenwald-Kreis",
     "b": "Nordfriesland",
@@ -23576,10 +23598,11 @@
     "context": "Die folgende Frage bezieht sich auf die geografische Einteilung Deutschlands. Deutschland ist in Bundesländer, Regierungsbezirke und Landkreise unterteilt. Gesucht wird ein Landkreis, der zum Bundesland Baden-Württemberg gehört. Die Antwortmöglichkeiten nennen verschiedene Landkreise, die jeweils in unterschiedlichen Regionen oder Bundesländern liegen. Um die richtige Antwort zu finden, ist Grundwissen über die deutschen Bundesländer und ihre jeweiligen Landkreise hilfreich.",
     "id": "9fbb9f27799c0ece46ec85f7e7d9a3bcf37d5853a8c6e321b1817102d7f83492",
     "sessionId": 0,
-    "sessionName": "Die folgende Frage bezieht sich auf die geografische Einteilung Deutschlands. Deutschland ist in Bundesländer, Regierungsbezirke und Landkreise unterteilt. Gesucht wird ein Landkreis, der zum Bundesland Baden-Württemberg gehört. Die Antwortmöglichkeiten nennen verschiedene Landkreise, die jeweils in unterschiedlichen Regionen oder Bundesländern liegen. Um die richtige Antwort zu finden, ist Grundwissen über die deutschen Bundesländer und ihre jeweiligen Landkreise hilfreich."
+    "sessionName": "Die folgende Frage bezieht sich auf die geografische Einteilung Deutschlands. Deutschland ist in Bundesländer, Regierungsbezirke und Landkreise unterteilt. Gesucht wird ein Landkreis, der zum Bundesland Baden-Württemberg gehört. Die Antwortmöglichkeiten nennen verschiedene Landkreise, die jeweils in unterschiedlichen Regionen oder Bundesländern liegen. Um die richtige Antwort zu finden, ist Grundwissen über die deutschen Bundesländer und ihre jeweiligen Landkreise hilfreich.",
+    "taskNum": 302
   },
   {
-    "num": "BW-4",
+    "num": "BW-303",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Baden-Württemberg?",
     "a": "Bürgermeister / Bürgermeisterin",
     "b": "Ministerpräsident / Ministerpräsidentin",
@@ -23649,10 +23672,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "d4673664bb1fffb16315299d10e1a627a2b068696038671f9fba37970ab2fcb4",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "BW-8",
+    "num": "BW-304",
     "question": "Für wie viele Jahre wird der Landtag in Baden-Württemberg\n                  gewählt?",
     "a": "6",
     "b": "3",
@@ -23722,10 +23746,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "a7069734bd4612f6b57dc06cdb191f72d7a087273841262f5489b457ebb65022",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "BW-8",
+    "num": "BW-305",
     "question": "Welchen Minister / welche Ministerin hat Baden-Württemberg\n                  nicht?",
     "a": "Finanzminister / Finanzministerin",
     "b": "Innenminister / Innenministerin",
@@ -23795,10 +23820,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "a5df0bc6f75e50a7882d0c8225f64bd369c2ae47abd1bdde772ee0e441659614",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 305
   },
   {
-    "num": "BY-7",
+    "num": "BY-302",
     "question": "Welches ist ein Landkreis in Bayern?",
     "a": "Altötting",
     "b": "Prignitz",
@@ -23868,10 +23894,11 @@
     "context": "Die Frage bezieht sich auf Verwaltungsregionen in Deutschland. Deutschland ist in Bundesländer gegliedert, die wiederum in Landkreise oder kreisfreie Städte unterteilt sind. Bayern ist eines der 16 Bundesländer, und es gibt mehrere Landkreise innerhalb dieses Bundeslandes. Die Antwortmöglichkeiten nennen verschiedene Regionen, von denen einige in anderen Bundesländern liegen. Ziel ist es zu erkennen, welche der genannten Optionen ein Landkreis im Bundesland Bayern ist.",
     "id": "1010b08b85e844e6d0aeeccf6c53d8936c4617abbb29b78a019fbcf6532c6a17",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf Verwaltungsregionen in Deutschland. Deutschland ist in Bundesländer gegliedert, die wiederum in Landkreise oder kreisfreie Städte unterteilt sind. Bayern ist eines der 16 Bundesländer, und es gibt mehrere Landkreise innerhalb dieses Bundeslandes. Die Antwortmöglichkeiten nennen verschiedene Regionen, von denen einige in anderen Bundesländern liegen. Ziel ist es zu erkennen, welche der genannten Optionen ein Landkreis im Bundesland Bayern ist."
+    "sessionName": "Die Frage bezieht sich auf Verwaltungsregionen in Deutschland. Deutschland ist in Bundesländer gegliedert, die wiederum in Landkreise oder kreisfreie Städte unterteilt sind. Bayern ist eines der 16 Bundesländer, und es gibt mehrere Landkreise innerhalb dieses Bundeslandes. Die Antwortmöglichkeiten nennen verschiedene Regionen, von denen einige in anderen Bundesländern liegen. Ziel ist es zu erkennen, welche der genannten Optionen ein Landkreis im Bundesland Bayern ist.",
+    "taskNum": 302
   },
   {
-    "num": "BW-10",
+    "num": "BW-306",
     "question": "Ab welchem Alter darf man in Baden-Württemberg bei\n                  Kommunalwahlen wählen?",
     "a": "16",
     "b": "18",
@@ -23941,10 +23968,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "d46b0aefce4454fb53756ee6ceecf75cefda6ad5734ccf18b030d13cdac03df3",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "BW-10",
+    "num": "BW-307",
     "question": "Welche Farben hat die Landesflagge von Baden-Württemberg?",
     "a": "grün-weiß-rot",
     "b": "weiß-blau",
@@ -24014,10 +24042,11 @@
     "context": "Die Frage bezieht sich auf das Wissen über deutsche Bundesländer und ihre Symbole. Baden-Württemberg ist eines der 16 Bundesländer Deutschlands und besitzt wie jedes Bundesland eine eigene Landesflagge. In einem Multiple-Choice-Format werden verschiedene Farbkombinationen angeboten. Um die richtige Antwort zu wählen, sollte man die Flaggen deutscher Bundesländer kennen oder sich mit deutscher Geografie und Heraldik auskennen.",
     "id": "5b06afcbff26bd6c8da2e12516c14187985815a4c9bcf301c4ee03102ba196e3",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf das Wissen über deutsche Bundesländer und ihre Symbole. Baden-Württemberg ist eines der 16 Bundesländer Deutschlands und besitzt wie jedes Bundesland eine eigene Landesflagge. In einem Multiple-Choice-Format werden verschiedene Farbkombinationen angeboten. Um die richtige Antwort zu wählen, sollte man die Flaggen deutscher Bundesländer kennen oder sich mit deutscher Geografie und Heraldik auskennen."
+    "sessionName": "Die Frage bezieht sich auf das Wissen über deutsche Bundesländer und ihre Symbole. Baden-Württemberg ist eines der 16 Bundesländer Deutschlands und besitzt wie jedes Bundesland eine eigene Landesflagge. In einem Multiple-Choice-Format werden verschiedene Farbkombinationen angeboten. Um die richtige Antwort zu wählen, sollte man die Flaggen deutscher Bundesländer kennen oder sich mit deutscher Geografie und Heraldik auskennen.",
+    "taskNum": 307
   },
   {
-    "num": "BW-10",
+    "num": "BW-308",
     "question": "Wo können Sie sich in Baden-Württemberg über politische Themen\n                  informieren?",
     "a": "bei der Landeszentrale für politische Bildung",
     "b": "beim Ordnungsamt der Gemeinde",
@@ -24087,10 +24116,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "298dbf218f80a9dbf90dd32ddb68947994363a96044a9a8792eda53ad100471c",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 308
   },
   {
-    "num": "BW-10",
+    "num": "BW-309",
     "question": "Die Landeshauptstadt von Baden-Württemberg heißt ...",
     "a": "Mannheim",
     "b": "Stuttgart",
@@ -24160,10 +24190,11 @@
     "context": "Die Frage bezieht sich auf die politischen und geografischen Strukturen der deutschen Bundesländer. Baden-Württemberg ist eines der 16 Bundesländer Deutschlands und hat eine festgelegte Landeshauptstadt, in der Regierung und Parlament ihren Sitz haben. Die Antwortmöglichkeiten nennen bekannte Städte des Bundeslandes, von denen nur eine die Hauptstadt ist.",
     "id": "9e1c4a491553cbd219741b95d8e5650a835f1889ac08923e7454fccd3707c149",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die politischen und geografischen Strukturen der deutschen Bundesländer. Baden-Württemberg ist eines der 16 Bundesländer Deutschlands und hat eine festgelegte Landeshauptstadt, in der Regierung und Parlament ihren Sitz haben. Die Antwortmöglichkeiten nennen bekannte Städte des Bundeslandes, von denen nur eine die Hauptstadt ist."
+    "sessionName": "Die Frage bezieht sich auf die politischen und geografischen Strukturen der deutschen Bundesländer. Baden-Württemberg ist eines der 16 Bundesländer Deutschlands und hat eine festgelegte Landeshauptstadt, in der Regierung und Parlament ihren Sitz haben. Die Antwortmöglichkeiten nennen bekannte Städte des Bundeslandes, von denen nur eine die Hauptstadt ist.",
+    "taskNum": 309
   },
   {
-    "num": "BW-10",
+    "num": "BW-310",
     "question": "Welches Bundesland ist Baden-Württemberg?",
     "a": "1",
     "b": "2",
@@ -24233,10 +24264,11 @@
     "context": "Die Frage stammt aus einem Multiple-Choice-Test zur deutschen Geografie. Auf einer Abbildung oder Liste sind die Bundesländer Deutschlands mit den Zahlen 1 bis 4 gekennzeichnet. Anhand dieser Nummern soll erkannt werden, welche Zahl dem Bundesland Baden-Württemberg entspricht. Ziel ist es, Kenntnisse über die Lage und Einordnung der Bundesländer zu prüfen.",
     "id": "bc2617bb0f19cb384a3e63cc3f09815dcd4ce21e9b4d6fdd81168c73dd3d9d24",
     "sessionId": 0,
-    "sessionName": "Die Frage stammt aus einem Multiple-Choice-Test zur deutschen Geografie. Auf einer Abbildung oder Liste sind die Bundesländer Deutschlands mit den Zahlen 1 bis 4 gekennzeichnet. Anhand dieser Nummern soll erkannt werden, welche Zahl dem Bundesland Baden-Württemberg entspricht. Ziel ist es, Kenntnisse über die Lage und Einordnung der Bundesländer zu prüfen."
+    "sessionName": "Die Frage stammt aus einem Multiple-Choice-Test zur deutschen Geografie. Auf einer Abbildung oder Liste sind die Bundesländer Deutschlands mit den Zahlen 1 bis 4 gekennzeichnet. Anhand dieser Nummern soll erkannt werden, welche Zahl dem Bundesland Baden-Württemberg entspricht. Ziel ist es, Kenntnisse über die Lage und Einordnung der Bundesländer zu prüfen.",
+    "taskNum": 310
   },
   {
-    "num": "BY-10",
+    "num": "BY-303",
     "question": "Für wie viele Jahre wird der Landtag in Bayern gewählt?",
     "a": "3",
     "b": "4",
@@ -24306,10 +24338,11 @@
     "context": "In Deutschland sind die Länder eigene politische Einheiten mit eigenen Parlamenten, den sogenannten Landtagen. Diese Parlamente werden in regelmäßigen Abständen von den Bürgerinnen und Bürgern gewählt. Die Dauer einer Wahlperiode ist dabei gesetzlich festgelegt und kann sich von Bundesland zu Bundesland unterscheiden. Die Frage bezieht sich speziell auf den Bayerischen Landtag und die Länge seiner Legislaturperiode.",
     "id": "332407612f160ae671eba7a452636180e874829e288cb3847be0291cfd6c9a36",
     "sessionId": 0,
-    "sessionName": "In Deutschland sind die Länder eigene politische Einheiten mit eigenen Parlamenten, den sogenannten Landtagen. Diese Parlamente werden in regelmäßigen Abständen von den Bürgerinnen und Bürgern gewählt. Die Dauer einer Wahlperiode ist dabei gesetzlich festgelegt und kann sich von Bundesland zu Bundesland unterscheiden. Die Frage bezieht sich speziell auf den Bayerischen Landtag und die Länge seiner Legislaturperiode."
+    "sessionName": "In Deutschland sind die Länder eigene politische Einheiten mit eigenen Parlamenten, den sogenannten Landtagen. Diese Parlamente werden in regelmäßigen Abständen von den Bürgerinnen und Bürgern gewählt. Die Dauer einer Wahlperiode ist dabei gesetzlich festgelegt und kann sich von Bundesland zu Bundesland unterscheiden. Die Frage bezieht sich speziell auf den Bayerischen Landtag und die Länge seiner Legislaturperiode.",
+    "taskNum": 303
   },
   {
-    "num": "BY-10",
+    "num": "BY-304",
     "question": "Ab welchem Alter darf man in Bayern bei Kommunalwahlen wählen?",
     "a": "14",
     "b": "16",
@@ -24379,10 +24412,11 @@
     "context": "In Deutschland gelten für Wahlen unterschiedliche gesetzliche Regelungen, die sich je nach Wahlart und Bundesland unterscheiden können. Besonders bei Kommunalwahlen haben einige Bundesländer das Wahlalter abgesenkt, um jüngeren Menschen politische Mitbestimmung zu ermöglichen. Die folgende Frage bezieht sich speziell auf die Altersgrenze für das aktive Wahlrecht bei Kommunalwahlen im Bundesland Bayern.",
     "id": "c8017b52f3059cda9bb8407cd6c0cb65299c386e702e364037966c3b5c6f6f0b",
     "sessionId": 0,
-    "sessionName": "In Deutschland gelten für Wahlen unterschiedliche gesetzliche Regelungen, die sich je nach Wahlart und Bundesland unterscheiden können. Besonders bei Kommunalwahlen haben einige Bundesländer das Wahlalter abgesenkt, um jüngeren Menschen politische Mitbestimmung zu ermöglichen. Die folgende Frage bezieht sich speziell auf die Altersgrenze für das aktive Wahlrecht bei Kommunalwahlen im Bundesland Bayern."
+    "sessionName": "In Deutschland gelten für Wahlen unterschiedliche gesetzliche Regelungen, die sich je nach Wahlart und Bundesland unterscheiden können. Besonders bei Kommunalwahlen haben einige Bundesländer das Wahlalter abgesenkt, um jüngeren Menschen politische Mitbestimmung zu ermöglichen. Die folgende Frage bezieht sich speziell auf die Altersgrenze für das aktive Wahlrecht bei Kommunalwahlen im Bundesland Bayern.",
+    "taskNum": 304
   },
   {
-    "num": "BY-10",
+    "num": "BY-305",
     "question": "Welche Farben hat die Landesflagge von Bayern?",
     "a": "weiß-blau",
     "b": "schwarz-gelb",
@@ -24452,10 +24486,11 @@
     "context": "Die Frage bezieht sich auf Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Besonders Landesflaggen sind ein wichtiger Teil der regionalen Identität und Geschichte. In Deutschland hat jedes Bundesland eigene Farben und Flaggen, die oft aus historischen Wappen oder Traditionen entstanden sind. Um die richtige Antwort zu finden, sollte man sich mit den Symbolen des Freistaats Bayern und seinen typischen Farben auskennen.",
     "id": "3b271f4708744860fcc0cadeeb8fb3a0baf4f03aab666775d282317c1bf7be33",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Besonders Landesflaggen sind ein wichtiger Teil der regionalen Identität und Geschichte. In Deutschland hat jedes Bundesland eigene Farben und Flaggen, die oft aus historischen Wappen oder Traditionen entstanden sind. Um die richtige Antwort zu finden, sollte man sich mit den Symbolen des Freistaats Bayern und seinen typischen Farben auskennen."
+    "sessionName": "Die Frage bezieht sich auf Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Besonders Landesflaggen sind ein wichtiger Teil der regionalen Identität und Geschichte. In Deutschland hat jedes Bundesland eigene Farben und Flaggen, die oft aus historischen Wappen oder Traditionen entstanden sind. Um die richtige Antwort zu finden, sollte man sich mit den Symbolen des Freistaats Bayern und seinen typischen Farben auskennen.",
+    "taskNum": 305
   },
   {
-    "num": "BY-10",
+    "num": "BY-306",
     "question": "Wo können Sie sich in Bayern über politische Themen\n                  informieren?",
     "a": "bei den Kirchen",
     "b": "beim Ordnungsamt der Gemeinde",
@@ -24525,10 +24560,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "2920d4ad1434b02c19146152f1b7bfa6642988f926f271e01ffecaf8cb515cc1",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "BY-10",
+    "num": "BY-307",
     "question": "Die Landeshauptstadt von Bayern heißt ...",
     "a": "Nürnberg",
     "b": "München",
@@ -24598,10 +24634,11 @@
     "context": "Die Frage stammt aus dem Bereich Geografie und Allgemeinwissen über Deutschland. Sie bezieht sich auf die deutschen Bundesländer und deren politische Zentren. „Landeshauptstadt“ bezeichnet die Stadt, in der die Regierung eines Bundeslandes ihren Sitz hat. Bayern ist eines der 16 Bundesländer Deutschlands, und mehrere bedeutende Städte stehen zur Auswahl.",
     "id": "a08d0be8b92c59b1b2c096f4b4b0840d0afa2fecaad49612aa480e1c36e4caff",
     "sessionId": 0,
-    "sessionName": "Die Frage stammt aus dem Bereich Geografie und Allgemeinwissen über Deutschland. Sie bezieht sich auf die deutschen Bundesländer und deren politische Zentren. „Landeshauptstadt“ bezeichnet die Stadt, in der die Regierung eines Bundeslandes ihren Sitz hat. Bayern ist eines der 16 Bundesländer Deutschlands, und mehrere bedeutende Städte stehen zur Auswahl."
+    "sessionName": "Die Frage stammt aus dem Bereich Geografie und Allgemeinwissen über Deutschland. Sie bezieht sich auf die deutschen Bundesländer und deren politische Zentren. „Landeshauptstadt“ bezeichnet die Stadt, in der die Regierung eines Bundeslandes ihren Sitz hat. Bayern ist eines der 16 Bundesländer Deutschlands, und mehrere bedeutende Städte stehen zur Auswahl.",
+    "taskNum": 307
   },
   {
-    "num": "BY-10",
+    "num": "BY-308",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Bayern?",
     "a": "Ministerpräsident / Ministerpräsidentin",
     "b": "Bürgermeister / Bürgermeisterin",
@@ -24671,10 +24708,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "6756e64f165911c90f21fc05acee38ae585594ced870be39db04f070d4edc27a",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 308
   },
   {
-    "num": "BY-10",
+    "num": "BY-309",
     "question": "Welchen Minister / welche Ministerin hat Bayern nicht?",
     "a": "Außenminister / Außenministerin",
     "b": "Innenminister / Innenministerin",
@@ -24744,10 +24782,11 @@
     "context": "In Deutschland haben die Bundesländer eigene Landesregierungen mit verschiedenen Ministerien. Diese sind jedoch nicht identisch mit den Ministerien auf Bundesebene. Während bestimmte Ressorts wie Inneres, Finanzen oder Justiz typischerweise von den Ländern selbst verwaltet werden, liegen andere Aufgabenbereiche ausschließlich in der Zuständigkeit des Bundes. Um die Frage zu verstehen, sollte man wissen, welche Ministerien ein Bundesland wie Bayern haben kann und welche nicht.",
     "id": "5540d34a6d59921ca8e302392e19c72181f9ca9b33040f54decf06290d48e290",
     "sessionId": 0,
-    "sessionName": "In Deutschland haben die Bundesländer eigene Landesregierungen mit verschiedenen Ministerien. Diese sind jedoch nicht identisch mit den Ministerien auf Bundesebene. Während bestimmte Ressorts wie Inneres, Finanzen oder Justiz typischerweise von den Ländern selbst verwaltet werden, liegen andere Aufgabenbereiche ausschließlich in der Zuständigkeit des Bundes. Um die Frage zu verstehen, sollte man wissen, welche Ministerien ein Bundesland wie Bayern haben kann und welche nicht."
+    "sessionName": "In Deutschland haben die Bundesländer eigene Landesregierungen mit verschiedenen Ministerien. Diese sind jedoch nicht identisch mit den Ministerien auf Bundesebene. Während bestimmte Ressorts wie Inneres, Finanzen oder Justiz typischerweise von den Ländern selbst verwaltet werden, liegen andere Aufgabenbereiche ausschließlich in der Zuständigkeit des Bundes. Um die Frage zu verstehen, sollte man wissen, welche Ministerien ein Bundesland wie Bayern haben kann und welche nicht.",
+    "taskNum": 309
   },
   {
-    "num": "BY-10",
+    "num": "BY-310",
     "question": "Welches Bundesland ist Bayern?",
     "a": "1",
     "b": "2",
@@ -24817,10 +24856,11 @@
     "context": "In diesem Kontext geht es um Grundwissen zur politischen Geografie Deutschlands. Die Frage prüft, ob man weiß, wie die 16 Bundesländer eingeordnet oder nummeriert sind. Anhand der Antwortmöglichkeiten soll das richtige Bundesland Bayern identifiziert werden.",
     "id": "67832bdebe0f0617d12b23fdce8b66e0d52ab65306f103ce00908394751f225a",
     "sessionId": 0,
-    "sessionName": "In diesem Kontext geht es um Grundwissen zur politischen Geografie Deutschlands. Die Frage prüft, ob man weiß, wie die 16 Bundesländer eingeordnet oder nummeriert sind. Anhand der Antwortmöglichkeiten soll das richtige Bundesland Bayern identifiziert werden."
+    "sessionName": "In diesem Kontext geht es um Grundwissen zur politischen Geografie Deutschlands. Die Frage prüft, ob man weiß, wie die 16 Bundesländer eingeordnet oder nummeriert sind. Anhand der Antwortmöglichkeiten soll das richtige Bundesland Bayern identifiziert werden.",
+    "taskNum": 310
   },
   {
-    "num": "HB-1",
+    "num": "HB-301",
     "question": "Welches Wappen gehört zur Freien Hansestadt Bremen?",
     "a": "1",
     "b": "2",
@@ -24890,10 +24930,11 @@
     "context": "Die Frage bezieht sich auf die Kenntnis deutscher Landeswappen. In der Aufgabe werden mehrere nummerierte Wappen dargestellt, von denen eines das offizielle Wappen der Freien Hansestadt Bremen zeigt. Um die richtige Antwort zu finden, sollte man wissen, wie das Bremer Wappen aussieht und welche historischen Symbole es enthält. Anschließend vergleicht man dieses Wissen mit den abgebildeten Optionen 1 bis 4 und wählt die passende Nummer aus.",
     "id": "8b6289ec89464d8813010136d4cb85e00ee9ee1aa43cad9f56f8013f1c84840e",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Kenntnis deutscher Landeswappen. In der Aufgabe werden mehrere nummerierte Wappen dargestellt, von denen eines das offizielle Wappen der Freien Hansestadt Bremen zeigt. Um die richtige Antwort zu finden, sollte man wissen, wie das Bremer Wappen aussieht und welche historischen Symbole es enthält. Anschließend vergleicht man dieses Wissen mit den abgebildeten Optionen 1 bis 4 und wählt die passende Nummer aus."
+    "sessionName": "Die Frage bezieht sich auf die Kenntnis deutscher Landeswappen. In der Aufgabe werden mehrere nummerierte Wappen dargestellt, von denen eines das offizielle Wappen der Freien Hansestadt Bremen zeigt. Um die richtige Antwort zu finden, sollte man wissen, wie das Bremer Wappen aussieht und welche historischen Symbole es enthält. Anschließend vergleicht man dieses Wissen mit den abgebildeten Optionen 1 bis 4 und wählt die passende Nummer aus.",
+    "taskNum": 301
   },
   {
-    "num": "HE-1",
+    "num": "HE-301",
     "question": "Welches Wappen gehört zum Bundesland Hessen?",
     "a": "1",
     "b": "2",
@@ -24963,10 +25004,11 @@
     "context": "Im Rahmen eines Quiz oder einer Lernaufgabe zur deutschen Staatskunde sollen Kenntnisse über die Bundesländer überprüft werden. Jedes Bundesland in Deutschland besitzt ein eigenes Wappen mit spezifischen Symbolen und Farben. Die Teilnehmenden sehen mehrere Abbildungen von Wappen und müssen erkennen, welches davon dem Bundesland Hessen zugeordnet ist. Die Auswahl erfolgt über nummerierte Optionen, von denen nur eine korrekt ist.",
     "id": "c1fa82930e91da8df528e055758d954a93a77fd1b27ea183789cd25820182248",
     "sessionId": 0,
-    "sessionName": "Im Rahmen eines Quiz oder einer Lernaufgabe zur deutschen Staatskunde sollen Kenntnisse über die Bundesländer überprüft werden. Jedes Bundesland in Deutschland besitzt ein eigenes Wappen mit spezifischen Symbolen und Farben. Die Teilnehmenden sehen mehrere Abbildungen von Wappen und müssen erkennen, welches davon dem Bundesland Hessen zugeordnet ist. Die Auswahl erfolgt über nummerierte Optionen, von denen nur eine korrekt ist."
+    "sessionName": "Im Rahmen eines Quiz oder einer Lernaufgabe zur deutschen Staatskunde sollen Kenntnisse über die Bundesländer überprüft werden. Jedes Bundesland in Deutschland besitzt ein eigenes Wappen mit spezifischen Symbolen und Farben. Die Teilnehmenden sehen mehrere Abbildungen von Wappen und müssen erkennen, welches davon dem Bundesland Hessen zugeordnet ist. Die Auswahl erfolgt über nummerierte Optionen, von denen nur eine korrekt ist.",
+    "taskNum": 301
   },
   {
-    "num": "HB-5",
+    "num": "HB-302",
     "question": "Welches ist ein Stadtteil von Bremen?",
     "a": "Hemelingen",
     "b": "Pankow",
@@ -25036,10 +25078,11 @@
     "context": "Die Frage bezieht sich auf deutsche Städte und ihre Stadtteile. Bremen ist eine eigenständige Stadt und ein Bundesland mit mehreren Stadtteilen. Die Antwortmöglichkeiten enthalten Namen von Stadtteilen, die zu verschiedenen deutschen Städten gehören, teils zu Berlin oder Hamburg. Aufgabe ist es zu erkennen, welcher der genannten Stadtteile tatsächlich zu Bremen gehört.",
     "id": "6857a5c405e000ce7384d7104764ad7b8c8991c9001fca66501c22ff66fd6afa",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf deutsche Städte und ihre Stadtteile. Bremen ist eine eigenständige Stadt und ein Bundesland mit mehreren Stadtteilen. Die Antwortmöglichkeiten enthalten Namen von Stadtteilen, die zu verschiedenen deutschen Städten gehören, teils zu Berlin oder Hamburg. Aufgabe ist es zu erkennen, welcher der genannten Stadtteile tatsächlich zu Bremen gehört."
+    "sessionName": "Die Frage bezieht sich auf deutsche Städte und ihre Stadtteile. Bremen ist eine eigenständige Stadt und ein Bundesland mit mehreren Stadtteilen. Die Antwortmöglichkeiten enthalten Namen von Stadtteilen, die zu verschiedenen deutschen Städten gehören, teils zu Berlin oder Hamburg. Aufgabe ist es zu erkennen, welcher der genannten Stadtteile tatsächlich zu Bremen gehört.",
+    "taskNum": 302
   },
   {
-    "num": "HE-3",
+    "num": "HE-302",
     "question": "Für wie viele Jahre wird der Landtag in Hessen gewählt?",
     "a": "3",
     "b": "4",
@@ -25109,10 +25152,11 @@
     "context": "Der Landtag ist das Landesparlament eines deutschen Bundeslandes und wird in regelmäßigen Abständen von den Bürgerinnen und Bürgern gewählt. Die Wahlperiode bestimmt, wie lange die Abgeordneten ihr Mandat ausüben, bevor eine neue Wahl stattfindet. In den verschiedenen Bundesländern kann sich die Dauer dieser Legislaturperiode unterscheiden. Um politisches Grundwissen zu überprüfen, wird gefragt, wie viele Jahre die Wahlperiode des Hessischen Landtags beträgt.",
     "id": "f1632f6aaa2de5796e51c50fb9aa851dfe6aef8dc70678e4d4f950505a30a7e9",
     "sessionId": 0,
-    "sessionName": "Der Landtag ist das Landesparlament eines deutschen Bundeslandes und wird in regelmäßigen Abständen von den Bürgerinnen und Bürgern gewählt. Die Wahlperiode bestimmt, wie lange die Abgeordneten ihr Mandat ausüben, bevor eine neue Wahl stattfindet. In den verschiedenen Bundesländern kann sich die Dauer dieser Legislaturperiode unterscheiden. Um politisches Grundwissen zu überprüfen, wird gefragt, wie viele Jahre die Wahlperiode des Hessischen Landtags beträgt."
+    "sessionName": "Der Landtag ist das Landesparlament eines deutschen Bundeslandes und wird in regelmäßigen Abständen von den Bürgerinnen und Bürgern gewählt. Die Wahlperiode bestimmt, wie lange die Abgeordneten ihr Mandat ausüben, bevor eine neue Wahl stattfindet. In den verschiedenen Bundesländern kann sich die Dauer dieser Legislaturperiode unterscheiden. Um politisches Grundwissen zu überprüfen, wird gefragt, wie viele Jahre die Wahlperiode des Hessischen Landtags beträgt.",
+    "taskNum": 302
   },
   {
-    "num": "HH-1",
+    "num": "HH-301",
     "question": "Welches Wappen gehört zur Freien und Hansestadt Hamburg?",
     "a": "1",
     "b": "2",
@@ -25182,10 +25226,11 @@
     "context": "Die Frage bezieht sich auf die Erkennung von offiziellen Hoheitszeichen deutscher Städte. Die Freie und Hansestadt Hamburg besitzt ein eigenes Wappen, das ihre Geschichte, ihren Status als Stadtstaat und ihre Bedeutung als Hafenstadt widerspiegelt. In der Aufgabe werden mehrere Abbildungen von Wappen gezeigt, und es gilt zu entscheiden, welches davon zu Hamburg gehört. Kenntnisse über deutsche Städtewappen oder visuelle Merkmale können dabei helfen.",
     "id": "5405c80e194d7866f5e1be8183ac150eaac699299f857396abf6190d78f6535d",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Erkennung von offiziellen Hoheitszeichen deutscher Städte. Die Freie und Hansestadt Hamburg besitzt ein eigenes Wappen, das ihre Geschichte, ihren Status als Stadtstaat und ihre Bedeutung als Hafenstadt widerspiegelt. In der Aufgabe werden mehrere Abbildungen von Wappen gezeigt, und es gilt zu entscheiden, welches davon zu Hamburg gehört. Kenntnisse über deutsche Städtewappen oder visuelle Merkmale können dabei helfen."
+    "sessionName": "Die Frage bezieht sich auf die Erkennung von offiziellen Hoheitszeichen deutscher Städte. Die Freie und Hansestadt Hamburg besitzt ein eigenes Wappen, das ihre Geschichte, ihren Status als Stadtstaat und ihre Bedeutung als Hafenstadt widerspiegelt. In der Aufgabe werden mehrere Abbildungen von Wappen gezeigt, und es gilt zu entscheiden, welches davon zu Hamburg gehört. Kenntnisse über deutsche Städtewappen oder visuelle Merkmale können dabei helfen.",
+    "taskNum": 301
   },
   {
-    "num": "HE-4",
+    "num": "HE-303",
     "question": "Welches ist ein Landkreis in Hessen?",
     "a": "Main-Taunus-Kreis",
     "b": "Prignitz",
@@ -25255,10 +25300,11 @@
     "context": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Hessen ist eines dieser Bundesländer. Um die richtige Antwort zu finden, muss man wissen, welcher der genannten Kreise tatsächlich in Hessen liegt und welche zu anderen Bundesländern gehören.",
     "id": "40702c21a28ed61b28c0a0d18ee84b5a3b7c038f4250609a513c56175b4eb83b",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Hessen ist eines dieser Bundesländer. Um die richtige Antwort zu finden, muss man wissen, welcher der genannten Kreise tatsächlich in Hessen liegt und welche zu anderen Bundesländern gehören."
+    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Hessen ist eines dieser Bundesländer. Um die richtige Antwort zu finden, muss man wissen, welcher der genannten Kreise tatsächlich in Hessen liegt und welche zu anderen Bundesländern gehören.",
+    "taskNum": 303
   },
   {
-    "num": "HH-3",
+    "num": "HH-302",
     "question": "Welches ist ein Bezirk von Hamburg?",
     "a": "Pankow",
     "b": "Altona",
@@ -25328,10 +25374,11 @@
     "context": "Die Frage bezieht sich auf die Verwaltungsstruktur in Deutschland. Große Städte wie Hamburg sind in sogenannte Bezirke eingeteilt, die Teil der Stadtverwaltung sind. Andere Antwortmöglichkeiten gehören zu unterschiedlichen Bundesländern oder Städten, etwa zu Berlin, Bremen oder Mecklenburg‑Vorpommern. Mit diesem Wissen soll erkannt werden, welches der genannten Gebiete tatsächlich ein Bezirk der Stadt Hamburg ist.",
     "id": "1fe77520f8ef1257710e46e03023c4dca9363a31bcd52a26859762b78ffbf4ab",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur in Deutschland. Große Städte wie Hamburg sind in sogenannte Bezirke eingeteilt, die Teil der Stadtverwaltung sind. Andere Antwortmöglichkeiten gehören zu unterschiedlichen Bundesländern oder Städten, etwa zu Berlin, Bremen oder Mecklenburg‑Vorpommern. Mit diesem Wissen soll erkannt werden, welches der genannten Gebiete tatsächlich ein Bezirk der Stadt Hamburg ist."
+    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur in Deutschland. Große Städte wie Hamburg sind in sogenannte Bezirke eingeteilt, die Teil der Stadtverwaltung sind. Andere Antwortmöglichkeiten gehören zu unterschiedlichen Bundesländern oder Städten, etwa zu Berlin, Bremen oder Mecklenburg‑Vorpommern. Mit diesem Wissen soll erkannt werden, welches der genannten Gebiete tatsächlich ein Bezirk der Stadt Hamburg ist.",
+    "taskNum": 302
   },
   {
-    "num": "HH-3",
+    "num": "HH-303",
     "question": "Für wie viele Jahre wird das Landesparlament in Hamburg\n                  gewählt?",
     "a": "3",
     "b": "4",
@@ -25401,10 +25448,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "a4a4c0a963b2b8771be03a53d8e9f5540e692b6ed7f49c89f882c718d3355398",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "HB-10",
+    "num": "HB-303",
     "question": "Für wie viele Jahre wird das Landesparlament in Bremen\n                  gewählt?",
     "a": "3",
     "b": "4",
@@ -25474,10 +25522,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "bb5d9631aabf2d7df94a942f2aea1c366afeccae03180326bce178a3372cfc15",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "HB-10",
+    "num": "HB-304",
     "question": "Ab welchem Alter darf man in Bremen bei den Wahlen zur\n                  Bürgerschaft (Landtag) wählen?",
     "a": "14",
     "b": "16",
@@ -25547,10 +25596,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "a73505efd5de07dcc1121ee057481ba65711b243a254aec52faa078d5bbab26d",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "HB-10",
+    "num": "HB-305",
     "question": "Welche Farben hat die Landesflagge von Bremen?",
     "a": "grün-weiß-rot",
     "b": "schwarz-gelb",
@@ -25620,10 +25670,11 @@
     "context": "Die Frage bezieht sich auf die Landesflaggen der deutschen Bundesländer. Jedes Bundesland in Deutschland hat eine eigene Flagge mit charakteristischen Farben, die historische und kulturelle Bedeutungen haben. Um die richtige Antwort zu finden, ist es hilfreich, grundlegendes Wissen über die Symbole und Farben des Stadtstaates Bremen sowie deren geschichtlichen Ursprung zu haben.",
     "id": "ff8b4e2fffa7dc7865c5ccd585510942347955b2136a416f8976f5cd3806067c",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Landesflaggen der deutschen Bundesländer. Jedes Bundesland in Deutschland hat eine eigene Flagge mit charakteristischen Farben, die historische und kulturelle Bedeutungen haben. Um die richtige Antwort zu finden, ist es hilfreich, grundlegendes Wissen über die Symbole und Farben des Stadtstaates Bremen sowie deren geschichtlichen Ursprung zu haben."
+    "sessionName": "Die Frage bezieht sich auf die Landesflaggen der deutschen Bundesländer. Jedes Bundesland in Deutschland hat eine eigene Flagge mit charakteristischen Farben, die historische und kulturelle Bedeutungen haben. Um die richtige Antwort zu finden, ist es hilfreich, grundlegendes Wissen über die Symbole und Farben des Stadtstaates Bremen sowie deren geschichtlichen Ursprung zu haben.",
+    "taskNum": 305
   },
   {
-    "num": "HB-10",
+    "num": "HB-306",
     "question": "Wo können Sie sich in Bremen über politische Themen\n                  informieren?",
     "a": "beim Ordnungsamt der Gemeinde",
     "b": "bei den Kirchen",
@@ -25693,10 +25744,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "f28f273f65747fb9c2e98406303f6dd3f126ce5626010283c08273b633529fb5",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "HB-10",
+    "num": "HB-307",
     "question": "Was ist ein deutscher Stadtstaat?",
     "a": "Erfurt",
     "b": "Bremen",
@@ -25766,10 +25818,11 @@
     "context": "In der deutschen Staatsstruktur gibt es verschiedene Arten von Bundesländern. Einige Bundesländer bestehen aus mehreren Städten und Regionen, andere sind besondere Fälle. Ein sogenannter Stadtstaat ist ein Bundesland, das im Wesentlichen aus einer einzigen großen Stadt besteht und keine weiteren eigenständigen Regionen umfasst. Um die richtige Antwort zu finden, sollte man wissen, welche deutschen Bundesländer diese besondere Form haben.",
     "id": "cedf97be2def9231784c8e0641e5ca9980d0ee12f4c7650ffb8d4fbb5db48b98",
     "sessionId": 0,
-    "sessionName": "In der deutschen Staatsstruktur gibt es verschiedene Arten von Bundesländern. Einige Bundesländer bestehen aus mehreren Städten und Regionen, andere sind besondere Fälle. Ein sogenannter Stadtstaat ist ein Bundesland, das im Wesentlichen aus einer einzigen großen Stadt besteht und keine weiteren eigenständigen Regionen umfasst. Um die richtige Antwort zu finden, sollte man wissen, welche deutschen Bundesländer diese besondere Form haben."
+    "sessionName": "In der deutschen Staatsstruktur gibt es verschiedene Arten von Bundesländern. Einige Bundesländer bestehen aus mehreren Städten und Regionen, andere sind besondere Fälle. Ein sogenannter Stadtstaat ist ein Bundesland, das im Wesentlichen aus einer einzigen großen Stadt besteht und keine weiteren eigenständigen Regionen umfasst. Um die richtige Antwort zu finden, sollte man wissen, welche deutschen Bundesländer diese besondere Form haben.",
+    "taskNum": 307
   },
   {
-    "num": "HB-10",
+    "num": "HB-308",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin des\n                  Stadtstaates Bremen?",
     "a": "Präsident / Präsidentin des Senats",
     "b": "Ministerpräsident / Ministerpräsidentin",
@@ -25839,10 +25892,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "322fef1a1f7ac44625be2ea593398e2001fe64eeaabbf324efcf9314aaad329d",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 308
   },
   {
-    "num": "HB-10",
+    "num": "HB-309",
     "question": "Welchen Senator / welche Senatorin hat Bremen nicht?",
     "a": "Justizsenator / Justizsenatorin",
     "b": "Senator / Senatorin für Außenbeziehungen",
@@ -25912,10 +25966,11 @@
     "context": "Die Frage bezieht sich auf die Landesregierung der Freien Hansestadt Bremen. In den deutschen Bundesländern gibt es Ministerien, die in Bremen „Senatoren“ genannt werden. Diese Senatorinnen und Senatoren leiten bestimmte Ressorts wie Justiz, Inneres oder Finanzen. Allerdings hat Bremen aufgrund seiner besonderen staatlichen Struktur und begrenzten Zuständigkeiten nicht für jedes Politikfeld ein eigenes Ressort. Die Frage fragt danach, welches der genannten Senatorenämter es in Bremen nicht gibt.",
     "id": "adff8fd48a5093f2f0638ad5409060ecb48019c5694e32ad416835923f595c87",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Landesregierung der Freien Hansestadt Bremen. In den deutschen Bundesländern gibt es Ministerien, die in Bremen „Senatoren“ genannt werden. Diese Senatorinnen und Senatoren leiten bestimmte Ressorts wie Justiz, Inneres oder Finanzen. Allerdings hat Bremen aufgrund seiner besonderen staatlichen Struktur und begrenzten Zuständigkeiten nicht für jedes Politikfeld ein eigenes Ressort. Die Frage fragt danach, welches der genannten Senatorenämter es in Bremen nicht gibt."
+    "sessionName": "Die Frage bezieht sich auf die Landesregierung der Freien Hansestadt Bremen. In den deutschen Bundesländern gibt es Ministerien, die in Bremen „Senatoren“ genannt werden. Diese Senatorinnen und Senatoren leiten bestimmte Ressorts wie Justiz, Inneres oder Finanzen. Allerdings hat Bremen aufgrund seiner besonderen staatlichen Struktur und begrenzten Zuständigkeiten nicht für jedes Politikfeld ein eigenes Ressort. Die Frage fragt danach, welches der genannten Senatorenämter es in Bremen nicht gibt.",
+    "taskNum": 309
   },
   {
-    "num": "HB-10",
+    "num": "HB-310",
     "question": "Welches Bundesland ist Bremen?",
     "a": "1",
     "b": "2",
@@ -25985,10 +26040,11 @@
     "context": "Im deutschen Föderalstaat gibt es 16 Bundesländer, darunter sogenannte Stadtstaaten. Diese bestehen aus einer Stadt, die zugleich ein eigenes Bundesland bildet. In Allgemeinbildungs‑ oder Politiktests wird häufig gefragt, zu welcher Kategorie bestimmte Regionen gehören. Die folgende Frage prüft das Wissen über Bremen und seine Stellung innerhalb der Bundesrepublik Deutschland.",
     "id": "a7091b3986633024fd6230966f5a3d8e87e82baca63e1aeb6d96eeeb98146b5f",
     "sessionId": 0,
-    "sessionName": "Im deutschen Föderalstaat gibt es 16 Bundesländer, darunter sogenannte Stadtstaaten. Diese bestehen aus einer Stadt, die zugleich ein eigenes Bundesland bildet. In Allgemeinbildungs‑ oder Politiktests wird häufig gefragt, zu welcher Kategorie bestimmte Regionen gehören. Die folgende Frage prüft das Wissen über Bremen und seine Stellung innerhalb der Bundesrepublik Deutschland."
+    "sessionName": "Im deutschen Föderalstaat gibt es 16 Bundesländer, darunter sogenannte Stadtstaaten. Diese bestehen aus einer Stadt, die zugleich ein eigenes Bundesland bildet. In Allgemeinbildungs‑ oder Politiktests wird häufig gefragt, zu welcher Kategorie bestimmte Regionen gehören. Die folgende Frage prüft das Wissen über Bremen und seine Stellung innerhalb der Bundesrepublik Deutschland.",
+    "taskNum": 310
   },
   {
-    "num": "HH-4",
+    "num": "HH-304",
     "question": "Ab welchem Alter darf man in Hamburg bei Kommunalwahlen (Wahl\n                  der Bezirksversammlungen) wählen?",
     "a": "14",
     "b": "16",
@@ -26058,10 +26114,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "b2bbe35f3a86ffd79c291df8e8638b96e2bb42539d58919369cf693628dc90a4",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "HE-8",
+    "num": "HE-304",
     "question": "Ab welchem Alter darf man in Hessen bei Kommunalwahlen wählen?",
     "a": "14",
     "b": "16",
@@ -26131,10 +26188,11 @@
     "context": "Die Frage bezieht sich auf das Wahlrecht bei Kommunalwahlen in einem deutschen Bundesland. In Deutschland unterscheiden sich die Regelungen zum Wahlalter je nach Wahlart und Bundesland. Kommunalwahlen betreffen die Wahl von Vertretungen auf kommunaler Ebene, etwa Stadt- oder Gemeinderäte. Das Wahlalter ist dabei besonders interessant, weil es teilweise niedriger angesetzt ist als bei Bundestags- oder Europawahlen. Die Antwortoptionen zeigen verschiedene mögliche Altersgrenzen, die politisch oder rechtlich relevant sein können.",
     "id": "d5d968c15226d15a5f56821b4fff20ebf1b9211805f9bfdb764ed345f7795259",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf das Wahlrecht bei Kommunalwahlen in einem deutschen Bundesland. In Deutschland unterscheiden sich die Regelungen zum Wahlalter je nach Wahlart und Bundesland. Kommunalwahlen betreffen die Wahl von Vertretungen auf kommunaler Ebene, etwa Stadt- oder Gemeinderäte. Das Wahlalter ist dabei besonders interessant, weil es teilweise niedriger angesetzt ist als bei Bundestags- oder Europawahlen. Die Antwortoptionen zeigen verschiedene mögliche Altersgrenzen, die politisch oder rechtlich relevant sein können."
+    "sessionName": "Die Frage bezieht sich auf das Wahlrecht bei Kommunalwahlen in einem deutschen Bundesland. In Deutschland unterscheiden sich die Regelungen zum Wahlalter je nach Wahlart und Bundesland. Kommunalwahlen betreffen die Wahl von Vertretungen auf kommunaler Ebene, etwa Stadt- oder Gemeinderäte. Das Wahlalter ist dabei besonders interessant, weil es teilweise niedriger angesetzt ist als bei Bundestags- oder Europawahlen. Die Antwortoptionen zeigen verschiedene mögliche Altersgrenzen, die politisch oder rechtlich relevant sein können.",
+    "taskNum": 304
   },
   {
-    "num": "HH-7",
+    "num": "HH-305",
     "question": "Welche Farben hat die Landesflagge von Hamburg?",
     "a": "weiß-rot",
     "b": "schwarz-gelb",
@@ -26204,10 +26262,11 @@
     "context": "Die folgende Frage bezieht sich auf die deutschen Bundesländer und ihre offiziellen Symbole. Jedes Bundesland hat eine eigene Flagge mit bestimmten Farben, die historisch und kulturell bedeutsam sind. Um die richtige Antwort zu finden, ist grundlegendes Wissen über die Flaggen deutscher Städte oder Länder hilfreich, insbesondere über die Stadt Hamburg.",
     "id": "58d6058e8c95eddb6be2c832ab3f73bac09d47093a177ba9baeb938108779fe3",
     "sessionId": 0,
-    "sessionName": "Die folgende Frage bezieht sich auf die deutschen Bundesländer und ihre offiziellen Symbole. Jedes Bundesland hat eine eigene Flagge mit bestimmten Farben, die historisch und kulturell bedeutsam sind. Um die richtige Antwort zu finden, ist grundlegendes Wissen über die Flaggen deutscher Städte oder Länder hilfreich, insbesondere über die Stadt Hamburg."
+    "sessionName": "Die folgende Frage bezieht sich auf die deutschen Bundesländer und ihre offiziellen Symbole. Jedes Bundesland hat eine eigene Flagge mit bestimmten Farben, die historisch und kulturell bedeutsam sind. Um die richtige Antwort zu finden, ist grundlegendes Wissen über die Flaggen deutscher Städte oder Länder hilfreich, insbesondere über die Stadt Hamburg.",
+    "taskNum": 305
   },
   {
-    "num": "HE-10",
+    "num": "HE-305",
     "question": "Welche Farben hat die Landesflagge von Hessen?",
     "a": "rot-weiß",
     "b": "schwarz-gold",
@@ -26277,10 +26336,11 @@
     "context": "Die Frage bezieht sich auf allgemeines Wissen über deutsche Bundesländer. Hessen ist ein Bundesland in der Mitte Deutschlands und besitzt, wie alle Bundesländer, eine eigene Landesflagge. Um die richtige Antwort zu finden, sollte man sich mit den Symbolen und Farben der hessischen Flagge auskennen oder Grundkenntnisse über deutsche Landesflaggen haben.",
     "id": "16e2b245b8149d25410d404013c49bf7801fbd0408691b1d2e2a5a14e268e7bc",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf allgemeines Wissen über deutsche Bundesländer. Hessen ist ein Bundesland in der Mitte Deutschlands und besitzt, wie alle Bundesländer, eine eigene Landesflagge. Um die richtige Antwort zu finden, sollte man sich mit den Symbolen und Farben der hessischen Flagge auskennen oder Grundkenntnisse über deutsche Landesflaggen haben."
+    "sessionName": "Die Frage bezieht sich auf allgemeines Wissen über deutsche Bundesländer. Hessen ist ein Bundesland in der Mitte Deutschlands und besitzt, wie alle Bundesländer, eine eigene Landesflagge. Um die richtige Antwort zu finden, sollte man sich mit den Symbolen und Farben der hessischen Flagge auskennen oder Grundkenntnisse über deutsche Landesflaggen haben.",
+    "taskNum": 305
   },
   {
-    "num": "HE-10",
+    "num": "HE-306",
     "question": "Wo können Sie sich in Hessen über politische Themen\n                  informieren?",
     "a": "bei der Verbraucherzentrale",
     "b": "bei der Landeszentrale für politische Bildung",
@@ -26350,10 +26410,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "62c0335cd4af6a2822b3b112bce8db6a08e8aa4958211f1dc7138b0a2be736f5",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "HE-10",
+    "num": "HE-307",
     "question": "Die Landeshauptstadt von Hessen heißt ...",
     "a": "",
     "b": "",
@@ -26423,10 +26484,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "f86c042d95154309a2c94a06010f117e0dbbc472193acb5141dfd5f6dbfff338",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 307
   },
   {
-    "num": "HE-10",
+    "num": "HE-308",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Hessen?",
     "a": "Bürgermeister / Bürgermeisterin",
     "b": "Ministerpräsident / Ministerpräsidentin",
@@ -26496,10 +26558,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "24b646958594c54cef26d4f19e69f8cb66ea58dffdc34b6cf82caa42b1709c2d",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 308
   },
   {
-    "num": "HE-10",
+    "num": "HE-309",
     "question": "Welchen Minister / welche Ministerin hat Hessen nicht?",
     "a": "Außenminister / Außenministerin",
     "b": "Finanzminister / Finanzministerin",
@@ -26569,10 +26632,11 @@
     "context": "Die Frage bezieht sich auf die politische Struktur des Bundeslandes Hessen. In Deutschland haben die Bundesländer eigene Landesregierungen mit Ministerien für verschiedene Aufgabenbereiche. Einige Ressorts wie Finanzen, Justiz oder Inneres sind typischerweise auf Landesebene angesiedelt, während andere Zuständigkeiten auf Bundesebene liegen. Um die richtige Antwort zu finden, muss man wissen, welche Ministerien ein Bundesland wie Hessen üblicherweise hat oder nicht.",
     "id": "15c9db8ae989fdf867c57e682d83ed71149c5f01e01e05238414d688cedf08a8",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die politische Struktur des Bundeslandes Hessen. In Deutschland haben die Bundesländer eigene Landesregierungen mit Ministerien für verschiedene Aufgabenbereiche. Einige Ressorts wie Finanzen, Justiz oder Inneres sind typischerweise auf Landesebene angesiedelt, während andere Zuständigkeiten auf Bundesebene liegen. Um die richtige Antwort zu finden, muss man wissen, welche Ministerien ein Bundesland wie Hessen üblicherweise hat oder nicht."
+    "sessionName": "Die Frage bezieht sich auf die politische Struktur des Bundeslandes Hessen. In Deutschland haben die Bundesländer eigene Landesregierungen mit Ministerien für verschiedene Aufgabenbereiche. Einige Ressorts wie Finanzen, Justiz oder Inneres sind typischerweise auf Landesebene angesiedelt, während andere Zuständigkeiten auf Bundesebene liegen. Um die richtige Antwort zu finden, muss man wissen, welche Ministerien ein Bundesland wie Hessen üblicherweise hat oder nicht.",
+    "taskNum": 309
   },
   {
-    "num": "HE-10",
+    "num": "HE-310",
     "question": "Welches Bundesland ist Hessen?",
     "a": "1",
     "b": "2",
@@ -26642,10 +26706,11 @@
     "context": "Die Frage bezieht sich auf ein Quiz über die Bundesländer Deutschlands. Dabei sind die Bundesländer meist auf einer Karte oder in einer Liste durchnummeriert. Aufgabe ist es, anhand dieser Nummerierung zu erkennen, welche Zahl dem Bundesland Hessen zugeordnet ist, und die richtige Antwortoption auszuwählen.",
     "id": "47cdc5bd7dbb83823cf72640bccbed7f4375601f3fe55e75e23d2756dfe2b98e",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf ein Quiz über die Bundesländer Deutschlands. Dabei sind die Bundesländer meist auf einer Karte oder in einer Liste durchnummeriert. Aufgabe ist es, anhand dieser Nummerierung zu erkennen, welche Zahl dem Bundesland Hessen zugeordnet ist, und die richtige Antwortoption auszuwählen."
+    "sessionName": "Die Frage bezieht sich auf ein Quiz über die Bundesländer Deutschlands. Dabei sind die Bundesländer meist auf einer Karte oder in einer Liste durchnummeriert. Aufgabe ist es, anhand dieser Nummerierung zu erkennen, welche Zahl dem Bundesland Hessen zugeordnet ist, und die richtige Antwortoption auszuwählen.",
+    "taskNum": 310
   },
   {
-    "num": "HH-10",
+    "num": "HH-306",
     "question": "Wo können Sie sich in Hamburg über politische Themen\n                  informieren?",
     "a": "bei der Verbraucherzentrale",
     "b": "bei der Landeszentrale für politische Bildung",
@@ -26715,10 +26780,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "104ce800ea023747416bc562f031e76b27df2e96be20d97823d068bbe868201f",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "HH-10",
+    "num": "HH-307",
     "question": "Welches Bundesland ist ein Stadtstaat?",
     "a": "Sachsen",
     "b": "Bayern",
@@ -26788,10 +26854,11 @@
     "context": "Die folgende Frage bezieht sich auf das politische System Deutschlands. Deutschland besteht aus mehreren Bundesländern, von denen einige sogenannte Stadtstaaten sind. Ein Stadtstaat ist ein Bundesland, das nur aus einer Stadt besteht. Welche der genannten Optionen ist ein solcher Stadtstaat?",
     "id": "3128c25e35f1c9b90e43e18a663a7003b09ad174e96c5d5f96dc756879449bb5",
     "sessionId": 0,
-    "sessionName": "Die folgende Frage bezieht sich auf das politische System Deutschlands. Deutschland besteht aus mehreren Bundesländern, von denen einige sogenannte Stadtstaaten sind. Ein Stadtstaat ist ein Bundesland, das nur aus einer Stadt besteht. Welche der genannten Optionen ist ein solcher Stadtstaat?"
+    "sessionName": "Die folgende Frage bezieht sich auf das politische System Deutschlands. Deutschland besteht aus mehreren Bundesländern, von denen einige sogenannte Stadtstaaten sind. Ein Stadtstaat ist ein Bundesland, das nur aus einer Stadt besteht. Welche der genannten Optionen ist ein solcher Stadtstaat?",
+    "taskNum": 307
   },
   {
-    "num": "HH-10",
+    "num": "HH-308",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin des\n                  Stadtstaates Hamburg?",
     "a": "Erster Bürgermeister / Erste Bürgermeisterin",
     "b": "Oberbürgermeister / Oberbürgermeisterin",
@@ -26861,10 +26928,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "6229167263ce95ff29d80774a46f4198da29930f82ca07ae220a98f6f0d50eec",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 308
   },
   {
-    "num": "HH-10",
+    "num": "HH-309",
     "question": "Welchen Senator / welche Senatorin hat Hamburg nicht?",
     "a": "Senator / Senatorin für Außenbeziehungen",
     "b": "Innensenator / Innensenatorin",
@@ -26934,10 +27002,11 @@
     "context": "Die Frage bezieht sich auf die politische Struktur des Bundeslandes Hamburg. Hamburg ist sowohl Stadt als auch Land und wird von einem Senat regiert. Dieser Senat besteht aus dem Ersten Bürgermeister bzw. der Ersten Bürgermeisterin und mehreren Senatoren und Senatorinnen, die jeweils für bestimmte Ressorts wie Inneres, Justiz oder Finanzen zuständig sind. Je nach Aufgabenverteilung gibt es bestimmte Senatorenämter, während andere auf Bundesebene üblich sind, aber in Hamburg nicht existieren.",
     "id": "01b8c4306208c395eeacbc07afd6edbedc7fc2f0e5b9a772f22bc30c1e708f6d",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die politische Struktur des Bundeslandes Hamburg. Hamburg ist sowohl Stadt als auch Land und wird von einem Senat regiert. Dieser Senat besteht aus dem Ersten Bürgermeister bzw. der Ersten Bürgermeisterin und mehreren Senatoren und Senatorinnen, die jeweils für bestimmte Ressorts wie Inneres, Justiz oder Finanzen zuständig sind. Je nach Aufgabenverteilung gibt es bestimmte Senatorenämter, während andere auf Bundesebene üblich sind, aber in Hamburg nicht existieren."
+    "sessionName": "Die Frage bezieht sich auf die politische Struktur des Bundeslandes Hamburg. Hamburg ist sowohl Stadt als auch Land und wird von einem Senat regiert. Dieser Senat besteht aus dem Ersten Bürgermeister bzw. der Ersten Bürgermeisterin und mehreren Senatoren und Senatorinnen, die jeweils für bestimmte Ressorts wie Inneres, Justiz oder Finanzen zuständig sind. Je nach Aufgabenverteilung gibt es bestimmte Senatorenämter, während andere auf Bundesebene üblich sind, aber in Hamburg nicht existieren.",
+    "taskNum": 309
   },
   {
-    "num": "HH-10",
+    "num": "HH-310",
     "question": "Welches Bundesland ist Hamburg?",
     "a": "1",
     "b": "2",
@@ -27007,10 +27076,11 @@
     "context": "In Deutschland ist das Land in 16 Bundesländer gegliedert. Neben sogenannten Flächenländern gibt es auch Stadtstaaten. Stadtstaaten sind Städte, die gleichzeitig ein eigenes Bundesland bilden und keine weitere übergeordnete Landesverwaltung haben. Zu diesen besonderen Bundesländern zählen nur wenige große Städte. Die Frage zielt darauf ab zu überprüfen, ob bekannt ist, welche Rolle Hamburg innerhalb dieses föderalen Systems einnimmt.",
     "id": "c4311d842eb9c3ad7d79080cb70e27e0969ea71629f5f61b5b7125eff445764c",
     "sessionId": 0,
-    "sessionName": "In Deutschland ist das Land in 16 Bundesländer gegliedert. Neben sogenannten Flächenländern gibt es auch Stadtstaaten. Stadtstaaten sind Städte, die gleichzeitig ein eigenes Bundesland bilden und keine weitere übergeordnete Landesverwaltung haben. Zu diesen besonderen Bundesländern zählen nur wenige große Städte. Die Frage zielt darauf ab zu überprüfen, ob bekannt ist, welche Rolle Hamburg innerhalb dieses föderalen Systems einnimmt."
+    "sessionName": "In Deutschland ist das Land in 16 Bundesländer gegliedert. Neben sogenannten Flächenländern gibt es auch Stadtstaaten. Stadtstaaten sind Städte, die gleichzeitig ein eigenes Bundesland bilden und keine weitere übergeordnete Landesverwaltung haben. Zu diesen besonderen Bundesländern zählen nur wenige große Städte. Die Frage zielt darauf ab zu überprüfen, ob bekannt ist, welche Rolle Hamburg innerhalb dieses föderalen Systems einnimmt.",
+    "taskNum": 310
   },
   {
-    "num": "MV-1",
+    "num": "MV-301",
     "question": "Welches Wappen gehört zum Bundesland Mecklenburg-Vorpommern?",
     "a": "1",
     "b": "2",
@@ -27080,10 +27150,11 @@
     "context": "In Deutschland hat jedes Bundesland ein eigenes Wappen mit typischen Symbolen und Farben. Diese Wappen zeigen oft Tiere, Wappenbilder oder Farben, die historisch für die jeweilige Region stehen. In der Aufgabe sind mehrere Wappen abgebildet und nummeriert. Deine Aufgabe ist es, anhand deines Wissens über deutsche Bundesländer zu erkennen, welches dieser Wappen das Bundesland Mecklenburg-Vorpommern repräsentiert.",
     "id": "5429a755a25e24ec694b9344e738a62eae9d44298de565b0687b3ad69f6aa9a5",
     "sessionId": 0,
-    "sessionName": "In Deutschland hat jedes Bundesland ein eigenes Wappen mit typischen Symbolen und Farben. Diese Wappen zeigen oft Tiere, Wappenbilder oder Farben, die historisch für die jeweilige Region stehen. In der Aufgabe sind mehrere Wappen abgebildet und nummeriert. Deine Aufgabe ist es, anhand deines Wissens über deutsche Bundesländer zu erkennen, welches dieser Wappen das Bundesland Mecklenburg-Vorpommern repräsentiert."
+    "sessionName": "In Deutschland hat jedes Bundesland ein eigenes Wappen mit typischen Symbolen und Farben. Diese Wappen zeigen oft Tiere, Wappenbilder oder Farben, die historisch für die jeweilige Region stehen. In der Aufgabe sind mehrere Wappen abgebildet und nummeriert. Deine Aufgabe ist es, anhand deines Wissens über deutsche Bundesländer zu erkennen, welches dieser Wappen das Bundesland Mecklenburg-Vorpommern repräsentiert.",
+    "taskNum": 301
   },
   {
-    "num": "MV-6",
+    "num": "MV-302",
     "question": "Welches ist ein Landkreis in Mecklenburg-Vorpommern?",
     "a": "Vogtlandkreis",
     "b": "Rhein-Sieg-Kreis",
@@ -27153,10 +27224,11 @@
     "context": "Die Frage bezieht sich auf geografisches Grundwissen über Deutschland. Sie prüft, ob man deutsche Landkreise kennt und diese den richtigen Bundesländern zuordnen kann. In der Multiple-Choice-Aufgabe werden mehrere Landkreise genannt, die jeweils in unterschiedlichen Regionen Deutschlands liegen können, und gefragt wird, welcher davon im Bundesland Mecklenburg-Vorpommern liegt.",
     "id": "58e63814024cdde72559a489e7c8fc1d3e036be14b4a416fde8723c9576c511a",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf geografisches Grundwissen über Deutschland. Sie prüft, ob man deutsche Landkreise kennt und diese den richtigen Bundesländern zuordnen kann. In der Multiple-Choice-Aufgabe werden mehrere Landkreise genannt, die jeweils in unterschiedlichen Regionen Deutschlands liegen können, und gefragt wird, welcher davon im Bundesland Mecklenburg-Vorpommern liegt."
+    "sessionName": "Die Frage bezieht sich auf geografisches Grundwissen über Deutschland. Sie prüft, ob man deutsche Landkreise kennt und diese den richtigen Bundesländern zuordnen kann. In der Multiple-Choice-Aufgabe werden mehrere Landkreise genannt, die jeweils in unterschiedlichen Regionen Deutschlands liegen können, und gefragt wird, welcher davon im Bundesland Mecklenburg-Vorpommern liegt.",
+    "taskNum": 302
   },
   {
-    "num": "MV-10",
+    "num": "MV-303",
     "question": "Für wie viele Jahre wird der Landtag in Mecklenburg-Vorpommern\n                  gewählt?",
     "a": "3",
     "b": "4",
@@ -27226,10 +27298,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "c63280552118a41038a36ef4ba62a7cf6be82dd7321022ce2a0a43cb03883364",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "MV-10",
+    "num": "MV-304",
     "question": "Ab welchem Alter darf man in Mecklenburg-Vorpommern bei\n                  Kommunalwahlen wählen?",
     "a": "14",
     "b": "16",
@@ -27299,10 +27372,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "0e3a33dd5b4f5128d3e172ed177c84c83cd893a99f0adbcc6e5f132f08a68be8",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "MV-10",
+    "num": "MV-305",
     "question": "Welche Farben hat die Landesflagge von Mecklenburg-Vorpommern?",
     "a": "blau-weiß-gelb-rot",
     "b": "schwarz-gelb",
@@ -27372,10 +27446,11 @@
     "context": "Die Frage bezieht sich auf die Kenntnis deutscher Bundesländer und ihrer offiziellen Symbole. Mecklenburg-Vorpommern ist ein Bundesland im Nordosten Deutschlands mit einer eigenen Landesflagge. Um die richtige Antwort zu finden, sollte man wissen, welche Farben diese Flagge trägt. Solche Fragen kommen häufig in Geografie-, Politik- oder Allgemeinwissensquizzen vor, insbesondere im Zusammenhang mit deutschen Ländern und deren staatlichen Kennzeichen.",
     "id": "bafcdffe2018303412d94cff56eb6fd37120627cbfb0e68486e246313422f358",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Kenntnis deutscher Bundesländer und ihrer offiziellen Symbole. Mecklenburg-Vorpommern ist ein Bundesland im Nordosten Deutschlands mit einer eigenen Landesflagge. Um die richtige Antwort zu finden, sollte man wissen, welche Farben diese Flagge trägt. Solche Fragen kommen häufig in Geografie-, Politik- oder Allgemeinwissensquizzen vor, insbesondere im Zusammenhang mit deutschen Ländern und deren staatlichen Kennzeichen."
+    "sessionName": "Die Frage bezieht sich auf die Kenntnis deutscher Bundesländer und ihrer offiziellen Symbole. Mecklenburg-Vorpommern ist ein Bundesland im Nordosten Deutschlands mit einer eigenen Landesflagge. Um die richtige Antwort zu finden, sollte man wissen, welche Farben diese Flagge trägt. Solche Fragen kommen häufig in Geografie-, Politik- oder Allgemeinwissensquizzen vor, insbesondere im Zusammenhang mit deutschen Ländern und deren staatlichen Kennzeichen.",
+    "taskNum": 305
   },
   {
-    "num": "MV-10",
+    "num": "MV-306",
     "question": "Wo können Sie sich in Mecklenburg-Vorpommern über politische\n                  Themen informieren?",
     "a": "bei der Verbraucherzentrale",
     "b": "beim Ordnungsamt der Gemeinde",
@@ -27445,10 +27520,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "eb0cbb58bde488bd290a7bf85e38aa0b4cfcfd5f216ff24073643269b9c3fce9",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "MV-10",
+    "num": "MV-307",
     "question": "Die Landeshauptstadt von Mecklenburg-Vorpommern heißt ...",
     "a": "Wismar",
     "b": "Rostock",
@@ -27518,10 +27594,11 @@
     "context": "Die Frage bezieht sich auf das politische und geografische Wissen über die Bundesländer Deutschlands. Jedes Bundesland besitzt eine eigene Landeshauptstadt, in der sich Regierung und Parlament befinden. Mecklenburg-Vorpommern liegt im Nordosten Deutschlands. Die Antwortmöglichkeiten nennen bekannte Städte aus diesem Bundesland.",
     "id": "52f89b1758e3b721e807e95a60f2a9da83709eb3c9c857a0f19eae9cb2b61217",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf das politische und geografische Wissen über die Bundesländer Deutschlands. Jedes Bundesland besitzt eine eigene Landeshauptstadt, in der sich Regierung und Parlament befinden. Mecklenburg-Vorpommern liegt im Nordosten Deutschlands. Die Antwortmöglichkeiten nennen bekannte Städte aus diesem Bundesland."
+    "sessionName": "Die Frage bezieht sich auf das politische und geografische Wissen über die Bundesländer Deutschlands. Jedes Bundesland besitzt eine eigene Landeshauptstadt, in der sich Regierung und Parlament befinden. Mecklenburg-Vorpommern liegt im Nordosten Deutschlands. Die Antwortmöglichkeiten nennen bekannte Städte aus diesem Bundesland.",
+    "taskNum": 307
   },
   {
-    "num": "MV-10",
+    "num": "MV-308",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Mecklenburg-Vorpommern?",
     "a": "Bürgermeister / Bürgermeisterin",
     "b": "Ministerpräsident / Ministerpräsidentin",
@@ -27591,10 +27668,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "7c622689440bccb1385e4e56166e7efeca8d763c199850b79f1b3498f5237947",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 308
   },
   {
-    "num": "MV-10",
+    "num": "MV-309",
     "question": "Welchen Minister / welche Ministerin hat\n                  Mecklenburg-Vorpommern nicht?",
     "a": "Finanzsenator / Finanzsenatorin",
     "b": "Außenminister / Außenministerin",
@@ -27664,10 +27742,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "2e04936ed9c832c1367868a4cdb150793379f4b65e7f4f87695f133dad07e81b",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "MV-10",
+    "num": "MV-310",
     "question": "Welches Bundesland ist Mecklenburg-Vorpommern?",
     "a": "1",
     "b": "2",
@@ -27737,10 +27816,11 @@
     "context": "Die Frage bezieht sich auf ein Quiz oder eine Prüfung zur Geografie Deutschlands. Dabei sind die Bundesländer nummeriert, zum Beispiel auf einer Karte oder in einer Abbildung. Anhand dieser Nummern soll erkannt werden, welche Nummer dem Bundesland Mecklenburg-Vorpommern zugeordnet ist.",
     "id": "598ad50189033a84b9e4f15ee76a38e26589f1c0a202bc131cb23c956275a180",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf ein Quiz oder eine Prüfung zur Geografie Deutschlands. Dabei sind die Bundesländer nummeriert, zum Beispiel auf einer Karte oder in einer Abbildung. Anhand dieser Nummern soll erkannt werden, welche Nummer dem Bundesland Mecklenburg-Vorpommern zugeordnet ist."
+    "sessionName": "Die Frage bezieht sich auf ein Quiz oder eine Prüfung zur Geografie Deutschlands. Dabei sind die Bundesländer nummeriert, zum Beispiel auf einer Karte oder in einer Abbildung. Anhand dieser Nummern soll erkannt werden, welche Nummer dem Bundesland Mecklenburg-Vorpommern zugeordnet ist.",
+    "taskNum": 310
   },
   {
-    "num": "NI-1",
+    "num": "NI-301",
     "question": "Welches Wappen gehört zum Bundesland Niedersachsen?",
     "a": "1",
     "b": "2",
@@ -27810,10 +27890,11 @@
     "context": "Die Frage bezieht sich auf deutsche Landeswappen. Niedersachsen ist eines der 16 Bundesländer Deutschlands und besitzt ein offizielles Wappen mit charakteristischen Symbolen aus seiner Geschichte. In der Aufgabe werden vier Wappen abgebildet. Es geht darum, anhand von Farben, Figuren und heraldischen Merkmalen das passende Wappen dem Bundesland Niedersachsen zuzuordnen.",
     "id": "b6d65725f4b4009a69310803243741ba4446e5a9c014c1294c7de90094626552",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf deutsche Landeswappen. Niedersachsen ist eines der 16 Bundesländer Deutschlands und besitzt ein offizielles Wappen mit charakteristischen Symbolen aus seiner Geschichte. In der Aufgabe werden vier Wappen abgebildet. Es geht darum, anhand von Farben, Figuren und heraldischen Merkmalen das passende Wappen dem Bundesland Niedersachsen zuzuordnen."
+    "sessionName": "Die Frage bezieht sich auf deutsche Landeswappen. Niedersachsen ist eines der 16 Bundesländer Deutschlands und besitzt ein offizielles Wappen mit charakteristischen Symbolen aus seiner Geschichte. In der Aufgabe werden vier Wappen abgebildet. Es geht darum, anhand von Farben, Figuren und heraldischen Merkmalen das passende Wappen dem Bundesland Niedersachsen zuzuordnen.",
+    "taskNum": 301
   },
   {
-    "num": "NI-2",
+    "num": "NI-302",
     "question": "Für wie viele Jahre wird der Landtag in Niedersachsen gewählt?",
     "a": "3",
     "b": "4",
@@ -27883,10 +27964,11 @@
     "context": "Die Frage bezieht sich auf den Landtag des Bundeslandes Niedersachsen. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen von den wahlberechtigten Bürgerinnen und Bürgern gewählt. Jede Wahl bestimmt, wie lange die Abgeordneten im Parlament sitzen und politische Entscheidungen auf Landesebene treffen. Die Dauer dieser Wahlperiode ist gesetzlich festgelegt.",
     "id": "6dd04f1e18d23f157f0849e0be324ccff9f4606b4cddee883003187e550ad718",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf den Landtag des Bundeslandes Niedersachsen. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen von den wahlberechtigten Bürgerinnen und Bürgern gewählt. Jede Wahl bestimmt, wie lange die Abgeordneten im Parlament sitzen und politische Entscheidungen auf Landesebene treffen. Die Dauer dieser Wahlperiode ist gesetzlich festgelegt."
+    "sessionName": "Die Frage bezieht sich auf den Landtag des Bundeslandes Niedersachsen. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen von den wahlberechtigten Bürgerinnen und Bürgern gewählt. Jede Wahl bestimmt, wie lange die Abgeordneten im Parlament sitzen und politische Entscheidungen auf Landesebene treffen. Die Dauer dieser Wahlperiode ist gesetzlich festgelegt.",
+    "taskNum": 302
   },
   {
-    "num": "NI-2",
+    "num": "NI-303",
     "question": "Ab welchem Alter darf man in Niedersachsen bei Kommunalwahlen\n                  wählen?",
     "a": "14",
     "b": "18",
@@ -27956,10 +28038,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "5d9921cbe231494c9ae5856a04c4d7863b76e6c0c648ca8edb24344c92da1491",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "NI-3",
+    "num": "NI-304",
     "question": "Welches ist ein Landkreis in Niedersachsen?",
     "a": "Rhein-Sieg-Kreis",
     "b": "Vogtlandkreis",
@@ -28029,10 +28112,11 @@
     "context": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Nicht jeder Landkreis gehört zum gleichen Bundesland. Um die richtige Antwort zu finden, muss man wissen, welches der genannten Gebiete im Bundesland Niedersachsen liegt.",
     "id": "3cabc98f4f5a5202eb97066a1ec70c3031bedf6d306873119e83a512f23c882f",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Nicht jeder Landkreis gehört zum gleichen Bundesland. Um die richtige Antwort zu finden, muss man wissen, welches der genannten Gebiete im Bundesland Niedersachsen liegt."
+    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer gegliedert, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Nicht jeder Landkreis gehört zum gleichen Bundesland. Um die richtige Antwort zu finden, muss man wissen, welches der genannten Gebiete im Bundesland Niedersachsen liegt.",
+    "taskNum": 304
   },
   {
-    "num": "NI-4",
+    "num": "NI-305",
     "question": "Wo können Sie sich in Niedersachsen über politische Themen\n                  informieren?",
     "a": "bei der Verbraucherzentrale",
     "b": "bei der Landeszentrale für politische Bildung",
@@ -28102,10 +28186,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "565b942e1d7d2789069cd72b7a25c3741d72d4537d500307340b3005d1f05cb5",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 305
   },
   {
-    "num": "NI-6",
+    "num": "NI-306",
     "question": "Welche Farben hat die Landesflagge von Niedersachsen?",
     "a": "schwarz-rot-gold",
     "b": "blau-weiß-rot",
@@ -28175,10 +28260,11 @@
     "context": "Die Frage bezieht sich auf Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Landesflaggen sind wichtige Identifikationsmerkmale und bestehen meist aus bestimmten Farben, die historische oder politische Bedeutung haben. Hier soll erkannt werden, welche Farbkombination zur Flagge des Bundeslandes Niedersachsen gehört.",
     "id": "086ae2f3598b4483411fbaaedbcb4c92e33f4268e471137406546efdd36dcb7a",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Landesflaggen sind wichtige Identifikationsmerkmale und bestehen meist aus bestimmten Farben, die historische oder politische Bedeutung haben. Hier soll erkannt werden, welche Farbkombination zur Flagge des Bundeslandes Niedersachsen gehört."
+    "sessionName": "Die Frage bezieht sich auf Wissen über deutsche Bundesländer und ihre offiziellen Symbole. Landesflaggen sind wichtige Identifikationsmerkmale und bestehen meist aus bestimmten Farben, die historische oder politische Bedeutung haben. Hier soll erkannt werden, welche Farbkombination zur Flagge des Bundeslandes Niedersachsen gehört.",
+    "taskNum": 306
   },
   {
-    "num": "NI-8",
+    "num": "NI-307",
     "question": "Die Landeshauptstadt von Niedersachsen heißt …",
     "a": "Wolfsburg",
     "b": "Hannover",
@@ -28248,10 +28334,11 @@
     "context": "In Deutschland ist jedes Bundesland in Verwaltungsbereiche gegliedert und besitzt eine eigene Landeshauptstadt, in der Regierung und Parlament ihren Sitz haben. Niedersachsen liegt im Norden Deutschlands und ist eines der flächenmäßig größten Bundesländer. Die Frage bezieht sich darauf, welche Stadt diese zentrale politische und administrative Funktion für Niedersachsen übernimmt. Die Antwortmöglichkeiten nennen bekannte Städte, die alle in Niedersachsen liegen oder eng mit dem Land verbunden sind.",
     "id": "dde6571b02013f88a2c8fa69240cd3f97512c6dee6928f4ac885e53cc14bb946",
     "sessionId": 0,
-    "sessionName": "In Deutschland ist jedes Bundesland in Verwaltungsbereiche gegliedert und besitzt eine eigene Landeshauptstadt, in der Regierung und Parlament ihren Sitz haben. Niedersachsen liegt im Norden Deutschlands und ist eines der flächenmäßig größten Bundesländer. Die Frage bezieht sich darauf, welche Stadt diese zentrale politische und administrative Funktion für Niedersachsen übernimmt. Die Antwortmöglichkeiten nennen bekannte Städte, die alle in Niedersachsen liegen oder eng mit dem Land verbunden sind."
+    "sessionName": "In Deutschland ist jedes Bundesland in Verwaltungsbereiche gegliedert und besitzt eine eigene Landeshauptstadt, in der Regierung und Parlament ihren Sitz haben. Niedersachsen liegt im Norden Deutschlands und ist eines der flächenmäßig größten Bundesländer. Die Frage bezieht sich darauf, welche Stadt diese zentrale politische und administrative Funktion für Niedersachsen übernimmt. Die Antwortmöglichkeiten nennen bekannte Städte, die alle in Niedersachsen liegen oder eng mit dem Land verbunden sind.",
+    "taskNum": 307
   },
   {
-    "num": "NI-10",
+    "num": "NI-308",
     "question": "Welches Bundesland ist Niedersachsen?",
     "a": "1",
     "b": "2",
@@ -28321,10 +28408,11 @@
     "context": "Die Frage bezieht sich auf die geografische Einordnung eines deutschen Bundeslandes. In Deutschland gibt es 16 Bundesländer, die oft nummeriert oder auf Karten gekennzeichnet werden. Die Antwortmöglichkeiten stellen verschiedene Nummern dar, die jeweils einem bestimmten Bundesland zugeordnet sein könnten. Um die richtige Antwort zu finden, muss man wissen, welche Nummer auf der entsprechenden Übersichtskarte oder Liste für das Bundesland Niedersachsen steht.",
     "id": "15e40bd50aa0fcf2206193b92790a7b78ca8679dd95fdb7e9d0daf599f27a108",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die geografische Einordnung eines deutschen Bundeslandes. In Deutschland gibt es 16 Bundesländer, die oft nummeriert oder auf Karten gekennzeichnet werden. Die Antwortmöglichkeiten stellen verschiedene Nummern dar, die jeweils einem bestimmten Bundesland zugeordnet sein könnten. Um die richtige Antwort zu finden, muss man wissen, welche Nummer auf der entsprechenden Übersichtskarte oder Liste für das Bundesland Niedersachsen steht."
+    "sessionName": "Die Frage bezieht sich auf die geografische Einordnung eines deutschen Bundeslandes. In Deutschland gibt es 16 Bundesländer, die oft nummeriert oder auf Karten gekennzeichnet werden. Die Antwortmöglichkeiten stellen verschiedene Nummern dar, die jeweils einem bestimmten Bundesland zugeordnet sein könnten. Um die richtige Antwort zu finden, muss man wissen, welche Nummer auf der entsprechenden Übersichtskarte oder Liste für das Bundesland Niedersachsen steht.",
+    "taskNum": 308
   },
   {
-    "num": "NI-10",
+    "num": "NI-309",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Niedersachsen?",
     "a": "Ministerpräsident / Ministerpräsidentin",
     "b": "Premierminister / Premierministerin",
@@ -28394,10 +28482,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "b7e939a6e020518f55203bf40a9a27fa291e65528e242ac43069974a8450bc22",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "NI-10",
+    "num": "NI-310",
     "question": "Welchen Minister / welche Ministerin hat Niedersachsen nicht?",
     "a": "Innenminister / Innenministerin",
     "b": "Justizminister / Justizministerin",
@@ -28467,10 +28556,11 @@
     "context": "Die Frage bezieht sich auf die Struktur der Landesregierung von Niedersachsen. Jedes Bundesland hat eigene Ministerien, deren Zuständigkeiten sich von denen der Bundesregierung unterscheiden können. Einige Ressorts sind auf Landesebene üblich, andere existieren nur auf Bundesebene oder heißen anders. Um die richtige Antwort zu finden, muss man wissen, welche Ministerien in Niedersachsen tatsächlich Teil der Landesregierung sind.",
     "id": "5199b0358fca35aee5e88fa15473b906eddfac526532ee78b6dbd6cad375cc93",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Struktur der Landesregierung von Niedersachsen. Jedes Bundesland hat eigene Ministerien, deren Zuständigkeiten sich von denen der Bundesregierung unterscheiden können. Einige Ressorts sind auf Landesebene üblich, andere existieren nur auf Bundesebene oder heißen anders. Um die richtige Antwort zu finden, muss man wissen, welche Ministerien in Niedersachsen tatsächlich Teil der Landesregierung sind."
+    "sessionName": "Die Frage bezieht sich auf die Struktur der Landesregierung von Niedersachsen. Jedes Bundesland hat eigene Ministerien, deren Zuständigkeiten sich von denen der Bundesregierung unterscheiden können. Einige Ressorts sind auf Landesebene üblich, andere existieren nur auf Bundesebene oder heißen anders. Um die richtige Antwort zu finden, muss man wissen, welche Ministerien in Niedersachsen tatsächlich Teil der Landesregierung sind.",
+    "taskNum": 310
   },
   {
-    "num": "NW-1",
+    "num": "NW-301",
     "question": "Welches Wappen gehört zum Bundesland Nordrhein-Westfalen?",
     "a": "1",
     "b": "2",
@@ -28540,10 +28630,11 @@
     "context": "In dieser Aufgabe geht es um die Erkennung von Landeswappen in Deutschland. Jedes Bundesland hat ein eigenes offizielles Wappen mit typischen Symbolen und Farben. Nordrhein-Westfalen besteht historisch aus Rheinland, Westfalen und Lippe, was sich im Wappen widerspiegelt. Wählen Sie das Bild aus, das das korrekte Wappen des Bundeslandes Nordrhein-Westfalen zeigt.",
     "id": "d782e0506f04505662a6d8d793fb6ea0d6e5fc74cbe197ffb6dddbddc13ecda7",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe geht es um die Erkennung von Landeswappen in Deutschland. Jedes Bundesland hat ein eigenes offizielles Wappen mit typischen Symbolen und Farben. Nordrhein-Westfalen besteht historisch aus Rheinland, Westfalen und Lippe, was sich im Wappen widerspiegelt. Wählen Sie das Bild aus, das das korrekte Wappen des Bundeslandes Nordrhein-Westfalen zeigt."
+    "sessionName": "In dieser Aufgabe geht es um die Erkennung von Landeswappen in Deutschland. Jedes Bundesland hat ein eigenes offizielles Wappen mit typischen Symbolen und Farben. Nordrhein-Westfalen besteht historisch aus Rheinland, Westfalen und Lippe, was sich im Wappen widerspiegelt. Wählen Sie das Bild aus, das das korrekte Wappen des Bundeslandes Nordrhein-Westfalen zeigt.",
+    "taskNum": 301
   },
   {
-    "num": "NW-5",
+    "num": "NW-302",
     "question": "Welches ist ein Landkreis in Nordrhein-Westfalen?",
     "a": "Ammerland",
     "b": "Nordfriesland",
@@ -28613,10 +28704,11 @@
     "context": "Die Frage bezieht sich auf geografisches Wissen über die Verwaltungsstruktur Deutschlands. In Deutschland sind die Bundesländer in Landkreise und kreisfreie Städte unterteilt. Nordrhein-Westfalen ist eines der 16 Bundesländer und besitzt mehrere Landkreise. Um die Frage korrekt zu beantworten, muss man wissen, welche der genannten Optionen tatsächlich ein Landkreis innerhalb von Nordrhein-Westfalen ist und welche zu anderen Bundesländern gehören.",
     "id": "fb1b08a6bd29be2847946287ef1808e71ee1e81ba052d99137dde330e2989e56",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf geografisches Wissen über die Verwaltungsstruktur Deutschlands. In Deutschland sind die Bundesländer in Landkreise und kreisfreie Städte unterteilt. Nordrhein-Westfalen ist eines der 16 Bundesländer und besitzt mehrere Landkreise. Um die Frage korrekt zu beantworten, muss man wissen, welche der genannten Optionen tatsächlich ein Landkreis innerhalb von Nordrhein-Westfalen ist und welche zu anderen Bundesländern gehören."
+    "sessionName": "Die Frage bezieht sich auf geografisches Wissen über die Verwaltungsstruktur Deutschlands. In Deutschland sind die Bundesländer in Landkreise und kreisfreie Städte unterteilt. Nordrhein-Westfalen ist eines der 16 Bundesländer und besitzt mehrere Landkreise. Um die Frage korrekt zu beantworten, muss man wissen, welche der genannten Optionen tatsächlich ein Landkreis innerhalb von Nordrhein-Westfalen ist und welche zu anderen Bundesländern gehören.",
+    "taskNum": 302
   },
   {
-    "num": "NW-5",
+    "num": "NW-303",
     "question": "Für wie viele Jahre wird der Landtag in Nordrhein-Westfalen\n                  gewählt?",
     "a": "3",
     "b": "4",
@@ -28686,10 +28778,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "2196c4c863cd38d4da18ac0cbfa4f40d071ee2cc6c4be8bc230eee07caaf7d99",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "NW-10",
+    "num": "NW-304",
     "question": "Ab welchem Alter darf man in Nordrhein-Westfalen bei\n                  Kommunalwahlen wählen?",
     "a": "14",
     "b": "18",
@@ -28759,10 +28852,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "89efc7b0b84da5e05515db67ae03a2d6cb2377c6a3f906ebe937ddd2b1bd3c81",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "NW-10",
+    "num": "NW-305",
     "question": "Welche Farben hat die Landesflagge von Nordrhein-Westfalen?",
     "a": "schwarz-gold",
     "b": "rot-weiß",
@@ -28832,10 +28926,11 @@
     "context": "Die Frage bezieht sich auf das Allgemeinwissen über die deutschen Bundesländer. Jedes Bundesland besitzt eine eigene Landesflagge mit charakteristischen Farben. Um die richtige Antwort zu finden, sollte man wissen, wie die Flagge von Nordrhein-Westfalen aussieht, einem Bundesland im Westen Deutschlands mit der Landeshauptstadt Düsseldorf.",
     "id": "be33e2b058be3e64fc011abf2220cd848fcd09b322e8607bc367de1a1fdeb001",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf das Allgemeinwissen über die deutschen Bundesländer. Jedes Bundesland besitzt eine eigene Landesflagge mit charakteristischen Farben. Um die richtige Antwort zu finden, sollte man wissen, wie die Flagge von Nordrhein-Westfalen aussieht, einem Bundesland im Westen Deutschlands mit der Landeshauptstadt Düsseldorf."
+    "sessionName": "Die Frage bezieht sich auf das Allgemeinwissen über die deutschen Bundesländer. Jedes Bundesland besitzt eine eigene Landesflagge mit charakteristischen Farben. Um die richtige Antwort zu finden, sollte man wissen, wie die Flagge von Nordrhein-Westfalen aussieht, einem Bundesland im Westen Deutschlands mit der Landeshauptstadt Düsseldorf.",
+    "taskNum": 305
   },
   {
-    "num": "NW-10",
+    "num": "NW-306",
     "question": "Wo können Sie sich in Nordrhein-Westfalen über politische\n                  Themen informieren?",
     "a": "bei den Kirchen",
     "b": "bei der Verbraucherzentrale",
@@ -28905,10 +29000,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "4280c190555189afe4334aa34bc1d3f87c4e4af6569adf2be5b0b030bd3125b0",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "NW-10",
+    "num": "NW-307",
     "question": "Die Landeshauptstadt von Nordrhein-Westfalen heißt …",
     "a": "Dortmund",
     "b": "Bonn",
@@ -28978,10 +29074,11 @@
     "context": "Die folgende Frage bezieht sich auf ein Bundesland in Deutschland. Nordrhein-Westfalen ist eines der bevölkerungsreichsten Bundesländer und liegt im Westen des Landes. Es hat viele große Städte mit historischer, politischer und wirtschaftlicher Bedeutung. Jede Landeshauptstadt ist der Sitz der Landesregierung und spielt eine zentrale Rolle in der Verwaltung. Die Antwortoptionen nennen bekannte Städte aus Nordrhein-Westfalen, von denen nur eine die offizielle Landeshauptstadt ist.",
     "id": "0546ff4f1a42fdd431752ebdeea1305bc82f25f7da7c22ccae71e703778623be",
     "sessionId": 0,
-    "sessionName": "Die folgende Frage bezieht sich auf ein Bundesland in Deutschland. Nordrhein-Westfalen ist eines der bevölkerungsreichsten Bundesländer und liegt im Westen des Landes. Es hat viele große Städte mit historischer, politischer und wirtschaftlicher Bedeutung. Jede Landeshauptstadt ist der Sitz der Landesregierung und spielt eine zentrale Rolle in der Verwaltung. Die Antwortoptionen nennen bekannte Städte aus Nordrhein-Westfalen, von denen nur eine die offizielle Landeshauptstadt ist."
+    "sessionName": "Die folgende Frage bezieht sich auf ein Bundesland in Deutschland. Nordrhein-Westfalen ist eines der bevölkerungsreichsten Bundesländer und liegt im Westen des Landes. Es hat viele große Städte mit historischer, politischer und wirtschaftlicher Bedeutung. Jede Landeshauptstadt ist der Sitz der Landesregierung und spielt eine zentrale Rolle in der Verwaltung. Die Antwortoptionen nennen bekannte Städte aus Nordrhein-Westfalen, von denen nur eine die offizielle Landeshauptstadt ist.",
+    "taskNum": 307
   },
   {
-    "num": "NW-10",
+    "num": "NW-308",
     "question": "Welches Bundesland ist Nordrhein-Westfalen?",
     "a": "1",
     "b": "2",
@@ -29051,10 +29148,11 @@
     "context": "In dieser Aufgabe geht es um das Erkennen deutscher Bundesländer. Auf einer Abbildung oder Liste sind mehrere Bundesländer mit Zahlen gekennzeichnet. Die Frage fordert dazu auf, anhand dieser Nummerierung zu bestimmen, welches der genannten Felder Nordrhein-Westfalen darstellt. Wähle die Zahl aus, die dem Bundesland Nordrhein-Westfalen zugeordnet ist.",
     "id": "d730dd3f4c2dc2199e2981bb26f23ef6373cdd08826319e149a7424f78ea5d34",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe geht es um das Erkennen deutscher Bundesländer. Auf einer Abbildung oder Liste sind mehrere Bundesländer mit Zahlen gekennzeichnet. Die Frage fordert dazu auf, anhand dieser Nummerierung zu bestimmen, welches der genannten Felder Nordrhein-Westfalen darstellt. Wähle die Zahl aus, die dem Bundesland Nordrhein-Westfalen zugeordnet ist."
+    "sessionName": "In dieser Aufgabe geht es um das Erkennen deutscher Bundesländer. Auf einer Abbildung oder Liste sind mehrere Bundesländer mit Zahlen gekennzeichnet. Die Frage fordert dazu auf, anhand dieser Nummerierung zu bestimmen, welches der genannten Felder Nordrhein-Westfalen darstellt. Wähle die Zahl aus, die dem Bundesland Nordrhein-Westfalen zugeordnet ist.",
+    "taskNum": 308
   },
   {
-    "num": "NW-10",
+    "num": "NW-309",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Nordrhein-Westfalen?",
     "a": "Ministerpräsident / Ministerpräsidentin",
     "b": "Bürgermeister / Bürgermeisterin",
@@ -29124,10 +29222,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "d3c675566b161315ae11eb118f88db30f65b2a5af7b375db25bbfa92ecf5ed82",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "NW-10",
+    "num": "NW-310",
     "question": "Welchen Minister / welche Ministerin hat Nordrhein-Westfalen\n                  nicht?",
     "a": "Finanzminister / Finanzministerin",
     "b": "Innenminister / Innenministerin",
@@ -29197,10 +29296,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "2c9590c385546b5e61e2df5efb5cee5b12aad114794390b9a5552861620f8834",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 310
   },
   {
-    "num": "RP-1",
+    "num": "RP-301",
     "question": "Welches Wappen gehört zum Bundesland Rheinland-Pfalz?",
     "a": "1",
     "b": "2",
@@ -29270,10 +29370,11 @@
     "context": "Die Frage bezieht sich auf die deutschen Bundesländer und ihre offiziellen Wappen. Jedes Bundesland hat ein eigenes Wappen mit bestimmten Symbolen, die historische oder regionale Bedeutung haben. In der Aufgabe werden mehrere Abbildungen von Wappen mit den Nummern 1 bis 4 gezeigt. Ziel ist es, das Wappen zu erkennen, das dem Bundesland Rheinland-Pfalz zugeordnet ist, und die richtige Nummer auszuwählen.",
     "id": "d9877f0d8d5a55d848abd22f17504af909fad4ab9d72937d1562c2694b186532",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die deutschen Bundesländer und ihre offiziellen Wappen. Jedes Bundesland hat ein eigenes Wappen mit bestimmten Symbolen, die historische oder regionale Bedeutung haben. In der Aufgabe werden mehrere Abbildungen von Wappen mit den Nummern 1 bis 4 gezeigt. Ziel ist es, das Wappen zu erkennen, das dem Bundesland Rheinland-Pfalz zugeordnet ist, und die richtige Nummer auszuwählen."
+    "sessionName": "Die Frage bezieht sich auf die deutschen Bundesländer und ihre offiziellen Wappen. Jedes Bundesland hat ein eigenes Wappen mit bestimmten Symbolen, die historische oder regionale Bedeutung haben. In der Aufgabe werden mehrere Abbildungen von Wappen mit den Nummern 1 bis 4 gezeigt. Ziel ist es, das Wappen zu erkennen, das dem Bundesland Rheinland-Pfalz zugeordnet ist, und die richtige Nummer auszuwählen.",
+    "taskNum": 301
   },
   {
-    "num": "RP-2",
+    "num": "RP-302",
     "question": "Welches ist ein Landkreis in Rheinland-Pfalz?",
     "a": "Westerwaldkreis",
     "b": "Altötting",
@@ -29343,10 +29444,11 @@
     "context": "Die Frage bezieht sich auf deutsche Verwaltungsstrukturen. In Deutschland sind die Bundesländer in verschiedene Verwaltungseinheiten unterteilt, darunter Landkreise. Rheinland-Pfalz ist ein Bundesland im Westen Deutschlands und besteht aus mehreren solchen Landkreisen. Die Antwortmöglichkeiten nennen verschiedene Landkreise, die sich jedoch in unterschiedlichen Bundesländern befinden können. Um die richtige Antwort zu finden, muss man wissen, welcher der genannten Landkreise tatsächlich zu Rheinland-Pfalz gehört.",
     "id": "b0171f1468b34b2140fe7b2a7aea68b84dd9d985c8013486d5b4a1ebccea9e7d",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf deutsche Verwaltungsstrukturen. In Deutschland sind die Bundesländer in verschiedene Verwaltungseinheiten unterteilt, darunter Landkreise. Rheinland-Pfalz ist ein Bundesland im Westen Deutschlands und besteht aus mehreren solchen Landkreisen. Die Antwortmöglichkeiten nennen verschiedene Landkreise, die sich jedoch in unterschiedlichen Bundesländern befinden können. Um die richtige Antwort zu finden, muss man wissen, welcher der genannten Landkreise tatsächlich zu Rheinland-Pfalz gehört."
+    "sessionName": "Die Frage bezieht sich auf deutsche Verwaltungsstrukturen. In Deutschland sind die Bundesländer in verschiedene Verwaltungseinheiten unterteilt, darunter Landkreise. Rheinland-Pfalz ist ein Bundesland im Westen Deutschlands und besteht aus mehreren solchen Landkreisen. Die Antwortmöglichkeiten nennen verschiedene Landkreise, die sich jedoch in unterschiedlichen Bundesländern befinden können. Um die richtige Antwort zu finden, muss man wissen, welcher der genannten Landkreise tatsächlich zu Rheinland-Pfalz gehört.",
+    "taskNum": 302
   },
   {
-    "num": "RP-2",
+    "num": "RP-303",
     "question": "Für wie viele Jahre wird der Landtag in Rheinland-Pfalz\n                  gewählt?",
     "a": "3",
     "b": "4",
@@ -29416,10 +29518,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "0a74d8acb491f1edfb03973ae8701840b6847d8cee9d2a2427f820be7d706c02",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "RP-3",
+    "num": "RP-304",
     "question": "Welche Farben hat die Landesflagge von Rheinland-Pfalz?",
     "a": "schwarz-rot-gold",
     "b": "weiß-rot",
@@ -29489,10 +29592,11 @@
     "context": "Die Frage bezieht sich auf die deutschen Bundesländer und deren Hoheitszeichen. Rheinland-Pfalz ist eines dieser Bundesländer und besitzt eine eigene Landesflagge mit bestimmten Farben. Um die richtige Antwort zu finden, hilft es, Grundkenntnisse über deutsche Landesflaggen oder allgemeines Wissen über staatliche Symbole in Deutschland zu haben.",
     "id": "4d0ad78a08f6b7bab5d888ec89763f570a0650ec7ad0685b62b032da092803d8",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die deutschen Bundesländer und deren Hoheitszeichen. Rheinland-Pfalz ist eines dieser Bundesländer und besitzt eine eigene Landesflagge mit bestimmten Farben. Um die richtige Antwort zu finden, hilft es, Grundkenntnisse über deutsche Landesflaggen oder allgemeines Wissen über staatliche Symbole in Deutschland zu haben."
+    "sessionName": "Die Frage bezieht sich auf die deutschen Bundesländer und deren Hoheitszeichen. Rheinland-Pfalz ist eines dieser Bundesländer und besitzt eine eigene Landesflagge mit bestimmten Farben. Um die richtige Antwort zu finden, hilft es, Grundkenntnisse über deutsche Landesflaggen oder allgemeines Wissen über staatliche Symbole in Deutschland zu haben.",
+    "taskNum": 304
   },
   {
-    "num": "RP-3",
+    "num": "RP-305",
     "question": "Die Landeshauptstadt von Rheinland-Pfalz heißt …",
     "a": "Kaiserslautern",
     "b": "Ludwigshafen",
@@ -29562,10 +29666,11 @@
     "context": "In diesem Zusammenhang geht es um grundlegende Kenntnisse der deutschen Geografie und der politischen Gliederung der Bundesländer. Rheinland-Pfalz ist eines der 16 Bundesländer Deutschlands. Die Frage prüft, ob bekannt ist, welche Stadt als Regierungssitz und Verwaltungszentrum dieses Bundeslandes dient.",
     "id": "2289cab2998c91a0f16e0d6bdff37f61936766aead75663fc66beb7cdd4c8b8b",
     "sessionId": 0,
-    "sessionName": "In diesem Zusammenhang geht es um grundlegende Kenntnisse der deutschen Geografie und der politischen Gliederung der Bundesländer. Rheinland-Pfalz ist eines der 16 Bundesländer Deutschlands. Die Frage prüft, ob bekannt ist, welche Stadt als Regierungssitz und Verwaltungszentrum dieses Bundeslandes dient."
+    "sessionName": "In diesem Zusammenhang geht es um grundlegende Kenntnisse der deutschen Geografie und der politischen Gliederung der Bundesländer. Rheinland-Pfalz ist eines der 16 Bundesländer Deutschlands. Die Frage prüft, ob bekannt ist, welche Stadt als Regierungssitz und Verwaltungszentrum dieses Bundeslandes dient.",
+    "taskNum": 305
   },
   {
-    "num": "RP-4",
+    "num": "RP-306",
     "question": "Ab welchem Alter darf man in Rheinland-Pfalz bei\n                  Kommunalwahlen wählen?",
     "a": "14",
     "b": "18",
@@ -29635,10 +29740,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "4801e52cb513a320490de91d991727393e2ef04aaaf0be0e2f1a65bb9beccc3e",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "RP-4",
+    "num": "RP-307",
     "question": "Wo können Sie sich in Rheinland-Pfalz über politische Themen\n                  informieren?",
     "a": "bei den Kirchen",
     "b": "bei der Verbraucherzentrale",
@@ -29708,10 +29814,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "6afba0aa220658d5da987b8627238d9cdcdc2e8b1a2e1ae8982207bf25085ed7",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 307
   },
   {
-    "num": "RP-9",
+    "num": "RP-308",
     "question": "Welches Bundesland ist Rheinland-Pfalz?",
     "a": "1",
     "b": "2",
@@ -29781,10 +29888,11 @@
     "context": "In dieser Aufgabe wird auf eine Übersicht oder Karte der deutschen Bundesländer Bezug genommen, bei der jedes Bundesland mit einer Zahl gekennzeichnet ist. Die Teilnehmenden sollen anhand dieser Nummerierung erkennen, welche Zahl dem Bundesland Rheinland-Pfalz zugeordnet ist, und die richtige Option auswählen.",
     "id": "d10be52f8c729eb6a1206313b58f38ab156339d8ea57e01280ce927eae9ca06d",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe wird auf eine Übersicht oder Karte der deutschen Bundesländer Bezug genommen, bei der jedes Bundesland mit einer Zahl gekennzeichnet ist. Die Teilnehmenden sollen anhand dieser Nummerierung erkennen, welche Zahl dem Bundesland Rheinland-Pfalz zugeordnet ist, und die richtige Option auswählen."
+    "sessionName": "In dieser Aufgabe wird auf eine Übersicht oder Karte der deutschen Bundesländer Bezug genommen, bei der jedes Bundesland mit einer Zahl gekennzeichnet ist. Die Teilnehmenden sollen anhand dieser Nummerierung erkennen, welche Zahl dem Bundesland Rheinland-Pfalz zugeordnet ist, und die richtige Option auswählen.",
+    "taskNum": 308
   },
   {
-    "num": "RP-10",
+    "num": "RP-309",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Rheinland-Pfalz?",
     "a": "Ministerpräsident / Ministerpräsidentin",
     "b": "Bürgermeister / Bürgermeisterin",
@@ -29854,10 +29962,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "d98d34e092d595cbac45c505a5733cbe6194149523bcd25099069aaad46048fc",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "RP-10",
+    "num": "RP-310",
     "question": "Welchen Minister / welche Ministerin hat Rheinland-Pfalz\n                  nicht?",
     "a": "Außenminister / Außenministerin",
     "b": "Innenminister / Innenministerin",
@@ -29927,10 +30036,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "aa363de9123b1106802d092cd995f55f5d83815fe3ca41f0a9f128873275badf",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 310
   },
   {
-    "num": "SH-1",
+    "num": "SH-301",
     "question": "Welches Wappen gehört zum Bundesland Schleswig-Holstein?",
     "a": "1",
     "b": "2",
@@ -30000,10 +30110,11 @@
     "context": "In dieser Frage geht es um die Erkennung von Landeswappen in Deutschland. Dir werden mehrere nummerierte Abbildungen von Wappen gezeigt. Deine Aufgabe ist es, anhand typischer Symbole und Farben das Wappen zu identifizieren, das zum Bundesland Schleswig-Holstein gehört. Schleswig-Holstein hat ein charakteristisches Wappen mit historischen Elementen, die auf seine Geschichte und Lage hinweisen. Wähle die Nummer aus, die dieses Wappen korrekt darstellt.",
     "id": "943ee13e7bd9d7abe9ded3b2ecb9a3e4e9bf96ce2251ae9792ffd7ebeb1ca511",
     "sessionId": 0,
-    "sessionName": "In dieser Frage geht es um die Erkennung von Landeswappen in Deutschland. Dir werden mehrere nummerierte Abbildungen von Wappen gezeigt. Deine Aufgabe ist es, anhand typischer Symbole und Farben das Wappen zu identifizieren, das zum Bundesland Schleswig-Holstein gehört. Schleswig-Holstein hat ein charakteristisches Wappen mit historischen Elementen, die auf seine Geschichte und Lage hinweisen. Wähle die Nummer aus, die dieses Wappen korrekt darstellt."
+    "sessionName": "In dieser Frage geht es um die Erkennung von Landeswappen in Deutschland. Dir werden mehrere nummerierte Abbildungen von Wappen gezeigt. Deine Aufgabe ist es, anhand typischer Symbole und Farben das Wappen zu identifizieren, das zum Bundesland Schleswig-Holstein gehört. Schleswig-Holstein hat ein charakteristisches Wappen mit historischen Elementen, die auf seine Geschichte und Lage hinweisen. Wähle die Nummer aus, die dieses Wappen korrekt darstellt.",
+    "taskNum": 301
   },
   {
-    "num": "SH-2",
+    "num": "SH-302",
     "question": "Welches ist ein Landkreis in Schleswig-Holstein?",
     "a": "Nordfriesland",
     "b": "Mecklenburgische Seenplatte",
@@ -30073,10 +30184,11 @@
     "context": "Deutschland ist in Bundesländer und diese wiederum in Landkreise eingeteilt. Jeder Landkreis gehört genau zu einem Bundesland. Schleswig-Holstein liegt im Norden Deutschlands zwischen Nord- und Ostsee. Die Frage prüft, ob man weiß, welcher der genannten Landkreise zu Schleswig-Holstein gehört und welche eher anderen Bundesländern wie Mecklenburg-Vorpommern, Nordrhein-Westfalen oder Niedersachsen zuzuordnen sind.",
     "id": "c45c9714c3c72ca9a96a9445eb76dd497506120944ba5b3a8c3580b51eb0038e",
     "sessionId": 0,
-    "sessionName": "Deutschland ist in Bundesländer und diese wiederum in Landkreise eingeteilt. Jeder Landkreis gehört genau zu einem Bundesland. Schleswig-Holstein liegt im Norden Deutschlands zwischen Nord- und Ostsee. Die Frage prüft, ob man weiß, welcher der genannten Landkreise zu Schleswig-Holstein gehört und welche eher anderen Bundesländern wie Mecklenburg-Vorpommern, Nordrhein-Westfalen oder Niedersachsen zuzuordnen sind."
+    "sessionName": "Deutschland ist in Bundesländer und diese wiederum in Landkreise eingeteilt. Jeder Landkreis gehört genau zu einem Bundesland. Schleswig-Holstein liegt im Norden Deutschlands zwischen Nord- und Ostsee. Die Frage prüft, ob man weiß, welcher der genannten Landkreise zu Schleswig-Holstein gehört und welche eher anderen Bundesländern wie Mecklenburg-Vorpommern, Nordrhein-Westfalen oder Niedersachsen zuzuordnen sind.",
+    "taskNum": 302
   },
   {
-    "num": "SH-3",
+    "num": "SH-303",
     "question": "Für wie viele Jahre wird der Landtag in Schleswig-Holstein\n                  gewählt?",
     "a": "3",
     "b": "4",
@@ -30146,10 +30258,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "114ec02d94c67b467fc002129b0ecd4c113805f153355786e7f94860c640b2ba",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "SH-4",
+    "num": "SH-304",
     "question": "Ab welchem Alter darf man in Schleswig-Holstein bei\n                  Kommunalwahlen wählen?",
     "a": "14",
     "b": "18",
@@ -30219,10 +30332,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "b47fa844f4f3c655b7c096c1bf6de48c28e45bd78999020d9852ee87b9d88ee0",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "SL-1",
+    "num": "SL-301",
     "question": "Welches Wappen gehört zum Bundesland Saarland?",
     "a": "1",
     "b": "2",
@@ -30292,10 +30406,11 @@
     "context": "Die Frage bezieht sich auf die Wappen der deutschen Bundesländer. Dem Betrachter werden mehrere nummerierte Wappen (1–4) gezeigt. Aufgabe ist es, das richtige Wappen dem Bundesland Saarland zuzuordnen. Dafür sollte man die typischen heraldischen Symbole des Saarlands kennen oder sie mit den anderen Bundesländern vergleichen.",
     "id": "322fe7eb2aa8df3db763952fb88557a0c410cf97f971889520f37f4d0a753de4",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Wappen der deutschen Bundesländer. Dem Betrachter werden mehrere nummerierte Wappen (1–4) gezeigt. Aufgabe ist es, das richtige Wappen dem Bundesland Saarland zuzuordnen. Dafür sollte man die typischen heraldischen Symbole des Saarlands kennen oder sie mit den anderen Bundesländern vergleichen."
+    "sessionName": "Die Frage bezieht sich auf die Wappen der deutschen Bundesländer. Dem Betrachter werden mehrere nummerierte Wappen (1–4) gezeigt. Aufgabe ist es, das richtige Wappen dem Bundesland Saarland zuzuordnen. Dafür sollte man die typischen heraldischen Symbole des Saarlands kennen oder sie mit den anderen Bundesländern vergleichen.",
+    "taskNum": 301
   },
   {
-    "num": "SH-5",
+    "num": "SH-305",
     "question": "Welche Farben hat die Landesflagge von Schleswig-Holstein?",
     "a": "weiß-blau",
     "b": "grün-weiß-rot",
@@ -30365,10 +30480,11 @@
     "context": "Die folgende Frage bezieht sich auf ein deutsches Bundesland im Norden des Landes. Um sie richtig zu beantworten, sind Grundkenntnisse über deutsche Landesflaggen hilfreich. Jede Landesflagge hat bestimmte Farben, die oft historische oder kulturelle Bedeutung haben. Die Frage prüft, ob man weiß, welche Farben offiziell zur Flagge von Schleswig-Holstein gehören.",
     "id": "29bce109e869baddf1b67fece130c70470a5ce80845b6cd1cac926c8d7a11599",
     "sessionId": 0,
-    "sessionName": "Die folgende Frage bezieht sich auf ein deutsches Bundesland im Norden des Landes. Um sie richtig zu beantworten, sind Grundkenntnisse über deutsche Landesflaggen hilfreich. Jede Landesflagge hat bestimmte Farben, die oft historische oder kulturelle Bedeutung haben. Die Frage prüft, ob man weiß, welche Farben offiziell zur Flagge von Schleswig-Holstein gehören."
+    "sessionName": "Die folgende Frage bezieht sich auf ein deutsches Bundesland im Norden des Landes. Um sie richtig zu beantworten, sind Grundkenntnisse über deutsche Landesflaggen hilfreich. Jede Landesflagge hat bestimmte Farben, die oft historische oder kulturelle Bedeutung haben. Die Frage prüft, ob man weiß, welche Farben offiziell zur Flagge von Schleswig-Holstein gehören.",
+    "taskNum": 305
   },
   {
-    "num": "SL-2",
+    "num": "SL-302",
     "question": "Ab welchem Alter darf man im Saarland bei Kommunalwahlen\n                  wählen?",
     "a": "14",
     "b": "18",
@@ -30438,10 +30554,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "f9472f0a391aee51d78186d4430ad59f4ce31a3f3734bc00f15665cf2ba93719",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 302
   },
   {
-    "num": "SH-6",
+    "num": "SH-306",
     "question": "Wo können Sie sich in Schleswig-Holstein über politische\n                  Themen informieren?",
     "a": "beim Ordnungsamt der Gemeinde",
     "b": "beim / bei der Landesbeauftragten für politische Bildung",
@@ -30511,10 +30628,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "7be4db33f9d4927bfd4a4954da37225d740939ae34638ae872ea12537c5f8e0f",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "SL-3",
+    "num": "SL-303",
     "question": "Für wie viele Jahre wird der Landtag des Saarlandes gewählt?",
     "a": "3",
     "b": "4",
@@ -30584,10 +30702,11 @@
     "context": "Der Landtag des Saarlandes ist das Parlament des Bundeslandes Saarland. Er wird von den Bürgerinnen und Bürgern in allgemeinen Wahlen gewählt und übernimmt wichtige Aufgaben wie Gesetzgebung und Kontrolle der Landesregierung. Die Frage bezieht sich auf die Dauer einer Wahlperiode, also wie viele Jahre die Abgeordneten im Amt bleiben, bevor neu gewählt wird.",
     "id": "113cdac45ce29915b02a1eef82933c17ebb05e51d426a5aa7fdf26db23bd117a",
     "sessionId": 0,
-    "sessionName": "Der Landtag des Saarlandes ist das Parlament des Bundeslandes Saarland. Er wird von den Bürgerinnen und Bürgern in allgemeinen Wahlen gewählt und übernimmt wichtige Aufgaben wie Gesetzgebung und Kontrolle der Landesregierung. Die Frage bezieht sich auf die Dauer einer Wahlperiode, also wie viele Jahre die Abgeordneten im Amt bleiben, bevor neu gewählt wird."
+    "sessionName": "Der Landtag des Saarlandes ist das Parlament des Bundeslandes Saarland. Er wird von den Bürgerinnen und Bürgern in allgemeinen Wahlen gewählt und übernimmt wichtige Aufgaben wie Gesetzgebung und Kontrolle der Landesregierung. Die Frage bezieht sich auf die Dauer einer Wahlperiode, also wie viele Jahre die Abgeordneten im Amt bleiben, bevor neu gewählt wird.",
+    "taskNum": 303
   },
   {
-    "num": "SN-1",
+    "num": "SN-301",
     "question": "Welches Wappen gehört zum Freistaat Sachsen?",
     "a": "1",
     "b": "2",
@@ -30657,10 +30776,11 @@
     "context": "In dieser Aufgabe geht es um Landeswappen der deutschen Bundesländer. Dir werden mehrere Wappen mit den Nummern 1 bis 4 angezeigt. Jedes Wappen gehört zu einem anderen Bundesland. Deine Aufgabe ist es, das Wappen zu erkennen, das dem Freistaat Sachsen zugeordnet ist, und die entsprechende Nummer auszuwählen. Kenntnisse über Symbole, Farben und typische Merkmale des sächsischen Wappens helfen bei der richtigen Entscheidung.",
     "id": "643531abe126fa26499253c3ac45f5b91a66463e0b98ef7a19e8a84d419cac28",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe geht es um Landeswappen der deutschen Bundesländer. Dir werden mehrere Wappen mit den Nummern 1 bis 4 angezeigt. Jedes Wappen gehört zu einem anderen Bundesland. Deine Aufgabe ist es, das Wappen zu erkennen, das dem Freistaat Sachsen zugeordnet ist, und die entsprechende Nummer auszuwählen. Kenntnisse über Symbole, Farben und typische Merkmale des sächsischen Wappens helfen bei der richtigen Entscheidung."
+    "sessionName": "In dieser Aufgabe geht es um Landeswappen der deutschen Bundesländer. Dir werden mehrere Wappen mit den Nummern 1 bis 4 angezeigt. Jedes Wappen gehört zu einem anderen Bundesland. Deine Aufgabe ist es, das Wappen zu erkennen, das dem Freistaat Sachsen zugeordnet ist, und die entsprechende Nummer auszuwählen. Kenntnisse über Symbole, Farben und typische Merkmale des sächsischen Wappens helfen bei der richtigen Entscheidung.",
+    "taskNum": 301
   },
   {
-    "num": "SH-7",
+    "num": "SH-307",
     "question": "Die Landeshauptstadt von Schleswig-Holstein heißt …",
     "a": "Lübeck",
     "b": "Kiel",
@@ -30730,10 +30850,11 @@
     "context": "Deutschland besteht aus verschiedenen Bundesländern, und jedes hat eine eigene Landeshauptstadt, in der Regierung und Verwaltung ihren Sitz haben. Schleswig-Holstein liegt im Norden Deutschlands zwischen Nord- und Ostsee. Die folgende Frage prüft das grundlegende geografische Wissen darüber, welche Stadt die politische Hauptstadt dieses Bundeslandes ist.",
     "id": "206f5ccc573fcb004247847e5ec287124142687f141c2b254d7e326b3650c403",
     "sessionId": 0,
-    "sessionName": "Deutschland besteht aus verschiedenen Bundesländern, und jedes hat eine eigene Landeshauptstadt, in der Regierung und Verwaltung ihren Sitz haben. Schleswig-Holstein liegt im Norden Deutschlands zwischen Nord- und Ostsee. Die folgende Frage prüft das grundlegende geografische Wissen darüber, welche Stadt die politische Hauptstadt dieses Bundeslandes ist."
+    "sessionName": "Deutschland besteht aus verschiedenen Bundesländern, und jedes hat eine eigene Landeshauptstadt, in der Regierung und Verwaltung ihren Sitz haben. Schleswig-Holstein liegt im Norden Deutschlands zwischen Nord- und Ostsee. Die folgende Frage prüft das grundlegende geografische Wissen darüber, welche Stadt die politische Hauptstadt dieses Bundeslandes ist.",
+    "taskNum": 307
   },
   {
-    "num": "SL-4",
+    "num": "SL-304",
     "question": "Welches ist ein Landkreis im Saarland?",
     "a": "Rhein-Sieg-Kreis",
     "b": "Neunkirchen",
@@ -30803,10 +30924,11 @@
     "context": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum Landkreise und kreisfreie Städte haben. Gesucht ist ein Landkreis, der zum Bundesland Saarland gehört. Die Antwortmöglichkeiten enthalten Namen von Kreisen aus verschiedenen Regionen Deutschlands, daher ist es wichtig zu wissen, welche Kreise zu welchem Bundesland zählen.",
     "id": "fd56edcef348652fe79d8b44734de2c31c494b45fa822346de01e60fa2885e65",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum Landkreise und kreisfreie Städte haben. Gesucht ist ein Landkreis, der zum Bundesland Saarland gehört. Die Antwortmöglichkeiten enthalten Namen von Kreisen aus verschiedenen Regionen Deutschlands, daher ist es wichtig zu wissen, welche Kreise zu welchem Bundesland zählen."
+    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum Landkreise und kreisfreie Städte haben. Gesucht ist ein Landkreis, der zum Bundesland Saarland gehört. Die Antwortmöglichkeiten enthalten Namen von Kreisen aus verschiedenen Regionen Deutschlands, daher ist es wichtig zu wissen, welche Kreise zu welchem Bundesland zählen.",
+    "taskNum": 304
   },
   {
-    "num": "SN-2",
+    "num": "SN-302",
     "question": "Welches ist ein Landkreis in Sachsen?",
     "a": "Altötting",
     "b": "Nordfriesland",
@@ -30876,10 +30998,11 @@
     "context": "Die folgende Frage bezieht sich auf die deutschen Bundesländer und deren Verwaltungseinheiten. In Deutschland sind Landkreise wichtige regionale Verwaltungseinheiten, die jeweils zu einem bestimmten Bundesland gehören. Sachsen ist eines dieser Bundesländer. Um die richtige Antwort zu finden, ist es hilfreich zu wissen, welche der genannten Landkreise tatsächlich im Bundesland Sachsen liegt und welche zu anderen Bundesländern gehören.",
     "id": "70632f8fe7a00ac77741f0b25c5edc44be3908219dca9d7cbf20af17675b68b8",
     "sessionId": 0,
-    "sessionName": "Die folgende Frage bezieht sich auf die deutschen Bundesländer und deren Verwaltungseinheiten. In Deutschland sind Landkreise wichtige regionale Verwaltungseinheiten, die jeweils zu einem bestimmten Bundesland gehören. Sachsen ist eines dieser Bundesländer. Um die richtige Antwort zu finden, ist es hilfreich zu wissen, welche der genannten Landkreise tatsächlich im Bundesland Sachsen liegt und welche zu anderen Bundesländern gehören."
+    "sessionName": "Die folgende Frage bezieht sich auf die deutschen Bundesländer und deren Verwaltungseinheiten. In Deutschland sind Landkreise wichtige regionale Verwaltungseinheiten, die jeweils zu einem bestimmten Bundesland gehören. Sachsen ist eines dieser Bundesländer. Um die richtige Antwort zu finden, ist es hilfreich zu wissen, welche der genannten Landkreise tatsächlich im Bundesland Sachsen liegt und welche zu anderen Bundesländern gehören.",
+    "taskNum": 302
   },
   {
-    "num": "SH-8",
+    "num": "SH-308",
     "question": "Welches Bundesland ist Schleswig-Holstein?",
     "a": "1",
     "b": "2",
@@ -30949,10 +31072,11 @@
     "context": "In dieser Aufgabe geht es um die geografische Einordnung deutscher Bundesländer. Auf einer Abbildung oder Karte sind mehrere Regionen mit den Zahlen 1 bis 4 markiert. Du sollst erkennen, welche dieser markierten Regionen das Bundesland Schleswig-Holstein darstellt. Schleswig-Holstein liegt im Norden Deutschlands zwischen der Nordsee und der Ostsee und grenzt an Dänemark. Wähle die Zahl aus, die dieser Region entspricht.",
     "id": "e47db81b742d67b2beec2abd68e1e67649a34b47248ab7277990c1fab131ade4",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe geht es um die geografische Einordnung deutscher Bundesländer. Auf einer Abbildung oder Karte sind mehrere Regionen mit den Zahlen 1 bis 4 markiert. Du sollst erkennen, welche dieser markierten Regionen das Bundesland Schleswig-Holstein darstellt. Schleswig-Holstein liegt im Norden Deutschlands zwischen der Nordsee und der Ostsee und grenzt an Dänemark. Wähle die Zahl aus, die dieser Region entspricht."
+    "sessionName": "In dieser Aufgabe geht es um die geografische Einordnung deutscher Bundesländer. Auf einer Abbildung oder Karte sind mehrere Regionen mit den Zahlen 1 bis 4 markiert. Du sollst erkennen, welche dieser markierten Regionen das Bundesland Schleswig-Holstein darstellt. Schleswig-Holstein liegt im Norden Deutschlands zwischen der Nordsee und der Ostsee und grenzt an Dänemark. Wähle die Zahl aus, die dieser Region entspricht.",
+    "taskNum": 308
   },
   {
-    "num": "SH-9",
+    "num": "SH-309",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Schleswig-Holstein?",
     "a": "Ministerpräsident / Ministerpräsidentin",
     "b": "Bürgermeister / Bürgermeisterin",
@@ -31022,10 +31146,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "e46e7f8e6b81a66c3e2aa9d9787cca68d3f2fe5a76a92ea6f5bc28254db71b61",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "SN-4",
+    "num": "SN-303",
     "question": "Für wie viele Jahre wird der Landtag in Sachsen gewählt?",
     "a": "3",
     "b": "4",
@@ -31095,10 +31220,11 @@
     "context": "Der Kontext: Die Frage bezieht sich auf das politische System des Freistaates Sachsen in Deutschland. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen neu gewählt. Gefragt wird nach der Länge der Legislaturperiode, also der Anzahl der Jahre, für die die Abgeordneten des sächsischen Landtags gewählt werden.",
     "id": "bc029ba12afb28e112abeb167529405cfe1bc9ea44b4b06fd39e0038323c2df6",
     "sessionId": 0,
-    "sessionName": "Der Kontext: Die Frage bezieht sich auf das politische System des Freistaates Sachsen in Deutschland. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen neu gewählt. Gefragt wird nach der Länge der Legislaturperiode, also der Anzahl der Jahre, für die die Abgeordneten des sächsischen Landtags gewählt werden."
+    "sessionName": "Der Kontext: Die Frage bezieht sich auf das politische System des Freistaates Sachsen in Deutschland. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen neu gewählt. Gefragt wird nach der Länge der Legislaturperiode, also der Anzahl der Jahre, für die die Abgeordneten des sächsischen Landtags gewählt werden.",
+    "taskNum": 303
   },
   {
-    "num": "SH-10",
+    "num": "SH-310",
     "question": "Welchen Minister / welche Ministerin hat Schleswig-Holstein\n                  nicht?",
     "a": "Innenminister / Innenministerin",
     "b": "Außenminister / Außenministerin",
@@ -31168,10 +31294,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "f2546ed3f24b553f7e689027f523311c7bafabae8f7e7b9e78eae6db27129512",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 310
   },
   {
-    "num": "SL-7",
+    "num": "SL-305",
     "question": "Welche Farben hat die Landesflagge des Saarlandes?",
     "a": "grün-weiß-rot",
     "b": "schwarz-rot-gold",
@@ -31241,10 +31368,11 @@
     "context": "Das Saarland ist eines der 16 Bundesländer Deutschlands und besitzt wie jedes Bundesland eigene Hoheitszeichen, darunter ein Wappen und eine Landesflagge. Die Flagge wird bei offiziellen Anlässen, an öffentlichen Gebäuden und bei staatlichen Veranstaltungen gehisst. Die Frage zielt darauf ab, die korrekten Farben dieser Landesflagge zu erkennen.",
     "id": "5ae1963e12a48fe699108ffe8cfd95f78ec595a891891468d79ff934d46e24a3",
     "sessionId": 0,
-    "sessionName": "Das Saarland ist eines der 16 Bundesländer Deutschlands und besitzt wie jedes Bundesland eigene Hoheitszeichen, darunter ein Wappen und eine Landesflagge. Die Flagge wird bei offiziellen Anlässen, an öffentlichen Gebäuden und bei staatlichen Veranstaltungen gehisst. Die Frage zielt darauf ab, die korrekten Farben dieser Landesflagge zu erkennen."
+    "sessionName": "Das Saarland ist eines der 16 Bundesländer Deutschlands und besitzt wie jedes Bundesland eigene Hoheitszeichen, darunter ein Wappen und eine Landesflagge. Die Flagge wird bei offiziellen Anlässen, an öffentlichen Gebäuden und bei staatlichen Veranstaltungen gehisst. Die Frage zielt darauf ab, die korrekten Farben dieser Landesflagge zu erkennen.",
+    "taskNum": 305
   },
   {
-    "num": "SN-7",
+    "num": "SN-304",
     "question": "Ab welchem Alter darf man in Sachsen bei Kommunalwahlen\n                  wählen?",
     "a": "14",
     "b": "18",
@@ -31314,10 +31442,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "ce57df1f9c0d41c9c6fdb46ddc7dd4624ce0167823f9d638157e521a71b0de62",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "ST-1",
+    "num": "ST-301",
     "question": "Welches Wappen gehört zum Bundesland Sachsen-Anhalt?",
     "a": "1",
     "b": "2",
@@ -31387,10 +31516,11 @@
     "context": "In einem Quiz zu den deutschen Bundesländern werden verschiedene Wappen gezeigt. Jedes Wappen ist mit einer Nummer versehen (1 bis 4). Deine Aufgabe ist es, anhand deiner Kenntnisse über die Symbole der Bundesländer das richtige Wappen dem Bundesland Sachsen-Anhalt zuzuordnen. Wähle die Nummer, die zum offiziellen Landeswappen von Sachsen-Anhalt gehört.",
     "id": "0ade9b530ede0a6e421d7fd404981a2a68a9741ba37647f5b8d0b2d9e6c0712d",
     "sessionId": 0,
-    "sessionName": "In einem Quiz zu den deutschen Bundesländern werden verschiedene Wappen gezeigt. Jedes Wappen ist mit einer Nummer versehen (1 bis 4). Deine Aufgabe ist es, anhand deiner Kenntnisse über die Symbole der Bundesländer das richtige Wappen dem Bundesland Sachsen-Anhalt zuzuordnen. Wähle die Nummer, die zum offiziellen Landeswappen von Sachsen-Anhalt gehört."
+    "sessionName": "In einem Quiz zu den deutschen Bundesländern werden verschiedene Wappen gezeigt. Jedes Wappen ist mit einer Nummer versehen (1 bis 4). Deine Aufgabe ist es, anhand deiner Kenntnisse über die Symbole der Bundesländer das richtige Wappen dem Bundesland Sachsen-Anhalt zuzuordnen. Wähle die Nummer, die zum offiziellen Landeswappen von Sachsen-Anhalt gehört.",
+    "taskNum": 301
   },
   {
-    "num": "SL-10",
+    "num": "SL-306",
     "question": "Wo können Sie sich im Saarland über politische Themen\n                  informieren?",
     "a": "beim Ordnungsamt der Gemeinde",
     "b": "bei der Landeszentrale für politische Bildung",
@@ -31460,10 +31590,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "330b9003de60c1cd235c9bf7de4e18b4cda380c689811911681b3571b3f65cf1",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "SL-10",
+    "num": "SL-307",
     "question": "Die Landeshauptstadt des Saarlandes heißt …",
     "a": "Saarbrücken",
     "b": "Neunkirchen",
@@ -31533,10 +31664,11 @@
     "context": "Die Frage bezieht sich auf grundlegende geografische Kenntnisse über Deutschland. Das Saarland ist eines der 16 Bundesländer der Bundesrepublik und liegt im Südwesten des Landes. Gesucht wird die Landeshauptstadt des Saarlandes. Zur Auswahl stehen mehrere bekannte Städte aus dem Saarland, von denen nur eine diese Funktion erfüllt.",
     "id": "9a2e27ebd2d72c6905b374aa8664c5cc2a427a446fcb95fe169417b43f23f99a",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf grundlegende geografische Kenntnisse über Deutschland. Das Saarland ist eines der 16 Bundesländer der Bundesrepublik und liegt im Südwesten des Landes. Gesucht wird die Landeshauptstadt des Saarlandes. Zur Auswahl stehen mehrere bekannte Städte aus dem Saarland, von denen nur eine diese Funktion erfüllt."
+    "sessionName": "Die Frage bezieht sich auf grundlegende geografische Kenntnisse über Deutschland. Das Saarland ist eines der 16 Bundesländer der Bundesrepublik und liegt im Südwesten des Landes. Gesucht wird die Landeshauptstadt des Saarlandes. Zur Auswahl stehen mehrere bekannte Städte aus dem Saarland, von denen nur eine diese Funktion erfüllt.",
+    "taskNum": 307
   },
   {
-    "num": "SL-10",
+    "num": "SL-308",
     "question": "Welches Bundesland ist das Saarland?",
     "a": "1",
     "b": "2",
@@ -31606,10 +31738,11 @@
     "context": "In einem Quiz über die Bundesländer Deutschlands soll geprüft werden, ob man weiß, zu welcher Kategorie oder Nummer ein bestimmtes Bundesland gehört. Deutschland besteht aus 16 Bundesländern, die oft in Listen, Karten oder Statistiken nummeriert werden. Die folgende Frage bezieht sich speziell auf das Saarland und verlangt, die richtige Zuordnung aus mehreren nummerierten Antwortmöglichkeiten auszuwählen.",
     "id": "63c30b96060def1dbef0b7218b2796a6debccd42afee7edc7013323bf83196ed",
     "sessionId": 0,
-    "sessionName": "In einem Quiz über die Bundesländer Deutschlands soll geprüft werden, ob man weiß, zu welcher Kategorie oder Nummer ein bestimmtes Bundesland gehört. Deutschland besteht aus 16 Bundesländern, die oft in Listen, Karten oder Statistiken nummeriert werden. Die folgende Frage bezieht sich speziell auf das Saarland und verlangt, die richtige Zuordnung aus mehreren nummerierten Antwortmöglichkeiten auszuwählen."
+    "sessionName": "In einem Quiz über die Bundesländer Deutschlands soll geprüft werden, ob man weiß, zu welcher Kategorie oder Nummer ein bestimmtes Bundesland gehört. Deutschland besteht aus 16 Bundesländern, die oft in Listen, Karten oder Statistiken nummeriert werden. Die folgende Frage bezieht sich speziell auf das Saarland und verlangt, die richtige Zuordnung aus mehreren nummerierten Antwortmöglichkeiten auszuwählen.",
+    "taskNum": 308
   },
   {
-    "num": "SL-10",
+    "num": "SL-309",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin des\n                  Saarlandes?",
     "a": "Bürgermeister / Bürgermeisterin",
     "b": "Erster Minister / Erste Ministerin",
@@ -31679,10 +31812,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "09a5ec9f6689bef390f6aaa6f19dd9f9c0146c3479edffcff97222afcaf98750",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "SL-10",
+    "num": "SL-310",
     "question": "Welchen Minister / welche Ministerin hat das Saarland nicht?",
     "a": "Justizminister / Justizministerin",
     "b": "Innenminister / Innenministerin",
@@ -31752,10 +31886,11 @@
     "context": "Das Saarland ist eines der 16 Bundesländer Deutschlands und hat eine eigene Landesregierung mit verschiedenen Ressorts. Diese Ressorts werden von Ministerinnen und Ministern geleitet, die für bestimmte Politikbereiche wie Inneres, Finanzen oder Justiz zuständig sind. Nicht alle Ministerien existieren auf Landesebene, da einige Zuständigkeiten beim Bund liegen. Die Frage fordert dazu auf, zu erkennen, welches der genannten Ministerämter es in der Landesregierung des Saarlandes nicht gibt.",
     "id": "62d5864bc3480df42547a7d47901da5d06676e3310c9eae3f8d1053c2b30ab4c",
     "sessionId": 0,
-    "sessionName": "Das Saarland ist eines der 16 Bundesländer Deutschlands und hat eine eigene Landesregierung mit verschiedenen Ressorts. Diese Ressorts werden von Ministerinnen und Ministern geleitet, die für bestimmte Politikbereiche wie Inneres, Finanzen oder Justiz zuständig sind. Nicht alle Ministerien existieren auf Landesebene, da einige Zuständigkeiten beim Bund liegen. Die Frage fordert dazu auf, zu erkennen, welches der genannten Ministerämter es in der Landesregierung des Saarlandes nicht gibt."
+    "sessionName": "Das Saarland ist eines der 16 Bundesländer Deutschlands und hat eine eigene Landesregierung mit verschiedenen Ressorts. Diese Ressorts werden von Ministerinnen und Ministern geleitet, die für bestimmte Politikbereiche wie Inneres, Finanzen oder Justiz zuständig sind. Nicht alle Ministerien existieren auf Landesebene, da einige Zuständigkeiten beim Bund liegen. Die Frage fordert dazu auf, zu erkennen, welches der genannten Ministerämter es in der Landesregierung des Saarlandes nicht gibt.",
+    "taskNum": 310
   },
   {
-    "num": "ST-2",
+    "num": "ST-302",
     "question": "Welches ist ein Landkreis in Sachsen-Anhalt?",
     "a": "Uckermark",
     "b": "Ammerland",
@@ -31825,10 +31960,11 @@
     "context": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Sachsen-Anhalt ist eines dieser Bundesländer und besitzt mehrere eigene Landkreise. In der Aufgabe werden verschiedene Landkreise genannt, die unterschiedlichen Bundesländern zugeordnet sein können. Ziel ist es, den Landkreis zu erkennen, der tatsächlich im Bundesland Sachsen-Anhalt liegt.",
     "id": "5ae297b7b49bd54ac134e0ee1e9a75f4f4bd06df7a010309bf166dd329363a3e",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Sachsen-Anhalt ist eines dieser Bundesländer und besitzt mehrere eigene Landkreise. In der Aufgabe werden verschiedene Landkreise genannt, die unterschiedlichen Bundesländern zugeordnet sein können. Ziel ist es, den Landkreis zu erkennen, der tatsächlich im Bundesland Sachsen-Anhalt liegt."
+    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum aus Landkreisen und kreisfreien Städten bestehen. Sachsen-Anhalt ist eines dieser Bundesländer und besitzt mehrere eigene Landkreise. In der Aufgabe werden verschiedene Landkreise genannt, die unterschiedlichen Bundesländern zugeordnet sein können. Ziel ist es, den Landkreis zu erkennen, der tatsächlich im Bundesland Sachsen-Anhalt liegt.",
+    "taskNum": 302
   },
   {
-    "num": "ST-2",
+    "num": "ST-303",
     "question": "Für wie viele Jahre wird der Landtag in Sachsen-Anhalt\n                  gewählt?",
     "a": "3",
     "b": "4",
@@ -31898,10 +32034,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "1371dbca792c693fa7a54c8803bd306446aceb46c76dd80dce8a039b794370fe",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 303
   },
   {
-    "num": "SN-9",
+    "num": "SN-305",
     "question": "Welche Farben hat die Landesflagge von Sachsen?",
     "a": "schwarz-gelb",
     "b": "grün-weiß-rot",
@@ -31971,10 +32108,11 @@
     "context": "Die Frage bezieht sich auf die Kenntnis deutscher Bundesländer und ihrer Symbole. Im Fokus steht der Freistaat Sachsen und seine Landesflagge. Anhand mehrerer Farbkombinationen soll erkannt werden, welche Farben offiziell zur Flagge Sachsens gehören. Solche Fragen sind typisch für Allgemeinwissen, Geografie oder politische Bildung.",
     "id": "fea0d2a5a61452952611a33ff7a51250777a755112088ca66961a5aaefc0469d",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Kenntnis deutscher Bundesländer und ihrer Symbole. Im Fokus steht der Freistaat Sachsen und seine Landesflagge. Anhand mehrerer Farbkombinationen soll erkannt werden, welche Farben offiziell zur Flagge Sachsens gehören. Solche Fragen sind typisch für Allgemeinwissen, Geografie oder politische Bildung."
+    "sessionName": "Die Frage bezieht sich auf die Kenntnis deutscher Bundesländer und ihrer Symbole. Im Fokus steht der Freistaat Sachsen und seine Landesflagge. Anhand mehrerer Farbkombinationen soll erkannt werden, welche Farben offiziell zur Flagge Sachsens gehören. Solche Fragen sind typisch für Allgemeinwissen, Geografie oder politische Bildung.",
+    "taskNum": 305
   },
   {
-    "num": "ST-3",
+    "num": "ST-304",
     "question": "Ab welchem Alter darf man in Sachsen-Anhalt bei Kommunalwahlen\n                  wählen?",
     "a": "14",
     "b": "18",
@@ -32044,10 +32182,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "08939333280c6656eebdbd21f1157680d57bd23eb99476f20acc7ede1e1a9a7e",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "SN-10",
+    "num": "SN-306",
     "question": "Wo können Sie sich in Sachsen über politische Themen\n                  informieren?",
     "a": "bei der Verbraucherzentrale",
     "b": "beim Ordnungsamt der Gemeinde",
@@ -32117,10 +32256,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "3af1156cff1e3e4b3d5cb7bd316cf2badfe6c9e32d4f2b06bc325159a1328396",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "SN-10",
+    "num": "SN-307",
     "question": "Die Landeshauptstadt von Sachsen heißt …",
     "a": "Dresden",
     "b": "Zwickau",
@@ -32190,10 +32330,11 @@
     "context": "Diese Frage bezieht sich auf das politische und geografische Wissen über die Bundesländer in Deutschland. Jedes Bundesland besitzt eine eigene Landeshauptstadt, in der sich Regierung und Verwaltung befinden. Am Beispiel des Freistaates Sachsen soll geprüft werden, ob bekannt ist, welche Stadt diese zentrale Funktion übernimmt.",
     "id": "1674ebb9c8c344b43f94387bbdc5aa15c3dbdb0652a65cf7ffd95c6b3200828e",
     "sessionId": 0,
-    "sessionName": "Diese Frage bezieht sich auf das politische und geografische Wissen über die Bundesländer in Deutschland. Jedes Bundesland besitzt eine eigene Landeshauptstadt, in der sich Regierung und Verwaltung befinden. Am Beispiel des Freistaates Sachsen soll geprüft werden, ob bekannt ist, welche Stadt diese zentrale Funktion übernimmt."
+    "sessionName": "Diese Frage bezieht sich auf das politische und geografische Wissen über die Bundesländer in Deutschland. Jedes Bundesland besitzt eine eigene Landeshauptstadt, in der sich Regierung und Verwaltung befinden. Am Beispiel des Freistaates Sachsen soll geprüft werden, ob bekannt ist, welche Stadt diese zentrale Funktion übernimmt.",
+    "taskNum": 307
   },
   {
-    "num": "SN-10",
+    "num": "SN-308",
     "question": "Welches Bundesland ist Sachsen?",
     "a": "1",
     "b": "2",
@@ -32263,10 +32404,11 @@
     "context": "Die Frage bezieht sich auf das föderale System Deutschlands, das aus 16 Bundesländern besteht. Jedes Bundesland hat eine bestimmte Nummer oder Position, die je nach Darstellung, zum Beispiel in Diagrammen, Karten oder Prüfungen, verwendet werden kann. Um die richtige Antwort zu finden, muss man wissen, welches Bundesland Sachsen ist und welche Nummer ihm im jeweiligen Zusammenhang zugeordnet wird.",
     "id": "652a30ee6d9a3d189d4518f5d5756925a6df0218a3e0631f5b517f80b099c97a",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf das föderale System Deutschlands, das aus 16 Bundesländern besteht. Jedes Bundesland hat eine bestimmte Nummer oder Position, die je nach Darstellung, zum Beispiel in Diagrammen, Karten oder Prüfungen, verwendet werden kann. Um die richtige Antwort zu finden, muss man wissen, welches Bundesland Sachsen ist und welche Nummer ihm im jeweiligen Zusammenhang zugeordnet wird."
+    "sessionName": "Die Frage bezieht sich auf das föderale System Deutschlands, das aus 16 Bundesländern besteht. Jedes Bundesland hat eine bestimmte Nummer oder Position, die je nach Darstellung, zum Beispiel in Diagrammen, Karten oder Prüfungen, verwendet werden kann. Um die richtige Antwort zu finden, muss man wissen, welches Bundesland Sachsen ist und welche Nummer ihm im jeweiligen Zusammenhang zugeordnet wird.",
+    "taskNum": 308
   },
   {
-    "num": "SN-10",
+    "num": "SN-309",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Sachsen?",
     "a": "Bürgermeister / Bürgermeisterin",
     "b": "Ministerpräsident / Ministerpräsidentin",
@@ -32336,10 +32478,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "09e052c7206ca04af7a5a8fb90c62ee87c4ef0972f3420e4d6afd690f8b31bef",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "SN-10",
+    "num": "SN-310",
     "question": "Welchen Minister / welche Ministerin hat Sachsen nicht?",
     "a": "Außenminister / Außenministerin",
     "b": "Finanzminister / Finanzministerin",
@@ -32409,10 +32552,11 @@
     "context": "In Deutschland ist die politische Zuständigkeit zwischen Bund und Bundesländern aufgeteilt. Jedes Bundesland, wie Sachsen, hat eine eigene Landesregierung mit verschiedenen Ministerien für bestimmte Aufgabenbereiche. Allerdings sind nicht alle Politikfelder Sache der Landesregierungen; einige liegen ausschließlich in der Verantwortung des Bundes. Um die Frage zu beantworten, sollte man wissen, welche Ministerien typischerweise auf Landesebene existieren und welche Aufgaben nur auf Bundesebene wahrgenommen werden.",
     "id": "ed3c298856c338d29bec79e6ae88ab4cc231c23445d9ab71bb19dec3caa9e24f",
     "sessionId": 0,
-    "sessionName": "In Deutschland ist die politische Zuständigkeit zwischen Bund und Bundesländern aufgeteilt. Jedes Bundesland, wie Sachsen, hat eine eigene Landesregierung mit verschiedenen Ministerien für bestimmte Aufgabenbereiche. Allerdings sind nicht alle Politikfelder Sache der Landesregierungen; einige liegen ausschließlich in der Verantwortung des Bundes. Um die Frage zu beantworten, sollte man wissen, welche Ministerien typischerweise auf Landesebene existieren und welche Aufgaben nur auf Bundesebene wahrgenommen werden."
+    "sessionName": "In Deutschland ist die politische Zuständigkeit zwischen Bund und Bundesländern aufgeteilt. Jedes Bundesland, wie Sachsen, hat eine eigene Landesregierung mit verschiedenen Ministerien für bestimmte Aufgabenbereiche. Allerdings sind nicht alle Politikfelder Sache der Landesregierungen; einige liegen ausschließlich in der Verantwortung des Bundes. Um die Frage zu beantworten, sollte man wissen, welche Ministerien typischerweise auf Landesebene existieren und welche Aufgaben nur auf Bundesebene wahrgenommen werden.",
+    "taskNum": 310
   },
   {
-    "num": "ST-6",
+    "num": "ST-305",
     "question": "Welche Farben hat die Landesflagge von Sachsen-Anhalt?",
     "a": "gelb-schwarz",
     "b": "grün-weiß-rot",
@@ -32482,10 +32626,11 @@
     "context": "In Deutschland hat jedes Bundesland eine eigene Landesflagge mit festgelegten Farben und Symbolen. Die Frage bezieht sich auf Sachsen-Anhalt, ein Bundesland in Mitteldeutschland. Um die richtige Antwort zu finden, muss man die offiziellen Farben der Landesflagge kennen und sie mit den angebotenen Farbvarianten vergleichen.",
     "id": "7a050fac70c57dbb4754ee354f906a95a54218762835409cdff1fd99cc6dbb9b",
     "sessionId": 0,
-    "sessionName": "In Deutschland hat jedes Bundesland eine eigene Landesflagge mit festgelegten Farben und Symbolen. Die Frage bezieht sich auf Sachsen-Anhalt, ein Bundesland in Mitteldeutschland. Um die richtige Antwort zu finden, muss man die offiziellen Farben der Landesflagge kennen und sie mit den angebotenen Farbvarianten vergleichen."
+    "sessionName": "In Deutschland hat jedes Bundesland eine eigene Landesflagge mit festgelegten Farben und Symbolen. Die Frage bezieht sich auf Sachsen-Anhalt, ein Bundesland in Mitteldeutschland. Um die richtige Antwort zu finden, muss man die offiziellen Farben der Landesflagge kennen und sie mit den angebotenen Farbvarianten vergleichen.",
+    "taskNum": 305
   },
   {
-    "num": "ST-10",
+    "num": "ST-306",
     "question": "Wo können Sie sich in Sachsen-Anhalt über politische Themen\n                  informieren?",
     "a": "bei der Landeszentrale für politische Bildung",
     "b": "bei den Kirchen",
@@ -32555,10 +32700,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "85ff5098f6acac6c8d1fc6db6a9ef8f5d233d7384042f29c7a2e9fd3478e5c3f",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "ST-10",
+    "num": "ST-307",
     "question": "Die Landeshauptstadt von Sachsen-Anhalt heißt …",
     "a": "Magdeburg",
     "b": "Wittenberg",
@@ -32628,10 +32774,11 @@
     "context": "Diese Frage stammt aus einem Geografie- oder Allgemeinwissensquiz zu den Bundesländern Deutschlands. Sie prüft das Wissen über die politischen und administrativen Hauptstädte der einzelnen Länder. Sachsen-Anhalt ist eines der 16 Bundesländer, und die Aufgabe besteht darin, aus mehreren bekannten Städten die richtige Landeshauptstadt auszuwählen.",
     "id": "464a76a47a3832a2094dc3ebb7bf896097347f458a60abd6b0e173d898986516",
     "sessionId": 0,
-    "sessionName": "Diese Frage stammt aus einem Geografie- oder Allgemeinwissensquiz zu den Bundesländern Deutschlands. Sie prüft das Wissen über die politischen und administrativen Hauptstädte der einzelnen Länder. Sachsen-Anhalt ist eines der 16 Bundesländer, und die Aufgabe besteht darin, aus mehreren bekannten Städten die richtige Landeshauptstadt auszuwählen."
+    "sessionName": "Diese Frage stammt aus einem Geografie- oder Allgemeinwissensquiz zu den Bundesländern Deutschlands. Sie prüft das Wissen über die politischen und administrativen Hauptstädte der einzelnen Länder. Sachsen-Anhalt ist eines der 16 Bundesländer, und die Aufgabe besteht darin, aus mehreren bekannten Städten die richtige Landeshauptstadt auszuwählen.",
+    "taskNum": 307
   },
   {
-    "num": "ST-10",
+    "num": "ST-308",
     "question": "Welches Bundesland ist Sachsen-Anhalt?",
     "a": "1",
     "b": "2",
@@ -32701,10 +32848,11 @@
     "context": "Die folgende Frage bezieht sich auf das politische und geografische System Deutschlands. Deutschland ist in mehrere Bundesländer unterteilt, die jeweils eigene Verwaltungen und Besonderheiten haben. Um die Frage beantworten zu können, sollte man wissen, welche Art von Verwaltungseinheit ein Bundesland ist und wie die Bundesländer in Deutschland organisiert sind. Die Antwortmöglichkeiten sind nummeriert und stehen beispielhaft für verschiedene Kategorien oder Zuordnungen.",
     "id": "8b083d1ffe15e11bbeee79332e0c656bff2ace18693bc26e9295ffdcf3f31d4d",
     "sessionId": 0,
-    "sessionName": "Die folgende Frage bezieht sich auf das politische und geografische System Deutschlands. Deutschland ist in mehrere Bundesländer unterteilt, die jeweils eigene Verwaltungen und Besonderheiten haben. Um die Frage beantworten zu können, sollte man wissen, welche Art von Verwaltungseinheit ein Bundesland ist und wie die Bundesländer in Deutschland organisiert sind. Die Antwortmöglichkeiten sind nummeriert und stehen beispielhaft für verschiedene Kategorien oder Zuordnungen."
+    "sessionName": "Die folgende Frage bezieht sich auf das politische und geografische System Deutschlands. Deutschland ist in mehrere Bundesländer unterteilt, die jeweils eigene Verwaltungen und Besonderheiten haben. Um die Frage beantworten zu können, sollte man wissen, welche Art von Verwaltungseinheit ein Bundesland ist und wie die Bundesländer in Deutschland organisiert sind. Die Antwortmöglichkeiten sind nummeriert und stehen beispielhaft für verschiedene Kategorien oder Zuordnungen.",
+    "taskNum": 308
   },
   {
-    "num": "ST-10",
+    "num": "ST-309",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Sachsen-Anhalt?",
     "a": "Premierminister / Premierministerin",
     "b": "Bürgermeister / Bürgermeisterin",
@@ -32774,10 +32922,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "2c664fb8f188c67c1fc246936d7189919ad1aec6eda8ea777fa234e0e3302a8b",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "ST-10",
+    "num": "ST-310",
     "question": "Welchen Minister / welche Ministerin hat Sachsen-Anhalt nicht?",
     "a": "Finanzminister / Finanzministerin",
     "b": "Innenminister / Innenministerin",
@@ -32847,10 +32996,11 @@
     "context": "In Deutschland ist die Politik zwischen dem Bund und den Bundesländern aufgeteilt. Jedes Bundesland, wie Sachsen-Anhalt, hat eine eigene Landesregierung mit bestimmten Ministerien, zum Beispiel für Finanzen, Inneres oder Justiz. Andere Politikbereiche liegen jedoch ausschließlich in der Zuständigkeit des Bundes. Um die Frage richtig zu verstehen, sollte man wissen, welche Aufgaben typischerweise auf Landesebene wahrgenommen werden und welche nicht.",
     "id": "47394418fef1afcf65320ad82b13a460a55050d9c33e95717a93f31b3e66930f",
     "sessionId": 0,
-    "sessionName": "In Deutschland ist die Politik zwischen dem Bund und den Bundesländern aufgeteilt. Jedes Bundesland, wie Sachsen-Anhalt, hat eine eigene Landesregierung mit bestimmten Ministerien, zum Beispiel für Finanzen, Inneres oder Justiz. Andere Politikbereiche liegen jedoch ausschließlich in der Zuständigkeit des Bundes. Um die Frage richtig zu verstehen, sollte man wissen, welche Aufgaben typischerweise auf Landesebene wahrgenommen werden und welche nicht."
+    "sessionName": "In Deutschland ist die Politik zwischen dem Bund und den Bundesländern aufgeteilt. Jedes Bundesland, wie Sachsen-Anhalt, hat eine eigene Landesregierung mit bestimmten Ministerien, zum Beispiel für Finanzen, Inneres oder Justiz. Andere Politikbereiche liegen jedoch ausschließlich in der Zuständigkeit des Bundes. Um die Frage richtig zu verstehen, sollte man wissen, welche Aufgaben typischerweise auf Landesebene wahrgenommen werden und welche nicht.",
+    "taskNum": 310
   },
   {
-    "num": "TH-1",
+    "num": "TH-301",
     "question": "Welches Wappen gehört zum Freistaat Thüringen?",
     "a": "1",
     "b": "2",
@@ -32920,10 +33070,11 @@
     "context": "In dieser Aufgabe geht es um Landeswappen deutscher Bundesländer. Dir werden vier verschiedene Wappen mit den Nummern 1 bis 4 gezeigt. Anhand deines Wissens über Symbole, Farben und heraldische Merkmale sollst du erkennen, welches dieser Wappen zum Freistaat Thüringen gehört.",
     "id": "e0adc12492e2ec06d2e4e360d7265bd08468e7f70b20cc74f314b27b5b4291d9",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe geht es um Landeswappen deutscher Bundesländer. Dir werden vier verschiedene Wappen mit den Nummern 1 bis 4 gezeigt. Anhand deines Wissens über Symbole, Farben und heraldische Merkmale sollst du erkennen, welches dieser Wappen zum Freistaat Thüringen gehört."
+    "sessionName": "In dieser Aufgabe geht es um Landeswappen deutscher Bundesländer. Dir werden vier verschiedene Wappen mit den Nummern 1 bis 4 gezeigt. Anhand deines Wissens über Symbole, Farben und heraldische Merkmale sollst du erkennen, welches dieser Wappen zum Freistaat Thüringen gehört.",
+    "taskNum": 301
   },
   {
-    "num": "TH-5",
+    "num": "TH-302",
     "question": "Welches ist ein Landkreis in Thüringen?",
     "a": "Altötting",
     "b": "Wartburgkreis",
@@ -32993,10 +33144,11 @@
     "context": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum Landkreise haben. Thüringen ist eines dieser Bundesländer. In der Aufgabe sollen mehrere Landkreise verglichen werden, die aus verschiedenen Bundesländern stammen können. Gesucht ist der Landkreis, der tatsächlich zum Bundesland Thüringen gehört.",
     "id": "6cc9111da8584ff857c0112d39170cf04a35520b42b4a4d3e7570224d484597e",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum Landkreise haben. Thüringen ist eines dieser Bundesländer. In der Aufgabe sollen mehrere Landkreise verglichen werden, die aus verschiedenen Bundesländern stammen können. Gesucht ist der Landkreis, der tatsächlich zum Bundesland Thüringen gehört."
+    "sessionName": "Die Frage bezieht sich auf die Verwaltungsstruktur Deutschlands. Deutschland ist in Bundesländer unterteilt, die wiederum Landkreise haben. Thüringen ist eines dieser Bundesländer. In der Aufgabe sollen mehrere Landkreise verglichen werden, die aus verschiedenen Bundesländern stammen können. Gesucht ist der Landkreis, der tatsächlich zum Bundesland Thüringen gehört.",
+    "taskNum": 302
   },
   {
-    "num": "TH-8",
+    "num": "TH-303",
     "question": "Für wie viele Jahre wird der Landtag in Thüringen gewählt?",
     "a": "3",
     "b": "4",
@@ -33066,10 +33218,11 @@
     "context": "Die Frage bezieht sich auf das politische System des deutschen Bundeslandes Thüringen. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen von den wahlberechtigten Bürgerinnen und Bürgern gewählt. Die Länge der Wahlperiode ist gesetzlich festgelegt und bestimmt, wie lange die Abgeordneten ihr Mandat ausüben.",
     "id": "49d07c2408bd0da3f1cc31145a8534aa6adf84e0d8f6d9eb45c9a239a3c5b64d",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf das politische System des deutschen Bundeslandes Thüringen. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen von den wahlberechtigten Bürgerinnen und Bürgern gewählt. Die Länge der Wahlperiode ist gesetzlich festgelegt und bestimmt, wie lange die Abgeordneten ihr Mandat ausüben."
+    "sessionName": "Die Frage bezieht sich auf das politische System des deutschen Bundeslandes Thüringen. Der Landtag ist das Landesparlament und wird in regelmäßigen Abständen von den wahlberechtigten Bürgerinnen und Bürgern gewählt. Die Länge der Wahlperiode ist gesetzlich festgelegt und bestimmt, wie lange die Abgeordneten ihr Mandat ausüben.",
+    "taskNum": 303
   },
   {
-    "num": "TH-10",
+    "num": "TH-304",
     "question": "Ab welchem Alter darf man in Thüringen bei Kommunalwahlen\n                  wählen?",
     "a": "14",
     "b": "18",
@@ -33139,10 +33292,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "753293ad2ba8884be87987197cdd7ddb7f5a8ca9766f4e810ba878c83c87eaa1",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 304
   },
   {
-    "num": "TH-10",
+    "num": "TH-305",
     "question": "Welche Farben hat die Landesflagge von Thüringen?",
     "a": "weiß-rot",
     "b": "schwarz-gold",
@@ -33212,10 +33366,11 @@
     "context": "Im Rahmen eines Quiz über die deutschen Bundesländer geht es um deren Symbole und Identität. Eine wichtige Rolle spielt dabei die Landesflagge, die oft historische und kulturelle Bedeutung hat. Die folgende Frage prüft dein Wissen über die Farben der Flagge des Bundeslandes Thüringen und bietet mehrere Antwortmöglichkeiten zur Auswahl.",
     "id": "d28a7566c4fe1c84a23f9091ede81b442ad92f9e3eb8825d0e89ba85f472f8fa",
     "sessionId": 0,
-    "sessionName": "Im Rahmen eines Quiz über die deutschen Bundesländer geht es um deren Symbole und Identität. Eine wichtige Rolle spielt dabei die Landesflagge, die oft historische und kulturelle Bedeutung hat. Die folgende Frage prüft dein Wissen über die Farben der Flagge des Bundeslandes Thüringen und bietet mehrere Antwortmöglichkeiten zur Auswahl."
+    "sessionName": "Im Rahmen eines Quiz über die deutschen Bundesländer geht es um deren Symbole und Identität. Eine wichtige Rolle spielt dabei die Landesflagge, die oft historische und kulturelle Bedeutung hat. Die folgende Frage prüft dein Wissen über die Farben der Flagge des Bundeslandes Thüringen und bietet mehrere Antwortmöglichkeiten zur Auswahl.",
+    "taskNum": 305
   },
   {
-    "num": "TH-10",
+    "num": "TH-306",
     "question": "Wo können Sie sich in Thüringen über politische Themen\n                  informieren?",
     "a": "beim Ordnungsamt der Gemeinde",
     "b": "bei den Kirchen",
@@ -33285,10 +33440,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "5417041f62678e60f060defb760a932e0ae9508ea05b9d9c9a1eef35af8a14be",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 306
   },
   {
-    "num": "TH-10",
+    "num": "TH-307",
     "question": "Die Landeshauptstadt von Thüringen heißt …",
     "a": "Jena",
     "b": "Gera",
@@ -33358,10 +33514,11 @@
     "context": "Deutschland besteht aus 16 Bundesländern, von denen jedes eine eigene Landeshauptstadt hat. Thüringen liegt in der Mitte Deutschlands und besitzt mehrere bedeutende Städte mit historischer und kultureller Bedeutung. Die Frage zielt darauf ab, die Stadt zu erkennen, in der die Landesregierung Thüringens ihren Sitz hat.",
     "id": "0bde6a2d4739ea5ec5ba162422ea384fee096e05875ccf768996ebdfde3916a9",
     "sessionId": 0,
-    "sessionName": "Deutschland besteht aus 16 Bundesländern, von denen jedes eine eigene Landeshauptstadt hat. Thüringen liegt in der Mitte Deutschlands und besitzt mehrere bedeutende Städte mit historischer und kultureller Bedeutung. Die Frage zielt darauf ab, die Stadt zu erkennen, in der die Landesregierung Thüringens ihren Sitz hat."
+    "sessionName": "Deutschland besteht aus 16 Bundesländern, von denen jedes eine eigene Landeshauptstadt hat. Thüringen liegt in der Mitte Deutschlands und besitzt mehrere bedeutende Städte mit historischer und kultureller Bedeutung. Die Frage zielt darauf ab, die Stadt zu erkennen, in der die Landesregierung Thüringens ihren Sitz hat.",
+    "taskNum": 307
   },
   {
-    "num": "TH-10",
+    "num": "TH-308",
     "question": "Welches Bundesland ist Thüringen?",
     "a": "1",
     "b": "2",
@@ -33431,10 +33588,11 @@
     "context": "In dieser Aufgabe geht es um die geografische Einordnung der deutschen Bundesländer. Auf einer Karte oder in einer Liste sind die Bundesländer mit Zahlen gekennzeichnet. Die Frage prüft, welche dieser Nummern dem Bundesland Thüringen entspricht. Wählen Sie die Zahl aus, die Thüringen richtig zuordnet.",
     "id": "031966c1d23baddb69afbaddd4c83c6477edc16ae5f52feb4e8c58e676091847",
     "sessionId": 0,
-    "sessionName": "In dieser Aufgabe geht es um die geografische Einordnung der deutschen Bundesländer. Auf einer Karte oder in einer Liste sind die Bundesländer mit Zahlen gekennzeichnet. Die Frage prüft, welche dieser Nummern dem Bundesland Thüringen entspricht. Wählen Sie die Zahl aus, die Thüringen richtig zuordnet."
+    "sessionName": "In dieser Aufgabe geht es um die geografische Einordnung der deutschen Bundesländer. Auf einer Karte oder in einer Liste sind die Bundesländer mit Zahlen gekennzeichnet. Die Frage prüft, welche dieser Nummern dem Bundesland Thüringen entspricht. Wählen Sie die Zahl aus, die Thüringen richtig zuordnet.",
+    "taskNum": 308
   },
   {
-    "num": "TH-10",
+    "num": "TH-309",
     "question": "Wie nennt man den Regierungschef / die Regierungschefin in\n                  Thüringen?",
     "a": "Erster Minister / Erste Ministerin",
     "b": "Ministerpräsident / Ministerpräsidentin",
@@ -33504,10 +33662,11 @@
     "context": "Wichtige Frage für das Leben in Deutschland",
     "id": "d7ad9c175745b05f202767e26ff0fb1c44e30a522fe1b81f9ff75ced99bf8b18",
     "sessionId": 0,
-    "sessionName": "Wichtige Frage für das Leben in Deutschland"
+    "sessionName": "Wichtige Frage für das Leben in Deutschland",
+    "taskNum": 309
   },
   {
-    "num": "TH-10",
+    "num": "TH-310",
     "question": "Welchen Minister / welche Ministerin hat Thüringen nicht?",
     "a": "Finanzminister / Finanzministerin",
     "b": "Innenminister / Innenministerin",
@@ -33577,6 +33736,7 @@
     "context": "Die Frage bezieht sich auf die Struktur der Landesregierung des deutschen Bundeslandes Thüringen. Jedes Bundesland hat eigene Ministerien für bestimmte Politikbereiche, die sich von den Aufgaben der Bundesregierung unterscheiden. Einige Ressorts sind typisch auf Landesebene, andere existieren nur auf Bundesebene. Um die Frage zu beantworten, sollte man wissen, welche Zuständigkeiten ein Bundesland hat und welche Ministerien ausschließlich auf Bundesebene angesiedelt sind.",
     "id": "a66477bf5d7fea979df0689bb3a311a954c40a7e8f5e1aeb2cc6217295401747",
     "sessionId": 0,
-    "sessionName": "Die Frage bezieht sich auf die Struktur der Landesregierung des deutschen Bundeslandes Thüringen. Jedes Bundesland hat eigene Ministerien für bestimmte Politikbereiche, die sich von den Aufgaben der Bundesregierung unterscheiden. Einige Ressorts sind typisch auf Landesebene, andere existieren nur auf Bundesebene. Um die Frage zu beantworten, sollte man wissen, welche Zuständigkeiten ein Bundesland hat und welche Ministerien ausschließlich auf Bundesebene angesiedelt sind."
+    "sessionName": "Die Frage bezieht sich auf die Struktur der Landesregierung des deutschen Bundeslandes Thüringen. Jedes Bundesland hat eigene Ministerien für bestimmte Politikbereiche, die sich von den Aufgaben der Bundesregierung unterscheiden. Einige Ressorts sind typisch auf Landesebene, andere existieren nur auf Bundesebene. Um die Frage zu beantworten, sollte man wissen, welche Zuständigkeiten ein Bundesland hat und welche Ministerien ausschließlich auf Bundesebene angesiedelt sind.",
+    "taskNum": 310
   }
 ]
