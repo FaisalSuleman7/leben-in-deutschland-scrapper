@@ -1,0 +1,7 @@
+{
+  "name": "Leben in Deutschland Data & Scraper",
+  "description": "Scraper pipelines, data API, and dashboard for the BAMF Einbürgerungstest / Leben in Deutschland questions, test centers, and evaluation tracking.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

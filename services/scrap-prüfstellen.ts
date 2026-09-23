@@ -6,41 +6,55 @@ import * as path from 'path';
 import * as XLSX from 'xlsx';
 
 async function scrapPrüfstellenForState(stateCode: string): Promise<Prüfstellen[]> {
-    let allPrüfstellen = [];
+    let allPrüfstellen: Prüfstellen[] = [];
     const page = `${BASE_URL_BAMF}/SharedDocs/Anlagen/DE/Integration/Einbuergerung/Pruefstellen-${stateCode.toUpperCase()}.xlsx`;
     const $ = await cheerio.fromURL(page);
-    let links = [];
+    let links: string[] = [];
     $('ul>li>a.c-link.c-link--download.c-link--desc.c-link--orient').each((_, element) => {
         const href = $(element).attr('href');
-        const url = `${BASE_URL_BAMF}${href}`;
-        links.push(url);
+        if (href) {
+            try {
+                const url = new URL(href, BASE_URL_BAMF).toString();
+                links.push(url);
+            } catch (err) {
+                console.warn(`[Prüfstellen] Could not parse URL from href: ${href}`, err);
+            }
+        }
     });
 
     for (let i = 0; i < links.length; i++) {
-        const resp = await fetch(links[i]);
-        if (!resp.ok) {
-            console.log(`Error fetching ${links[i]}`);
-            continue;
-        }
-        const blob = await resp.blob();
-        const text = await blob.arrayBuffer();
-        const workbook = XLSX.read(text, { type: "binary" });
-
-        for (let sheet in workbook.Sheets) {
-            let worksheet = workbook.Sheets[sheet];
-            let rows = XLSX.utils.sheet_to_json(worksheet, { raw: true, header: 1, blankrows: false, skipHidden: true, defval: "" });
-            for (let i = 1; i < rows.length; i++) {
-                const prüfstelle = {
-                    regierungsbezirk: !rows[i][0] ? (rows[i][0] + " ") : "" + rows[i][1],
-                    plz: rows[i][2],
-                    ort: rows[i][3],
-                    einrichtung: rows[i][4],
-                    straße: rows[i][5],
-                    telefon: rows[i][6],
-                    email: rows[i][7],
-                };
-                allPrüfstellen.push(prüfstelle);
+        try {
+            const resp = await fetch(links[i], {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                }
+            });
+            if (!resp.ok) {
+                console.log(`Error fetching ${links[i]} (status ${resp.status})`);
+                continue;
             }
+            const blob = await resp.blob();
+            const text = await blob.arrayBuffer();
+            const workbook = XLSX.read(text, { type: "binary" });
+
+            for (let sheet in workbook.Sheets) {
+                let worksheet = workbook.Sheets[sheet];
+                let rows = XLSX.utils.sheet_to_json(worksheet, { raw: true, header: 1, blankrows: false, skipHidden: true, defval: "" }) as any[][];
+                for (let i = 1; i < rows.length; i++) {
+                    const prüfstelle: Prüfstellen = {
+                        regierungsbezirk: !rows[i][0] ? (rows[i][0] + " ") : "" + rows[i][1],
+                        plz: "" + (rows[i][2] ?? ""),
+                        ort: "" + (rows[i][3] ?? ""),
+                        einrichtung: "" + (rows[i][4] ?? ""),
+                        straße: "" + (rows[i][5] ?? ""),
+                        telefon: "" + (rows[i][6] ?? ""),
+                        email: "" + (rows[i][7] ?? ""),
+                    };
+                    allPrüfstellen.push(prüfstelle);
+                }
+            }
+        } catch (fetchErr) {
+            console.error(`[Prüfstellen] Error fetching or parsing ${links[i]}:`, fetchErr);
         }
     }
     return allPrüfstellen;
@@ -48,7 +62,7 @@ async function scrapPrüfstellenForState(stateCode: string): Promise<Prüfstelle
 
 export async function scrapPrüfstellen() {
     try {
-        let allPrüfstellen = [];
+        let allPrüfstellen: { stateCode: string; data: Prüfstellen[] }[] = [];
         for (let i = 0; i < STATES.length; i++) {
             const data = (await scrapPrüfstellenForState(STATES[i]))
                 .filter((x) => (!x.regierungsbezirk.startsWith("Stand")))
