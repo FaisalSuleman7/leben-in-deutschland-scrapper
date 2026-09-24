@@ -704,7 +704,7 @@
         <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
           <label id="settings-reset-label" class="block font-semibold mb-1 text-rose-600">Daten & Fortschritt zurücksetzen:</label>
           <p id="settings-reset-desc" class="theme-text-muted mb-2">Löscht alle gespeicherten Trainingsstände, markierten Aufgaben und Prüfungsstatistiken auf diesem Gerät.</p>
-          <button id="reset-stats-btn" onclick="resetAllUserData()" class="px-3.5 py-2 rounded-lg border border-rose-300 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition font-medium flex items-center space-x-2">
+          <button type="button" id="reset-stats-btn" onclick="resetAllData()" class="px-3.5 py-2 rounded-lg border border-rose-300 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition font-medium flex items-center space-x-2 cursor-pointer select-none active:scale-95">
             <span>🔄</span>
             <span id="settings-reset-btn-text">Alle Statistiken zurücksetzen</span>
           </button>
@@ -717,6 +717,44 @@
         </button>
         <button id="settings-save-btn" onclick="saveSettings()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-xs font-semibold hover:bg-indigo-700 shadow-sm">
           Speichern
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- RESET CONFIRMATION MODAL                                     -->
+  <!-- ============================================================ -->
+  <div id="reset-confirm-modal" class="hidden fixed inset-0 z-[100] bg-slate-950/70 backdrop-blur-sm overflow-y-auto flex items-center justify-center p-4">
+    <div class="theme-card w-full max-w-md rounded-2xl shadow-2xl border border-rose-200 dark:border-rose-900/60 p-6 space-y-4 fade-in bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">
+      <div class="flex items-start space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl shrink-0 font-bold">
+          ⚠️
+        </div>
+        <div>
+          <h3 id="reset-confirm-title" class="text-base font-bold text-slate-900 dark:text-white">
+            Alle Trainingsfortschritte zurücksetzen?
+          </h3>
+          <p id="reset-confirm-desc" class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+            Sind Sie sicher, dass Sie alle Trainingsfortschritte und Statistiken zurücksetzen möchten? Diese Aktion kann nicht rückgängig gemacht werden.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-3 bg-rose-50/70 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900/40 rounded-xl text-[11px] text-rose-700 dark:text-rose-300 space-y-1">
+        <div id="reset-confirm-list-title" class="font-semibold mb-1">Folgende Daten werden auf 0 gesetzt:</div>
+        <div class="flex items-center space-x-1.5"><span>•</span><span id="reset-confirm-item-1">Alle 20 BAMF-Kategorien (auf 0% zurückgesetzt)</span></div>
+        <div class="flex items-center space-x-1.5"><span>•</span><span id="reset-confirm-item-2">Beantwortete, gemerkte und übersprungene Fragen</span></div>
+        <div class="flex items-center space-x-1.5"><span>•</span><span id="reset-confirm-item-3">7-Tage-Aktivitätsverlauf & Prüfungsstatistiken</span></div>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <button type="button" id="reset-confirm-cancel-btn" onclick="closeResetConfirmModal()" class="px-4 py-2 border rounded-lg text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition">
+          Abbrechen
+        </button>
+        <button type="button" id="reset-confirm-proceed-btn" onclick="executeCompleteReset()" class="px-4 py-2 bg-rose-600 text-white rounded-lg text-xs font-semibold hover:bg-rose-700 shadow-md transition cursor-pointer flex items-center space-x-1.5">
+          <span>🔄</span>
+          <span id="reset-confirm-proceed-text">Ja, alles zurücksetzen</span>
         </button>
       </div>
     </div>
