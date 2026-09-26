@@ -145,6 +145,35 @@ app.get('/api/state-session/:state', (req: Request, res: Response) => {
     });
 });
 
+// 2e. Continuous Practice: All 300 general BAMF questions in sequence (Aufgaben 1 to 300)
+app.get('/api/continuous-practice', (_req: Request, res: Response) => {
+    const allQuestions = getQuestions();
+    const generalQuestions = allQuestions
+        .filter(q => q.num && !q.num.includes('-'))
+        .sort((a, b) => parseInt(a.num, 10) - parseInt(b.num, 10));
+
+    res.json({
+        total: generalQuestions.length,
+        questionsList: generalQuestions
+    });
+});
+
+// 2f. Batch lookup questions by IDs or numbers (used for Wrong Answers practice mode)
+app.post('/api/questions/batch', (req: Request, res: Response) => {
+    const rawIds = req.body?.ids;
+    if (!Array.isArray(rawIds) || rawIds.length === 0) {
+        res.json({ total: 0, items: [] });
+        return;
+    }
+    const idSet = new Set(rawIds.map(String));
+    const all = getQuestions();
+    const matched = all.filter(q => idSet.has(String(q.num)) || (q.id && idSet.has(String(q.id))));
+    res.json({
+        total: matched.length,
+        items: matched
+    });
+});
+
 // 3. Current evaluation
 app.get('/api/evaluation', (_req: Request, res: Response) => {
     const data = readJsonFile<any>('data/current-evaluation.json', {});

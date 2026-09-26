@@ -1028,7 +1028,7 @@
     "b": "Arbeit im Ausland",
     "c": "Militärdienst",
     "d": "Zwangsarbeit",
-    "solution": "",
+    "solution": "d",
     "image": "-",
     "translation": {
       "en": {
@@ -22864,11 +22864,11 @@
   {
     "num": "BB-307",
     "question": "Die Landeshauptstadt von Brandenburg heißt ...",
-    "a": "",
-    "b": "",
-    "c": "",
-    "d": "",
-    "solution": "",
+    "a": "Potsdam",
+    "b": "Cottbus",
+    "c": "Brandenburg an der Havel",
+    "d": "Frankfurt (Oder)",
+    "solution": "a",
     "image": "-",
     "translation": {
       "en": {
@@ -26416,11 +26416,11 @@
   {
     "num": "HE-307",
     "question": "Die Landeshauptstadt von Hessen heißt ...",
-    "a": "",
-    "b": "",
-    "c": "",
-    "d": "",
-    "solution": "",
+    "a": "Frankfurt am Main",
+    "b": "Kassel",
+    "c": "Darmstadt",
+    "d": "Wiesbaden",
+    "solution": "d",
     "image": "-",
     "translation": {
       "en": {

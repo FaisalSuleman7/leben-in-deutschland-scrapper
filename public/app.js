@@ -59,6 +59,7 @@ let stateStore = {
     streak: 1
   },
   answeredQuestionIds: [],
+  incorrectQuestionIds: [],
   userAnswers: {},
   userProgress: {},
   flaggedQuestionIds: [],
@@ -71,7 +72,7 @@ let stateStore = {
 };
 
 // Quiz Module State
-let activeQuizMode = 'session'; // 'session' | 'mock' | 'state'
+let activeQuizMode = 'session'; // 'session' | 'mock' | 'state' | 'continuous' | 'wrong'
 let activeSessionId = null;
 let sessionQueue = []; // FIFO queue
 let activeQuestion = null;
@@ -80,6 +81,15 @@ let activeQuestionSelectedOpt = null;
 let currentLanguage = 'de';
 let mockTimerInterval = null;
 let mockTimeRemaining = 3600; // 60 mins
+
+// Active Session Run Performance Tracker (for celebration modal)
+let currentSessionRunStats = {
+  totalQuestions: 0,
+  correctCount: 0,
+  incorrectCount: 0,
+  sessionName: '',
+  startTime: Date.now()
+};
 
 // Active In-Memory Variables for State Management
 let userProgress = {};
@@ -101,6 +111,396 @@ function getTodayDateString(d = new Date()) {
 let todayChartInstance = null;
 let dailyChartInstance = null;
 let historyChartInstance = null;
+
+// -------------------------------------------------------------
+// WEB AUDIO API SYNTHESIZED SOUND EFFECTS ENGINE
+// -------------------------------------------------------------
+class SoundFX {
+  constructor() {
+    this.ctx = null;
+    this.enabled = localStorage.getItem('soundEnabled') !== 'false';
+  }
+
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        this.ctx = new AudioCtx();
+      }
+    }
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume().catch(() => {});
+    }
+  }
+
+  toggle() {
+    this.enabled = !this.enabled;
+    try {
+      localStorage.setItem('soundEnabled', this.enabled ? 'true' : 'false');
+    } catch (e) {}
+    this.updateToggleUI();
+    if (this.enabled) {
+      this.playTick();
+    }
+    return this.enabled;
+  }
+
+  updateToggleUI() {
+    const isEn = stateStore && stateStore.appLanguage === 'en';
+    const dict = (typeof I18N_DICTIONARY !== 'undefined') ? I18N_DICTIONARY[isEn ? 'en' : 'de'] : null;
+    const btn = document.getElementById('sound-toggle-btn');
+    if (btn) {
+      btn.innerHTML = this.enabled ? '🔊' : '🔇';
+      const onTxt = dict ? dict.soundOn : 'Sound an (Klicken zum Stummschalten)';
+      const offTxt = dict ? dict.soundOff : 'Sound aus (Klicken zum Aktivieren)';
+      btn.title = this.enabled ? onTxt : offTxt;
+      btn.setAttribute('aria-label', btn.title);
+    }
+  }
+
+  // Soft low-volume UI tick sound (~100Hz-200Hz sine tone)
+  playTick() {
+    if (!this.enabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(200, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.04);
+      gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.04);
+    } catch (e) {}
+  }
+
+  // Uplifting major arpeggio chime (E5 - G#5 - B5 sine wave combination)
+  playCorrect() {
+    if (!this.enabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const now = this.ctx.currentTime;
+      const notes = [659.25, 830.61, 987.77, 1318.51]; // E5, G#5, B5, E6
+      notes.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+        gain.gain.setValueAtTime(0, now + idx * 0.07);
+        gain.gain.linearRampToValueAtTime(0.08, now + idx * 0.07 + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.07 + 0.28);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now + idx * 0.07);
+        osc.stop(now + idx * 0.07 + 0.3);
+      });
+    } catch (e) {}
+  }
+
+  // Soft double low-pitch buzz (150Hz square/sawtooth wave)
+  playIncorrect() {
+    if (!this.enabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const now = this.ctx.currentTime;
+      [0, 0.12].forEach((offset) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, now + offset);
+        osc.frequency.exponentialRampToValueAtTime(95, now + offset + 0.08);
+        gain.gain.setValueAtTime(0.05, now + offset);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.08);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now + offset);
+        osc.stop(now + offset + 0.09);
+      });
+    } catch (e) {}
+  }
+
+  // Victory fanfare melody upon opening a high-score completion modal
+  playFanfare() {
+    if (!this.enabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const now = this.ctx.currentTime;
+      const melody = [
+        { f: 523.25, t: 0, d: 0.12 },
+        { f: 659.25, t: 0.13, d: 0.12 },
+        { f: 783.99, t: 0.26, d: 0.15 },
+        { f: 659.25, t: 0.43, d: 0.09 },
+        { f: 783.99, t: 0.54, d: 0.12 },
+        { f: 1046.50, t: 0.68, d: 0.45 }
+      ];
+      melody.forEach(note => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(note.f, now + note.t);
+        gain.gain.setValueAtTime(0, now + note.t);
+        gain.gain.linearRampToValueAtTime(0.12, now + note.t + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + note.t + note.d);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now + note.t);
+        osc.stop(now + note.t + note.d + 0.05);
+      });
+    } catch (e) {}
+  }
+}
+const soundFX = new SoundFX();
+function toggleAppSound() {
+  soundFX.toggle();
+}
+
+// -------------------------------------------------------------
+// DYNAMIC CONFETTI CANVAS SYSTEM
+// -------------------------------------------------------------
+let confettiAnimationId = null;
+function launchConfetti(mode = 'mild') {
+  const canvas = document.getElementById('confetti-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.classList.remove('hidden');
+
+  if (confettiAnimationId) {
+    cancelAnimationFrame(confettiAnimationId);
+  }
+
+  const count = (mode === 'mastery') ? 160 : 60;
+  const duration = (mode === 'mastery') ? 4500 : 2600;
+  const startTime = Date.now();
+  const colors = [
+    '#f59e0b', '#fbbf24', '#10b981', '#34d399', 
+    '#6366f1', '#818cf8', '#ec4899', '#f43f5e', '#06b6d4'
+  ];
+
+  const particles = [];
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: (mode === 'mastery') ? (Math.random() * -canvas.height * 0.4) : (canvas.height * 0.2 + Math.random() * 50),
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * (mode === 'mastery' ? 6 : 4),
+      vy: Math.random() * 3 + (mode === 'mastery' ? 3.5 : 2),
+      rot: Math.random() * 360,
+      vrot: (Math.random() - 0.5) * 8,
+      shape: Math.random() > 0.4 ? 'rect' : 'circle'
+    });
+  }
+
+  function frame() {
+    const elapsed = Date.now() - startTime;
+    if (elapsed > duration) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.classList.add('hidden');
+      confettiAnimationId = null;
+      return;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const opacity = Math.max(0, 1 - (elapsed / duration));
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vrot;
+
+      ctx.save();
+      ctx.globalAlpha = opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rot * Math.PI) / 180);
+      ctx.fillStyle = p.color;
+
+      if (p.shape === 'rect') {
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.5);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    });
+
+    confettiAnimationId = requestAnimationFrame(frame);
+  }
+
+  frame();
+}
+
+// -------------------------------------------------------------
+// IN-APP RESET CONFIRMATION MODAL & RESET HANDLERS
+// -------------------------------------------------------------
+let pendingResetAction = null;
+
+function openResetConfirmModal({ title, desc, onConfirm }) {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (!modal) {
+    if (confirm(desc)) onConfirm();
+    return;
+  }
+  const tEl = document.getElementById('reset-confirm-title');
+  const dEl = document.getElementById('reset-confirm-desc');
+  if (tEl && title) tEl.textContent = title;
+  if (dEl && desc) dEl.textContent = desc;
+
+  pendingResetAction = onConfirm;
+  modal.classList.remove('hidden');
+}
+
+function closeResetConfirmModal() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) modal.classList.add('hidden');
+  pendingResetAction = null;
+}
+
+function executePendingReset() {
+  if (typeof pendingResetAction === 'function') {
+    const action = pendingResetAction;
+    pendingResetAction = null;
+    action();
+  }
+  closeResetConfirmModal();
+}
+
+function confirmResetSession(sessionId, event) {
+  if (event) event.stopPropagation();
+  soundFX.playTick();
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  const session = OFFICIAL_SESSIONS.find(s => s.id === Number(sessionId));
+  if (!session) return;
+  const sName = isEn && session.name_en ? session.name_en : session.name;
+
+  openResetConfirmModal({
+    title: dict.resetModalTitle,
+    desc: dict.resetSessionPrompt(sName),
+    onConfirm: () => {
+      resetSessionProgress(sessionId);
+    }
+  });
+}
+
+function confirmResetContinuous(event) {
+  if (event) event.stopPropagation();
+  soundFX.playTick();
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+
+  openResetConfirmModal({
+    title: dict.resetModalTitle,
+    desc: dict.resetContinuousPrompt,
+    onConfirm: () => {
+      resetContinuousPractice();
+    }
+  });
+}
+
+function resetSessionProgress(sessionId) {
+  const session = OFFICIAL_SESSIONS.find(s => s.id === Number(sessionId));
+  if (!session) return;
+  const qNums = (session.questions || session.questionIds || []).map(String);
+
+  // 1. Wipe ONLY answered states for question IDs belonging to this session
+  qNums.forEach(id => {
+    delete answersMap[id];
+    if (stateStore.userAnswers) delete stateStore.userAnswers[id];
+  });
+
+  stateStore.answeredQuestionIds = (stateStore.answeredQuestionIds || []).filter(id => !qNums.includes(String(id)));
+  stateStore.incorrectQuestionIds = (stateStore.incorrectQuestionIds || []).filter(id => !qNums.includes(String(id)));
+  if (stateStore.skippedQuestions) {
+    stateStore.skippedQuestions = stateStore.skippedQuestions.filter(id => !qNums.includes(String(id)));
+  }
+  skippedQueue = (skippedQueue || []).filter(item => {
+    const id = typeof item === 'object' ? String(item.num || item.id) : String(item);
+    return !qNums.includes(id);
+  });
+
+  completedSessions.delete(Number(sessionId));
+  if (stateStore.sessionProgress) {
+    stateStore.sessionProgress[sessionId] = { answeredQuestionIds: [], completed: false };
+  }
+  if (stateStore.userProgress) {
+    stateStore.userProgress[sessionId] = { answeredQuestionIds: [], completed: false };
+  }
+
+  // 2. Recalculate overall stats directly from remaining userAnswers
+  let c = 0;
+  let inc = 0;
+  Object.values(stateStore.userAnswers || {}).forEach(ans => {
+    if (ans && ans.isCorrect) c++;
+    else if (ans) inc++;
+  });
+  stateStore.stats.correct = c;
+  stateStore.stats.incorrect = inc;
+  stateStore.stats.attempted = Object.keys(stateStore.userAnswers || {}).length;
+
+  saveStateToStorage();
+  updateDashboardTopStats();
+  renderOfficialSessionsGrid();
+  updateSessionCharts();
+  soundFX.playTick();
+}
+
+function resetContinuousPractice() {
+  const qNums = [];
+  for (let i = 1; i <= 300; i++) {
+    const id = String(i);
+    qNums.push(id);
+    delete answersMap[id];
+    if (stateStore.userAnswers) delete stateStore.userAnswers[id];
+  }
+
+  stateStore.answeredQuestionIds = (stateStore.answeredQuestionIds || []).filter(id => !qNums.includes(String(id)));
+  stateStore.incorrectQuestionIds = (stateStore.incorrectQuestionIds || []).filter(id => !qNums.includes(String(id)));
+  if (stateStore.skippedQuestions) {
+    stateStore.skippedQuestions = stateStore.skippedQuestions.filter(id => !qNums.includes(String(id)));
+  }
+  skippedQueue = (skippedQueue || []).filter(item => {
+    const id = typeof item === 'object' ? String(item.num || item.id) : String(item);
+    return !qNums.includes(id);
+  });
+
+  OFFICIAL_SESSIONS.forEach(s => {
+    completedSessions.delete(s.id);
+    if (stateStore.sessionProgress) {
+      stateStore.sessionProgress[s.id] = { answeredQuestionIds: [], completed: false };
+    }
+    if (stateStore.userProgress) {
+      stateStore.userProgress[s.id] = { answeredQuestionIds: [], completed: false };
+    }
+  });
+
+  let c = 0;
+  let inc = 0;
+  Object.values(stateStore.userAnswers || {}).forEach(ans => {
+    if (ans && ans.isCorrect) c++;
+    else if (ans) inc++;
+  });
+  stateStore.stats.correct = c;
+  stateStore.stats.incorrect = inc;
+  stateStore.stats.attempted = Object.keys(stateStore.userAnswers || {}).length;
+
+  saveStateToStorage();
+  updateDashboardTopStats();
+  renderOfficialSessionsGrid();
+  updateSessionCharts();
+  soundFX.playTick();
+}
 
 // Initialize Store
 function loadStateFromStorage() {
@@ -144,6 +544,18 @@ function loadStateFromStorage() {
         if (Array.isArray(parsedFq)) stateStore.flaggedQuestionIds = parsedFq;
       } catch (e) {}
     }
+
+    const iqRaw = localStorage.getItem('incorrectQuestionIds');
+    if (iqRaw) {
+      try {
+        const parsedIq = JSON.parse(iqRaw);
+        if (Array.isArray(parsedIq)) stateStore.incorrectQuestionIds = parsedIq;
+      } catch (e) {}
+    } else if (stateStore.userAnswers) {
+      const wrong = Object.keys(stateStore.userAnswers).filter(k => stateStore.userAnswers[k] && !stateStore.userAnswers[k].isCorrect);
+      stateStore.incorrectQuestionIds = wrong;
+    }
+    if (!stateStore.incorrectQuestionIds) stateStore.incorrectQuestionIds = [];
 
     const daRaw = localStorage.getItem('dailyActivity');
     if (daRaw) {
@@ -193,6 +605,7 @@ function saveStateToStorage() {
     localStorage.setItem('flaggedQuestions', JSON.stringify([...flaggedSet]));
     localStorage.setItem('skippedQuestions', JSON.stringify(skippedQueue || []));
     localStorage.setItem('mockExamHistory', JSON.stringify(stateStore.mockExamHistory || []));
+    localStorage.setItem('incorrectQuestionIds', JSON.stringify(stateStore.incorrectQuestionIds || []));
     localStorage.setItem('dailyActivity', JSON.stringify(dailyActivity || {}));
   } catch (e) {
     console.warn("Storage save error:", e);
@@ -316,7 +729,46 @@ const I18N_DICTIONARY = {
     skipToastLabel: (num, remaining) => `Aufgabe ${num} ans Ende der Queue verschoben (Verbleibend: ${remaining})`,
     skipLastAlert: "Dies ist die letzte verbleibende Frage in dieser Queue.",
     feedbackCorrect: "✓ Richtig! Hervorragend geantwortet.",
-    feedbackIncorrect: (sol) => `✕ Leider falsch. Die richtige Antwort ist <b>${sol.toUpperCase()}</b>.`,
+    feedbackIncorrect: (sol) => `✕ Leider falsch. Die richtige Antwort ist <b>${(sol || '').toUpperCase()}</b>.`,
+    soundOn: "Sound an (Klicken zum Stummschalten)",
+    soundOff: "Sound aus (Klicken zum Aktivieren)",
+    practiceSkippedBtn: (n) => `Zurückgestellte üben (${n})`,
+    practiceSkippedNone: "Keine zurückgestellten Fragen vorhanden! Alle wurden beantwortet.",
+    practiceSkippedTitle: "⏭️ Zurückgestellte Fragen Wiederholung",
+    practiceFlaggedBtn: (n) => `Markierte wiederholen (${n})`,
+    practiceFlaggedNone: "Keine markierten Fragen vorhanden!",
+    practiceFlaggedTitle: "🚩 Markierte Fragen Wiederholung",
+    practiceCorrectBtn: (n) => `Richtige wiederholen (${n})`,
+    practiceCorrectNone: "Bisher wurden noch keine Fragen richtig beantwortet!",
+    practiceCorrectTitle: "✓ Richtige Fragen Wiederholung",
+    practiceIncorrectBtn: (n) => `Falsche Fragen üben (${n})`,
+    practiceIncorrectNone: "Keine falsch beantworteten Fragen vorhanden! Hervorragend gemacht.",
+    practiceIncorrectTitle: "🎯 Falsche Fragen Wiederholung",
+    resetModalTitle: "Session zurücksetzen?",
+    resetSessionPrompt: (name) => `Möchten Sie den Fortschritt für [${name}] wirklich zurücksetzen?`,
+    resetContinuousPrompt: "Möchten Sie den Fortschritt für alle 300 Fragen im durchgehenden Modus wirklich zurücksetzen?",
+    resetModalCancel: "Abbrechen",
+    resetModalConfirm: "Zurücksetzen",
+    completeEncouragingTitle: "Session abgeschlossen",
+    completeEncouragingSubtitle: "Übung macht den Meister! Eine Wiederholung wird empfohlen.",
+    completeGreatJobTitle: "Großartige Leistung!",
+    completeGreatJobSubtitle: "Hervorragende Leistung! Sie machen großartige Fortschritte.",
+    completeMasteryTitle: "100% Perfekt gemeistert! 🎉",
+    completeMasterySubtitle: "100% Perfektion! Sie haben alle Fragen dieser Session fehlerfrei gemeistert.",
+    certHeader: "Abschluss-Zertifikat",
+    certMasteredTitle: (name) => `${name} gemeistert!`,
+    certScoreTag: "100% MEISTERSCHAFT",
+    certDesc: "Offiziell verifiziert mit 100% Genauigkeit",
+    sessionCompleteTitle: "Session Erfolgreich Beendet!",
+    sessionCompleteTag: "SESSION ABGESCHLOSSEN",
+    sessionCompleteBtn: "Zurück zum Dashboard",
+    sessionCompleteSubtitle: "Hervorragende Leistung. Ihr Trainingsfortschritt wurde aktualisiert.",
+    continuousModeTitle: "Durchgehender Übungsmodus (Alle 300 Fragen)",
+    continuousModeDesc: "Üben Sie alle 300 allgemeinen BAMF-Fragen nacheinander in einem Durchgang.",
+    continuousModeBtn: "Alle 300 &rarr;",
+    continuousModalTitle: "📖 Durchgehender Übungsmodus (Alle 300 Fragen)",
+    continuousTaskInfo: (num, total, remaining) => `Aufgabe ${num} von ${total} • Verbleibend: ${remaining}`,
+    continuousCompleted: "🎉 Herzlichen Glückwunsch! Sie haben alle 300 BAMF-Fragen erfolgreich im durchgehenden Übungsmodus abgeschlossen!",
     sessionsBadge: "📖 BAMF Gesamtfragenkatalog (Teil I, Aufgaben 1–300)",
     sessionsTitle: "Official BAMF Practice Sessions (20 Categories)",
     sessionsDesc: "20 eigenständige Lerneinheiten nach den offiziellen BAMF Themenschwerpunkten mit Skip-Queue & sofortiger Erfolgskontrolle.",
@@ -451,7 +903,46 @@ const I18N_DICTIONARY = {
     skipToastLabel: (num, remaining) => `Task ${num} moved to end of queue (Remaining: ${remaining})`,
     skipLastAlert: "This is the last remaining question in this queue.",
     feedbackCorrect: "✓ Correct! Well done.",
-    feedbackIncorrect: (sol) => `✕ Incorrect. The correct answer is <b>${sol.toUpperCase()}</b>.`,
+    feedbackIncorrect: (sol) => `✕ Incorrect. The correct answer is <b>${(sol || '').toUpperCase()}</b>.`,
+    soundOn: "Sound on (Click to mute)",
+    soundOff: "Sound off (Click to unmute)",
+    practiceSkippedBtn: (n) => `Practice Skipped Questions (${n})`,
+    practiceSkippedNone: "No skipped questions to practice! All questions have been addressed.",
+    practiceSkippedTitle: "⏭️ Skipped Questions Practice",
+    practiceFlaggedBtn: (n) => `Review Flagged Questions (${n})`,
+    practiceFlaggedNone: "No flagged questions to review!",
+    practiceFlaggedTitle: "🚩 Flagged Questions Review",
+    practiceCorrectBtn: (n) => `Review Correct Questions (${n})`,
+    practiceCorrectNone: "No questions answered correctly yet!",
+    practiceCorrectTitle: "✓ Correct Questions Review",
+    practiceIncorrectBtn: (n) => `Practice Incorrect Questions (${n})`,
+    practiceIncorrectNone: "No incorrect questions to practice! Well done.",
+    practiceIncorrectTitle: "🎯 Incorrect Questions Practice",
+    resetModalTitle: "Reset Session Progress?",
+    resetSessionPrompt: (name) => `Are you sure you want to reset progress for [${name}]?`,
+    resetContinuousPrompt: "Are you sure you want to reset progress for all 300 continuous practice questions?",
+    resetModalCancel: "Cancel",
+    resetModalConfirm: "Reset",
+    completeEncouragingTitle: "Session Finished",
+    completeEncouragingSubtitle: "Practice makes perfect! Review is recommended.",
+    completeGreatJobTitle: "Great Job!",
+    completeGreatJobSubtitle: "Outstanding performance! You are making tremendous progress.",
+    completeMasteryTitle: "100% Perfect Mastery! 🎉",
+    completeMasterySubtitle: "100% Perfection! You mastered all questions in this session with no errors.",
+    certHeader: "Certificate of Completion",
+    certMasteredTitle: (name) => `${name} Mastered!`,
+    certScoreTag: "100% MASTERY",
+    certDesc: "Successfully completed with 100% accuracy",
+    sessionCompleteTitle: "Session Completed!",
+    sessionCompleteTag: "SESSION COMPLETED",
+    sessionCompleteBtn: "Back to Dashboard",
+    sessionCompleteSubtitle: "Outstanding performance. Your training progress has been updated.",
+    continuousModeTitle: "Continuous Practice (All 300 Questions)",
+    continuousModeDesc: "Practice all 300 general BAMF questions in sequence (Tasks 1 to 300) in one continuous session.",
+    continuousModeBtn: "All 300 &rarr;",
+    continuousModalTitle: "📖 Continuous Practice (All 300 Questions)",
+    continuousTaskInfo: (num, total, remaining) => `Task ${num} of ${total} • Remaining in queue: ${remaining}`,
+    continuousCompleted: "🎉 Congratulations! You have successfully completed all 300 BAMF questions in continuous practice mode!",
     sessionsBadge: "📖 BAMF Complete Question Catalog (Part I, Tasks 1–300)",
     sessionsTitle: "Official BAMF Practice Sessions (20 Categories)",
     sessionsDesc: "20 standalone learning sessions covering the official BAMF topic areas with skip queue & immediate feedback.",
@@ -576,6 +1067,10 @@ function applyAppLanguage(lang) {
   setTxt('start-prep-desc', dict.startPrepDesc);
   setHtml('start-prep-btn', dict.startPrepBtn);
 
+  setTxt('continuous-mode-title', dict.continuousModeTitle);
+  setTxt('continuous-mode-desc', dict.continuousModeDesc);
+  setHtml('continuous-mode-btn-text', dict.continuousModeBtn);
+
   setTxt('mock-exam-title', dict.mockExamTitle);
   setTxt('mock-exam-desc', dict.mockExamDesc);
   setHtml('mock-exam-btn', dict.mockExamBtn);
@@ -594,6 +1089,15 @@ function applyAppLanguage(lang) {
   setTxt('stat-correct-sub', dict.statCorrectSub);
   setTxt('stat-title-incorrect', dict.statTitleIncorrect);
   setTxt('stat-incorrect-sub', dict.statIncorrectSub);
+
+  const skippedList = (stateStore.skippedQuestions && stateStore.skippedQuestions.length > 0)
+    ? stateStore.skippedQuestions
+    : (skippedQueue || []);
+  setTxt('btn-practice-skipped-text', dict.practiceSkippedBtn(skippedList.length));
+  setTxt('btn-practice-flagged-text', dict.practiceFlaggedBtn((stateStore.flaggedQuestionIds || []).length));
+  setTxt('btn-practice-correct-text', dict.practiceCorrectBtn(stateStore.stats.correct || 0));
+  setTxt('btn-practice-incorrect-text', dict.practiceIncorrectBtn((stateStore.incorrectQuestionIds || []).length));
+
   setTxt('stat-title-attempted', dict.statTitleAttempted);
   setTxt('stat-attempted-sub', dict.statAttemptedSub);
   setTxt('stat-title-test-attempted', dict.statTitleTestAttempted);
@@ -602,6 +1106,22 @@ function applyAppLanguage(lang) {
   setTxt('stat-test-passed-sub', dict.statTestPassedSub);
   setTxt('stat-title-test-failed', dict.statTitleTestFailed);
   setTxt('stat-test-failed-sub', dict.statTestFailedSub);
+
+  // Reset confirmation modal labels
+  setTxt('reset-confirm-title', dict.resetModalTitle);
+  setTxt('reset-confirm-cancel-btn', dict.resetModalCancel);
+  setTxt('reset-confirm-action-btn', dict.resetModalConfirm);
+
+  // Sound toggle button label/tooltip sync
+  if (typeof soundFX !== 'undefined' && soundFX.updateToggleUI) {
+    soundFX.updateToggleUI();
+  }
+
+  // Session Completion Modal
+  setTxt('session-complete-tag', dict.sessionCompleteTag);
+  setTxt('session-complete-title', dict.sessionCompleteTitle);
+  setTxt('session-complete-subtitle', dict.sessionCompleteSubtitle);
+  setTxt('session-complete-btn-text', dict.sessionCompleteBtn);
 
   // Modal and Popover titles
   setTxt('translation-popover-title', dict.translationPopoverTitle);
@@ -802,10 +1322,54 @@ function updateDashboardTopStats() {
   // 2x4 Statistics Grid
   const stats = stateStore.stats;
   const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-  setEl('stat-skipped', stats.skipped || 0);
-  setEl('stat-flagged', (stateStore.flaggedQuestionIds || []).length);
-  setEl('stat-correct', stats.correct || 0);
-  setEl('stat-incorrect', stats.incorrect || 0);
+
+  // 1. Skipped Practice Launcher
+  const skippedList = (stateStore.skippedQuestions && stateStore.skippedQuestions.length > 0)
+    ? stateStore.skippedQuestions 
+    : (skippedQueue || []);
+  const skippedCount = skippedList.length;
+  setEl('stat-skipped', skippedCount);
+  const btnSkipped = document.getElementById('btn-practice-skipped');
+  const btnSkippedText = document.getElementById('btn-practice-skipped-text');
+  if (btnSkipped) btnSkipped.disabled = (skippedCount === 0);
+  if (btnSkippedText) btnSkippedText.textContent = dict.practiceSkippedBtn(skippedCount);
+
+  // 2. Flagged Practice Launcher
+  const flaggedList = stateStore.flaggedQuestionIds || [];
+  const flaggedCount = flaggedList.length;
+  setEl('stat-flagged', flaggedCount);
+  const btnFlagged = document.getElementById('btn-practice-flagged');
+  const btnFlaggedText = document.getElementById('btn-practice-flagged-text');
+  if (btnFlagged) btnFlagged.disabled = (flaggedCount === 0);
+  if (btnFlaggedText) btnFlaggedText.textContent = dict.practiceFlaggedBtn(flaggedCount);
+
+  // 3. Correct Practice Launcher
+  const correctCount = stats.correct || 0;
+  setEl('stat-correct', correctCount);
+  const btnCorrect = document.getElementById('btn-practice-correct');
+  const btnCorrectText = document.getElementById('btn-practice-correct-text');
+  if (btnCorrect) btnCorrect.disabled = (correctCount === 0);
+  if (btnCorrectText) btnCorrectText.textContent = dict.practiceCorrectBtn(correctCount);
+
+  // 4. Incorrect Practice Launcher
+  const incorrectList = stateStore.incorrectQuestionIds || [];
+  const incorrectCount = incorrectList.length;
+  setEl('stat-incorrect', incorrectCount);
+
+  const tagEl = document.getElementById('stat-incorrect-tag');
+  if (tagEl) {
+    tagEl.textContent = isEn ? `(${incorrectCount} open)` : `(${incorrectCount} offen)`;
+  }
+
+  const btnPractice = document.getElementById('btn-practice-incorrect');
+  const btnPracticeText = document.getElementById('btn-practice-incorrect-text');
+  if (btnPractice) {
+    btnPractice.disabled = (incorrectCount === 0);
+  }
+  if (btnPracticeText) {
+    btnPracticeText.textContent = dict.practiceIncorrectBtn(incorrectCount);
+  }
+
   setEl('stat-attempted', readiness.attempted || 0);
   setEl('stat-test-attempted', stats.testAttempted || 0);
   setEl('stat-test-passed', stats.testPassed || 0);
@@ -961,10 +1525,15 @@ function renderOfficialSessionsGrid() {
           </div>
         </div>
 
-        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-          <button onclick="startSession(${session.id})" class="${buttonClass}">
+        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center space-x-2">
+          <button onclick="soundFX.playTick(); startSession(${session.id})" class="${buttonClass} flex-1">
             <span>${buttonText}</span>
           </button>
+          ${solvedCount > 0 ? `
+            <button type="button" onclick="confirmResetSession(${session.id}, event)" title="${isEn ? 'Reset progress for this session' : 'Fortschritt für diese Session zurücksetzen'}" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition cursor-pointer shrink-0" aria-label="Reset session progress">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            </button>
+          ` : ''}
         </div>
       </div>
     `;
@@ -1140,6 +1709,85 @@ function renderCharts() {
 }
 
 // -------------------------------------------------------------
+// QUESTION EVALUATION & CATEGORY BADGE HELPERS
+// -------------------------------------------------------------
+
+// Helper: Thoroughly normalize and retrieve correct answer ('a', 'b', 'c', or 'd')
+function getQuestionSolution(q) {
+  if (!q) return 'a';
+  let raw = q.solution ?? q.correct ?? q.answer ?? q.correctOption ?? q.correct_option;
+  if (typeof raw === 'string') {
+    raw = raw.trim().toLowerCase();
+    if (raw.length > 1) {
+      const match = raw.match(/^[a-d]/i) || raw.match(/([a-d])\)?$/i);
+      if (match) raw = match[1].toLowerCase();
+    }
+  } else if (typeof raw === 'number') {
+    if (raw >= 1 && raw <= 4) {
+      raw = ['a', 'b', 'c', 'd'][raw - 1];
+    } else if (raw >= 0 && raw <= 3) {
+      raw = ['a', 'b', 'c', 'd'][raw];
+    }
+  }
+
+  if (raw && ['a', 'b', 'c', 'd'].includes(raw)) {
+    return raw;
+  }
+
+  // Fallback defaults for specific catalog questions
+  const numStr = String(q.num || q.taskNum || '').trim();
+  if (numStr === '15') return 'd';
+  if (numStr === 'BB-307') return 'a';
+  if (numStr === 'HE-307') return 'd';
+
+  return 'a';
+}
+
+// Helper: Dynamically get official BAMF category name and session badge for a question
+function getQuestionCategoryAndSession(q) {
+  if (!q) return { category: '', sessionText: '', fullBadge: '' };
+  const numInt = parseInt(String(q.num || q.taskNum || ''), 10);
+  const isEn = stateStore.appLanguage === 'en';
+
+  if (!isNaN(numInt)) {
+    const session = OFFICIAL_SESSIONS.find(s => (s.questions || []).includes(numInt));
+    if (session) {
+      const catName = isEn ? (session.name_en || session.name) : session.name;
+      const sessionLabel = isEn ? `Session ${session.id}` : `Session ${session.id}`;
+      return {
+        category: catName,
+        sessionId: session.id,
+        sessionLabel,
+        fullBadge: `${catName} • ${sessionLabel}`
+      };
+    }
+  }
+
+  const numStr = String(q.num || '');
+  if (numStr.includes('-')) {
+    const parts = numStr.split('-');
+    const stateCode = parts[0].toUpperCase();
+    const stateObj = GERMAN_STATES.find(s => s.code === stateCode);
+    const stateName = stateObj ? stateObj.name : stateCode;
+    const catName = isEn ? `State: ${stateName}` : `Bundesland: ${stateName}`;
+    return {
+      category: catName,
+      sessionId: 'state',
+      sessionLabel: stateCode,
+      fullBadge: isEn ? `${catName} • State Tasks` : `${catName} • Landesfragen`
+    };
+  }
+
+  const rawCat = q.category || (isEn ? 'General Question' : 'Allgemeine Frage');
+  return {
+    category: rawCat,
+    sessionId: null,
+    sessionLabel: '',
+    fullBadge: rawCat
+  };
+}
+
+// -------------------------------------------------------------
 // QUIZ & PRACTICE CONTROLLER
 // -------------------------------------------------------------
 async function startOfficialSession(sessionId) {
@@ -1164,7 +1812,17 @@ async function startOfficialSession(sessionId) {
     activeQuestionAnswered = false;
     activeQuestionSelectedOpt = null;
 
-    document.getElementById('modal-session-title').textContent = `${data.icon || '🎯'} Session ${data.id}: ${data.name}`;
+    const isEn = stateStore.appLanguage === 'en';
+    const sName = isEn ? (data.name_en || data.name) : data.name;
+    currentSessionRunStats = {
+      totalQuestions: questions.length,
+      correctCount: 0,
+      incorrectCount: 0,
+      sessionName: `${data.icon || '🎯'} Session ${data.id}: ${sName}`,
+      startTime: Date.now()
+    };
+
+    document.getElementById('modal-session-title').textContent = `${data.icon || '🎯'} Session ${data.id}: ${sName}`;
     openQuizModal();
     loadNextFromQueue();
   } catch (err) {
@@ -1188,7 +1846,17 @@ async function startMockExam() {
     activeQuestionAnswered = false;
     activeQuestionSelectedOpt = null;
 
-    document.getElementById('modal-session-title').textContent = `📝 BAMF Probeprüfung (33 Fragen)`;
+    const isEn = stateStore.appLanguage === 'en';
+    const title = isEn ? `📝 BAMF Mock Exam (33 Questions)` : `📝 BAMF Probeprüfung (33 Fragen)`;
+    currentSessionRunStats = {
+      totalQuestions: sessionQueue.length,
+      correctCount: 0,
+      incorrectCount: 0,
+      sessionName: title,
+      startTime: Date.now()
+    };
+
+    document.getElementById('modal-session-title').textContent = title;
     openQuizModal();
     startMockTimer();
     loadNextFromQueue();
@@ -1226,6 +1894,14 @@ async function loadStateQuestions(selectedStateCode) {
       ? `${stateObj.icon || '🏛️'} State Session: ${stateObj.name} (Tasks 301–310)` 
       : `${stateObj.icon || '🏛️'} Bundesland-Session: ${stateObj.name} (Aufgaben 301–310)`;
 
+    currentSessionRunStats = {
+      totalQuestions: questions.length,
+      correctCount: 0,
+      incorrectCount: 0,
+      sessionName: title,
+      startTime: Date.now()
+    };
+
     const modalTitle = document.getElementById('modal-session-title');
     if (modalTitle) modalTitle.textContent = title;
 
@@ -1233,6 +1909,275 @@ async function loadStateQuestions(selectedStateCode) {
     loadNextFromQueue();
   } catch (err) {
     alert("Fehler beim Starten der Bundesland-Session: " + err.message);
+  }
+}
+
+// Start Continuous Practice (All 300 general BAMF questions in sequence, Aufgaben 1 to 300)
+async function startContinuousPractice() {
+  activeQuizMode = 'continuous';
+  activeSessionId = 'continuous-300';
+  currentLanguage = 'de';
+
+  try {
+    const res = await fetch('/api/continuous-practice');
+    if (!res.ok) throw new Error("Could not load continuous practice questions");
+    const data = await res.json();
+
+    const questions = data.questionsList || [];
+    if (questions.length === 0) {
+      alert("Keine Fragen für den durchgehenden Übungsmodus gefunden.");
+      return;
+    }
+
+    // Initialize FIFO queue with all 300 questions in sequential order
+    sessionQueue = [...questions];
+    activeQuestion = null;
+    activeQuestionAnswered = false;
+    activeQuestionSelectedOpt = null;
+
+    const isEn = stateStore.appLanguage === 'en';
+    const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+    currentSessionRunStats = {
+      totalQuestions: questions.length,
+      correctCount: 0,
+      incorrectCount: 0,
+      sessionName: dict.continuousModalTitle,
+      startTime: Date.now()
+    };
+
+    const modalTitle = document.getElementById('modal-session-title');
+    if (modalTitle) modalTitle.textContent = dict.continuousModalTitle;
+
+    openQuizModal();
+    loadNextFromQueue();
+  } catch (err) {
+    alert("Fehler beim Starten des durchgehenden Übungsmodus: " + err.message);
+  }
+}
+
+// Start Dedicated Practice Mode for Incorrectly Answered Questions
+async function startWrongAnswersPractice() {
+  const incorrectList = stateStore.incorrectQuestionIds || [];
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+
+  if (incorrectList.length === 0) {
+    alert(dict.practiceIncorrectNone);
+    return;
+  }
+
+  activeQuizMode = 'wrong';
+  activeSessionId = 'wrong-practice';
+  currentLanguage = 'de';
+
+  try {
+    const res = await fetch('/api/questions/batch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids: incorrectList })
+    });
+
+    if (!res.ok) throw new Error("Could not load incorrect questions");
+    const data = await res.json();
+    const questions = data.items || [];
+
+    if (questions.length === 0) {
+      alert(dict.practiceIncorrectNone);
+      return;
+    }
+
+    sessionQueue = [...questions];
+    activeQuestion = null;
+    activeQuestionAnswered = false;
+    activeQuestionSelectedOpt = null;
+
+    currentSessionRunStats = {
+      totalQuestions: sessionQueue.length,
+      correctCount: 0,
+      incorrectCount: 0,
+      sessionName: dict.practiceIncorrectTitle,
+      startTime: Date.now()
+    };
+
+    const modalTitle = document.getElementById('modal-session-title');
+    if (modalTitle) modalTitle.textContent = dict.practiceIncorrectTitle;
+
+    openQuizModal();
+    loadNextFromQueue();
+  } catch (err) {
+    alert("Fehler beim Starten der Fehler-Session: " + err.message);
+  }
+}
+
+// Start Dedicated Practice Mode for Skipped Questions
+async function startSkippedPractice() {
+  soundFX.playTick();
+  const skippedList = (stateStore.skippedQuestions && stateStore.skippedQuestions.length > 0)
+    ? stateStore.skippedQuestions
+    : (skippedQueue || []).map(item => (typeof item === 'object' ? String(item.num || item.id) : String(item)));
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+
+  if (skippedList.length === 0) {
+    alert(dict.practiceSkippedNone);
+    return;
+  }
+
+  activeQuizMode = 'skipped';
+  activeSessionId = 'skipped-practice';
+  currentLanguage = 'de';
+
+  try {
+    const res = await fetch('/api/questions/batch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids: skippedList })
+    });
+
+    if (!res.ok) throw new Error("Could not load skipped questions");
+    const data = await res.json();
+    const questions = data.items || [];
+
+    if (questions.length === 0) {
+      alert(dict.practiceSkippedNone);
+      return;
+    }
+
+    sessionQueue = [...questions];
+    activeQuestion = null;
+    activeQuestionAnswered = false;
+    activeQuestionSelectedOpt = null;
+
+    currentSessionRunStats = {
+      totalQuestions: sessionQueue.length,
+      correctCount: 0,
+      incorrectCount: 0,
+      sessionName: dict.practiceSkippedTitle,
+      startTime: Date.now()
+    };
+
+    const modalTitle = document.getElementById('modal-session-title');
+    if (modalTitle) modalTitle.textContent = dict.practiceSkippedTitle;
+
+    openQuizModal();
+    loadNextFromQueue();
+  } catch (err) {
+    alert("Fehler beim Starten der Zurückgestellten-Session: " + err.message);
+  }
+}
+
+// Start Dedicated Practice Mode for Flagged Questions
+async function startFlaggedPractice() {
+  soundFX.playTick();
+  const flaggedList = stateStore.flaggedQuestionIds || [];
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+
+  if (flaggedList.length === 0) {
+    alert(dict.practiceFlaggedNone);
+    return;
+  }
+
+  activeQuizMode = 'flagged';
+  activeSessionId = 'flagged-practice';
+  currentLanguage = 'de';
+
+  try {
+    const res = await fetch('/api/questions/batch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids: flaggedList })
+    });
+
+    if (!res.ok) throw new Error("Could not load flagged questions");
+    const data = await res.json();
+    const questions = data.items || [];
+
+    if (questions.length === 0) {
+      alert(dict.practiceFlaggedNone);
+      return;
+    }
+
+    sessionQueue = [...questions];
+    activeQuestion = null;
+    activeQuestionAnswered = false;
+    activeQuestionSelectedOpt = null;
+
+    currentSessionRunStats = {
+      totalQuestions: sessionQueue.length,
+      correctCount: 0,
+      incorrectCount: 0,
+      sessionName: dict.practiceFlaggedTitle,
+      startTime: Date.now()
+    };
+
+    const modalTitle = document.getElementById('modal-session-title');
+    if (modalTitle) modalTitle.textContent = dict.practiceFlaggedTitle;
+
+    openQuizModal();
+    loadNextFromQueue();
+  } catch (err) {
+    alert("Fehler beim Starten der Markierten-Session: " + err.message);
+  }
+}
+
+// Start Dedicated Practice Mode for Correct Questions Review
+async function startCorrectPractice() {
+  soundFX.playTick();
+  const correctList = [];
+  Object.keys(stateStore.userAnswers || {}).forEach(k => {
+    if (stateStore.userAnswers[k] && stateStore.userAnswers[k].isCorrect) {
+      correctList.push(k);
+    }
+  });
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+
+  if (correctList.length === 0) {
+    alert(dict.practiceCorrectNone);
+    return;
+  }
+
+  activeQuizMode = 'correct';
+  activeSessionId = 'correct-practice';
+  currentLanguage = 'de';
+
+  try {
+    const res = await fetch('/api/questions/batch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids: correctList })
+    });
+
+    if (!res.ok) throw new Error("Could not load correct questions");
+    const data = await res.json();
+    const questions = data.items || [];
+
+    if (questions.length === 0) {
+      alert(dict.practiceCorrectNone);
+      return;
+    }
+
+    sessionQueue = [...questions];
+    activeQuestion = null;
+    activeQuestionAnswered = false;
+    activeQuestionSelectedOpt = null;
+
+    currentSessionRunStats = {
+      totalQuestions: sessionQueue.length,
+      correctCount: 0,
+      incorrectCount: 0,
+      sessionName: dict.practiceCorrectTitle,
+      startTime: Date.now()
+    };
+
+    const modalTitle = document.getElementById('modal-session-title');
+    if (modalTitle) modalTitle.textContent = dict.practiceCorrectTitle;
+
+    openQuizModal();
+    loadNextFromQueue();
+  } catch (err) {
+    alert("Fehler beim Starten der Richtig-Session: " + err.message);
   }
 }
 
@@ -1312,7 +2257,17 @@ function renderActiveQuestionUI() {
 
   // Queue info
   const countEl = document.getElementById('quiz-queue-info');
-  if (countEl) countEl.textContent = dict.taskInfoLabel(taskLabel, sessionQueue.length);
+  if (countEl) {
+    if (activeQuizMode === 'continuous') {
+      countEl.textContent = dict.continuousTaskInfo(taskLabel, 300, sessionQueue.length);
+    } else if (activeQuizMode === 'wrong') {
+      countEl.textContent = isEn
+        ? `Task ${taskLabel} • Remaining in Wrong Practice Queue: ${sessionQueue.length}`
+        : `Aufgabe ${taskLabel} • Verbleibend in Fehler-Queue: ${sessionQueue.length}`;
+    } else {
+      countEl.textContent = dict.taskInfoLabel(taskLabel, sessionQueue.length);
+    }
+  }
 
   // Check Flag state
   const isFlagged = (stateStore.flaggedQuestionIds || []).includes(String(activeQuestion.num));
@@ -1337,17 +2292,25 @@ function renderActiveQuestionUI() {
   const container = document.getElementById('quiz-question-box');
   if (!container) return;
 
-  const sol = (activeQuestion.solution || '').toLowerCase().trim();
+  const sol = getQuestionSolution(activeQuestion);
+  const catInfo = getQuestionCategoryAndSession(activeQuestion);
+  const taskBadge = isEn ? `Task ${taskLabel}` : `Aufgabe ${taskLabel}`;
 
   container.innerHTML = `
     <div class="space-y-4">
       <div class="flex items-start justify-between gap-3">
         <div>
-          <span class="inline-block px-2.5 py-1 rounded bg-indigo-100 text-indigo-800 text-xs font-bold mb-2">
-            ${dict.taskBadgeLabel(taskLabel)}
-          </span>
-          <span class="text-xs theme-text-muted ml-2">${activeQuestion.category || ''}</span>
-          <h3 class="text-base sm:text-lg font-bold leading-relaxed whitespace-pre-line">
+          <!-- Task & Category Badges -->
+          <div class="flex flex-wrap items-center gap-2 mb-2.5">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-indigo-100 dark:bg-indigo-950/70 text-indigo-800 dark:text-indigo-300 text-xs font-black border border-indigo-200 dark:border-indigo-800/60 shadow-xs">
+              ${taskBadge}
+            </span>
+            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800/60 shadow-xs">
+              <span class="mr-1.5 opacity-80">🏷️</span>
+              <span>${catInfo.fullBadge}</span>
+            </span>
+          </div>
+          <h3 class="text-base sm:text-lg font-bold leading-relaxed whitespace-pre-line text-slate-900 dark:text-slate-100">
             ${qText}
           </h3>
         </div>
@@ -1412,7 +2375,7 @@ function renderOptionBtn(optKey, optText, solutionKey) {
   }
 
   return `
-    <button onclick="selectOption('${optKey}')" ${activeQuestionAnswered ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl transition flex items-center space-x-3 ${styleClass}">
+    <button onclick="soundFX.playTick(); selectOption('${optKey}')" onmouseenter="if (!activeQuestionAnswered) soundFX.playTick();" ${activeQuestionAnswered ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl transition flex items-center space-x-3 ${styleClass} cursor-pointer">
       <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${letterBadge}">
         ${optKey.toUpperCase()}
       </span>
@@ -1427,9 +2390,48 @@ function selectOption(optKey) {
 
   activeQuestionAnswered = true;
   activeQuestionSelectedOpt = optKey;
-  const sol = (activeQuestion.solution || '').toLowerCase().trim();
-  const isCorrect = (optKey === sol);
+  const sol = getQuestionSolution(activeQuestion);
+  const selected = String(optKey || '').trim().toLowerCase();
+  const isCorrect = (selected === sol);
   const qNum = String(activeQuestion.num);
+
+  // Play synthesized audio feedback
+  if (isCorrect) {
+    soundFX.playCorrect();
+    currentSessionRunStats.correctCount = (currentSessionRunStats.correctCount || 0) + 1;
+  } else {
+    soundFX.playIncorrect();
+    currentSessionRunStats.incorrectCount = (currentSessionRunStats.incorrectCount || 0) + 1;
+  }
+
+  // Auto-clear from skipped queue when answered
+  if (stateStore.skippedQuestions && stateStore.skippedQuestions.includes(qNum)) {
+    stateStore.skippedQuestions = stateStore.skippedQuestions.filter(id => id !== qNum);
+    try {
+      localStorage.setItem('skippedQuestions', JSON.stringify(stateStore.skippedQuestions));
+    } catch (e) {}
+  }
+  if (activeQuizMode === 'skipped') {
+    skippedQueue = (skippedQueue || []).filter(item => {
+      const id = typeof item === 'object' ? String(item.num || item.id) : String(item);
+      return id !== qNum;
+    });
+  }
+
+  // Dynamic "Wrong Answers" management:
+  // When a user submits an incorrect answer, store in incorrectQuestionIds
+  // Auto-Clear: When answered correctly, remove from incorrectQuestionIds
+  if (isCorrect) {
+    stateStore.incorrectQuestionIds = (stateStore.incorrectQuestionIds || []).filter(id => id !== qNum);
+  } else {
+    if (!stateStore.incorrectQuestionIds) stateStore.incorrectQuestionIds = [];
+    if (!stateStore.incorrectQuestionIds.includes(qNum)) {
+      stateStore.incorrectQuestionIds.push(qNum);
+    }
+  }
+  try {
+    localStorage.setItem('incorrectQuestionIds', JSON.stringify(stateStore.incorrectQuestionIds));
+  } catch (e) {}
 
   // Track unique answered questions
   const isFirstTime = !stateStore.answeredQuestionIds.includes(qNum);
@@ -1440,6 +2442,13 @@ function selectOption(optKey) {
       stateStore.stats.correct = (stateStore.stats.correct || 0) + 1;
     } else {
       stateStore.stats.incorrect = (stateStore.stats.incorrect || 0) + 1;
+    }
+  } else {
+    // If previously answered wrong and now answered correct, shift stats
+    const prevAnswer = stateStore.userAnswers ? stateStore.userAnswers[qNum] : null;
+    if (prevAnswer && !prevAnswer.isCorrect && isCorrect) {
+      stateStore.stats.correct = (stateStore.stats.correct || 0) + 1;
+      stateStore.stats.incorrect = Math.max(0, (stateStore.stats.incorrect || 0) - 1);
     }
   }
 
@@ -1499,7 +2508,33 @@ function selectOption(optKey) {
     userProgress[activeSessionId] = sp;
   }
 
+  // Synchronize category progress for any general BAMF question (Tasks 1 to 300) in any mode
+  const qNumInt = parseInt(qNum, 10);
+  if (!isNaN(qNumInt)) {
+    OFFICIAL_SESSIONS.forEach(sess => {
+      const qList = sess.questions || sess.questionIds || [];
+      if (qList.includes(qNumInt)) {
+        if (!stateStore.sessionProgress) stateStore.sessionProgress = {};
+        const sp = stateStore.sessionProgress[sess.id] || { answeredQuestionIds: [], completed: false };
+        if (!sp.answeredQuestionIds) sp.answeredQuestionIds = [];
+        if (!sp.answeredQuestionIds.includes(qNum)) {
+          sp.answeredQuestionIds.push(qNum);
+        }
+        if (sp.answeredQuestionIds.length >= sess.count) {
+          sp.completed = true;
+          completedSessions.add(sess.id);
+        }
+        stateStore.sessionProgress[sess.id] = sp;
+        if (!stateStore.userProgress) stateStore.userProgress = {};
+        stateStore.userProgress[sess.id] = sp;
+        userProgress[sess.id] = sp;
+      }
+    });
+  }
+
   saveStateToStorage();
+  updateDashboardTopStats();
+  renderOfficialSessionsGrid();
   renderActiveQuestionUI();
 
   // Show Feedback banner
@@ -1575,42 +2610,154 @@ function nextQuestionInQuiz() {
 function finishActiveQuiz() {
   clearInterval(mockTimerInterval);
   const isEn = stateStore.appLanguage === 'en';
+
   if (activeQuizMode === 'session' && activeSessionId) {
     if (!stateStore.sessionProgress) stateStore.sessionProgress = {};
     const sp = stateStore.sessionProgress[activeSessionId] || { answeredQuestionIds: [], completed: false };
     sp.completed = true;
     stateStore.sessionProgress[activeSessionId] = sp;
-    saveStateToStorage();
-    alert(isEn ? `🎉 Congratulations! You have completed Session ${activeSessionId}!` : `🎉 Glückwunsch! Sie haben Session ${activeSessionId} abgeschlossen!`);
-  } else if (activeQuizMode === 'state') {
-    const userState = stateStore.userState || 'BY';
-    const stateObj = GERMAN_STATES.find(s => s.code === userState) || GERMAN_STATES[1];
-    saveStateToStorage();
-    alert(isEn 
-      ? `🎉 Congratulations! You completed all 10 federal state questions for ${stateObj.name}!` 
-      : `🎉 Glückwunsch! Sie haben alle 10 Bundeslandfragen für ${stateObj.name} abgeschlossen!`);
   } else if (activeQuizMode === 'mock') {
     stateStore.stats.testAttempted = (stateStore.stats.testAttempted || 0) + 1;
-    // Mock exam threshold: 17 out of 33
-    const passed = (stateStore.stats.correct || 0) >= 17;
+    const score = currentSessionRunStats.correctCount || 0;
+    const passed = score >= 17;
     if (!stateStore.mockExamHistory) stateStore.mockExamHistory = [];
     stateStore.mockExamHistory.push({
       date: new Date().toISOString(),
-      score: stateStore.stats.correct || 0,
+      score,
       passed
     });
-
     if (passed) {
       stateStore.stats.testPassed = (stateStore.stats.testPassed || 0) + 1;
-      alert(`🏆 Herzlichen Glückwunsch! Sie haben die Probeprüfung BESTANDEN! (Mindestens 17/33 erreicht)`);
     } else {
       stateStore.stats.testFailed = (stateStore.stats.testFailed || 0) + 1;
-      alert(`Probeprüfung beendet. Sie benötigen mindestens 17 richtige Antworten zum Bestehen.`);
     }
-    saveStateToStorage();
   }
 
+  saveStateToStorage();
+  openSessionCompleteModal(currentSessionRunStats);
+}
+
+// -------------------------------------------------------------
+// SESSION COMPLETION CELEBRATION MODAL
+// -------------------------------------------------------------
+function openSessionCompleteModal(stats) {
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  const modal = document.getElementById('session-complete-modal');
+  if (!modal) return;
+
+  const total = stats.totalQuestions || (stats.correctCount + stats.incorrectCount) || 1;
+  const correct = stats.correctCount || 0;
+  const accuracy = Math.round((correct / total) * 100);
+
+  const iconEl = document.getElementById('session-complete-icon');
+  const titleEl = document.getElementById('session-complete-title');
+  const tagEl = document.getElementById('session-complete-tag');
+  const subEl = document.getElementById('session-complete-subtitle');
+  const totalEl = document.getElementById('complete-stat-total');
+  const correctEl = document.getElementById('complete-stat-correct');
+  const accEl = document.getElementById('complete-stat-accuracy');
+  const summaryEl = document.getElementById('complete-score-summary');
+  const btnText = document.getElementById('session-complete-btn-text');
+  const certContainer = document.getElementById('mastery-certificate-container');
+
+  if (totalEl) totalEl.textContent = total;
+  if (correctEl) correctEl.textContent = correct;
+  if (accEl) accEl.textContent = `${accuracy}%`;
+  if (btnText) btnText.textContent = dict.sessionCompleteBtn;
+
+  // Condition 1: IF accuracy < 50% (or 0 correct answers):
+  // Show subtle, encouraging summary modal with NO party popper confetti.
+  if (accuracy < 50 || correct === 0) {
+    if (iconEl) iconEl.innerHTML = '💡';
+    if (tagEl) {
+      tagEl.textContent = isEn ? 'TRAINING SUMMARY' : 'TRAININGS-ZUSAMMENFASSUNG';
+      tagEl.className = 'inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 mb-2';
+    }
+    if (titleEl) titleEl.textContent = dict.completeEncouragingTitle;
+    if (subEl) subEl.textContent = `${stats.sessionName ? stats.sessionName + ' • ' : ''}${dict.completeEncouragingSubtitle}`;
+    if (summaryEl) {
+      summaryEl.textContent = `Score: ${correct}/${total} (${accuracy}%) • ${dict.completeEncouragingSubtitle}`;
+    }
+    if (certContainer) certContainer.classList.add('hidden');
+    soundFX.playTick();
+  } 
+  // Condition 2: IF accuracy between 50% and 99%:
+  // Show "Great Job!" completion modal with mild confetti animation.
+  else if (accuracy < 100) {
+    if (iconEl) iconEl.innerHTML = '🌟';
+    if (tagEl) {
+      tagEl.textContent = dict.sessionCompleteTag;
+      tagEl.className = 'inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 mb-2';
+    }
+    if (titleEl) titleEl.textContent = dict.completeGreatJobTitle;
+    if (subEl) subEl.textContent = `${stats.sessionName ? stats.sessionName + ' • ' : ''}${dict.completeGreatJobSubtitle}`;
+    if (summaryEl) {
+      const praise = isEn ? '👍 Solid score! Keep up the practice.' : '👍 Solide Leistung! Weiter so.';
+      summaryEl.textContent = `Score: ${correct}/${total} (${accuracy}%) • ${praise}`;
+    }
+    if (certContainer) certContainer.classList.add('hidden');
+    launchConfetti('mild');
+    soundFX.playFanfare();
+  } 
+  // Condition 3: IF accuracy is 100% (Full Mastery):
+  // Trigger major celebratory event with Confetti Canvas and Mastery Certificate Badge.
+  else {
+    if (iconEl) iconEl.innerHTML = '🏆';
+    if (tagEl) {
+      tagEl.textContent = isEn ? '100% MASTERY ACHIEVED' : '100% MEISTERSCHAFT ERREICHT';
+      tagEl.className = 'inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-700 mb-2';
+    }
+    if (titleEl) titleEl.textContent = dict.completeMasteryTitle;
+    if (subEl) subEl.textContent = `${stats.sessionName ? stats.sessionName + ' • ' : ''}${dict.completeMasterySubtitle}`;
+    if (summaryEl) {
+      const praise = isEn ? '🌟 100% Flawless! Perfect score.' : '🌟 100% Fehlerfrei! Perfektes Ergebnis.';
+      summaryEl.textContent = `Score: ${correct}/${total} (100%) • ${praise}`;
+    }
+
+    if (certContainer) {
+      certContainer.classList.remove('hidden');
+      const certTitle = document.getElementById('cert-title');
+      const certSubtitle = document.getElementById('cert-subtitle');
+      const certDate = document.getElementById('cert-date');
+      const certScoreTag = document.getElementById('cert-score-tag');
+
+      const sTitle = stats.sessionName || (isEn ? 'BAMF Training Session' : 'BAMF Trainingseinheit');
+      if (certTitle) certTitle.textContent = dict.certHeader;
+      if (certSubtitle) certSubtitle.textContent = dict.certMasteredTitle(sTitle);
+      const todayFormatted = new Intl.DateTimeFormat(isEn ? 'en-US' : 'de-DE', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      }).format(new Date());
+      if (certDate) certDate.textContent = `${dict.certDesc} • ${todayFormatted}`;
+      if (certScoreTag) certScoreTag.textContent = dict.certScoreTag;
+    }
+
+    launchConfetti('mastery');
+    soundFX.playFanfare();
+  }
+
+  // Close active quiz modal and display celebratory completion modal
   closeQuizModal();
+  modal.classList.remove('hidden');
+}
+
+function closeSessionCompleteModal() {
+  const modal = document.getElementById('session-complete-modal');
+  if (modal) modal.classList.add('hidden');
+  const canvas = document.getElementById('confetti-canvas');
+  if (canvas) {
+    canvas.classList.add('hidden');
+    const ctx = canvas.getContext('2d');
+    if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  if (confettiAnimationId) {
+    cancelAnimationFrame(confettiAnimationId);
+    confettiAnimationId = null;
+  }
+  updateDashboardTopStats();
+  renderOfficialSessionsGrid();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // -------------------------------------------------------------
@@ -1990,6 +3137,7 @@ function executeCompleteReset() {
     [
       'userProgress',
       'userAnswers',
+      'incorrectQuestionIds',
       'flaggedQuestions',
       'skippedQuestions',
       'mockExamHistory',
@@ -2025,6 +3173,7 @@ function executeCompleteReset() {
     streak: 0
   };
   stateStore.answeredQuestionIds = [];
+  stateStore.incorrectQuestionIds = [];
   stateStore.userAnswers = {};
   stateStore.userProgress = {};
   stateStore.dailyActivity = {};
@@ -2187,6 +3336,7 @@ window.startSession = startSession;
 window.loadStateQuestions = loadStateQuestions;
 window.startStatePracticeSession = startStatePracticeSession;
 window.startOfficialSession = startOfficialSession;
+window.startContinuousPractice = startContinuousPractice;
 window.startMockExam = startMockExam;
 window.openSettingsModal = openSettingsModal;
 window.closeSettingsModal = closeSettingsModal;
@@ -2194,5 +3344,19 @@ window.saveSettings = saveSettings;
 window.showToast = showToast;
 window.openResetConfirmModal = openResetConfirmModal;
 window.closeResetConfirmModal = closeResetConfirmModal;
+window.executePendingReset = executePendingReset;
 window.executeCompleteReset = executeCompleteReset;
 window.requestResetConfirmation = resetAllData;
+window.confirmResetSession = confirmResetSession;
+window.confirmResetContinuous = confirmResetContinuous;
+window.resetSessionProgress = resetSessionProgress;
+window.resetContinuousPractice = resetContinuousPractice;
+window.startWrongAnswersPractice = startWrongAnswersPractice;
+window.startSkippedPractice = startSkippedPractice;
+window.startFlaggedPractice = startFlaggedPractice;
+window.startCorrectPractice = startCorrectPractice;
+window.closeSessionCompleteModal = closeSessionCompleteModal;
+window.soundFX = soundFX;
+window.toggleAppSound = toggleAppSound;
+window.launchConfetti = launchConfetti;
+
