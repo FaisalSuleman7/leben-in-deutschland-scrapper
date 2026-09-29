@@ -2,6 +2,8 @@ export interface Question {
     num: string;
     id: string;
     question: string;
+    options?: { [key: string]: string };
+    correctAnswer?: string;
     a: string;
     b: string;
     c: string;
@@ -10,13 +12,9 @@ export interface Question {
     image: string;
     translation: { [key: string]: QuestionTranslation } | null;
     context: string;
-    category: undefined | null | "Rights & Freedoms" |
-    "Education & Religion" | "Law & Governance" |
-    "Democracy & Politics" | "Economy & Employment" |
-    "History & Geography" | "Elections" |
-    "Press Freedom" | "Assembly & Protests" |
-    "Federal System" | "Constitution" |
-    "General";
+    category: undefined | null | string;
+    sessionId?: number;
+    sessionName?: string;
 }
 export interface QuestionTranslation {
     question: string;

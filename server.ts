@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
+import { GoogleGenAI } from '@google/genai';
 import { scrapCurrentEvaluationData } from './services/scrap-bamf-current-evaluation';
 import { scrapPrüfstellen } from './services/scrap-prüfstellen';
 import { updateConfigSyncTime } from './services/config';
@@ -8,6 +9,37 @@ import { SESSIONS_LIST } from './types/categories';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Initialize GoogleGenAI SDK per gemini-api guidelines
+const ai = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY,
+    httpOptions: {
+        headers: {
+            'User-Agent': 'aistudio-build',
+        }
+    }
+});
+
+async function generateWithGemini(prompt: string, systemInstruction?: string): Promise<string> {
+    const models = ['gemini-3.8-flash', 'gemini-flash-latest'];
+    let lastError: any = null;
+    for (const model of models) {
+        try {
+            const response = await ai.models.generateContent({
+                model,
+                contents: prompt,
+                config: systemInstruction ? { systemInstruction } : undefined
+            });
+            if (response.text) {
+                return response.text;
+            }
+        } catch (err: any) {
+            lastError = err;
+            console.warn(`[Gemini] Model ${model} failed, trying fallback:`, err.message || err);
+        }
+    }
+    throw lastError || new Error('All AI models unavailable');
+}
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -33,6 +65,21 @@ let pruefstellenCache: any[] | null = null;
 function getQuestions(): any[] {
     if (!questionsCache) {
         questionsCache = readJsonFile<any[]>('data/question.json', []);
+        if (Array.isArray(questionsCache)) {
+            for (const q of questionsCache) {
+                if (!q.options) {
+                    q.options = {
+                        A: q.a,
+                        B: q.b,
+                        C: q.c,
+                        D: q.d
+                    };
+                }
+                if (!q.correctAnswer) {
+                    q.correctAnswer = (q.solution || 'a').toUpperCase();
+                }
+            }
+        }
     }
     return questionsCache;
 }
@@ -323,6 +370,126 @@ app.post('/api/pipeline/sync-pruefstellen', async (_req: Request, res: Response)
         res.status(500).json({ error: err.message || 'Pipeline failed' });
     } finally {
         isRunningPipeline = false;
+    }
+});
+
+// 3. AI Features: In-depth Question Tutor & Personalized Study Coach
+app.post('/api/ai/explain', async (req: Request, res: Response) => {
+    try {
+        const { question, options, solution, language, userQuery } = req.body || {};
+        const lang = (typeof language === 'string' && language.trim()) ? language.trim() : 'de';
+        const langNames: Record<string, string> = {
+            de: 'Deutsch',
+            en: 'English',
+            tr: 'Türkçe',
+            ru: 'Русский',
+            fr: 'Français',
+            ar: 'العربية',
+            uk: 'Українська',
+            hi: 'हिन्दी'
+        };
+        const targetLangName = langNames[lang] || 'Deutsch';
+
+        const systemPrompt = `You are a warm, encouraging, expert civic educator and tutor for the German citizenship test ("Leben in Deutschland" / "Einbürgerungstest").
+Your job is to explain the question clearly in ${targetLangName}, giving students solid understanding, historical/constitutional context, and memory anchors.
+Use clean markdown with bullet points, bold text, and appropriate emojis. Keep tone motivating and accessible.`;
+
+        const userPrompt = `Test Question: "${question || ''}"
+Options:
+- A: ${options?.A || options?.a || ''}
+- B: ${options?.B || options?.b || ''}
+- C: ${options?.C || options?.c || ''}
+- D: ${options?.D || options?.d || ''}
+Official Correct Answer: ${String(solution || '').toUpperCase()}
+
+${userQuery ? `User's Specific Question: "${userQuery}"` : 'Please provide:'}
+
+Structure your answer:
+1. 💡 **Warum Antwort ${String(solution || '').toUpperCase()} richtig ist**: Explain clearly the constitutional article, democratic principle, or historical fact that proves this answer.
+2. 🚫 **Warum die anderen Optionen falsch sind**: Briefly address why the other choices are incorrect distractors or misconceptions.
+3. 🧠 **Merkhilfe / Eselsbrücke**: Provide a clever mnemonic, keyword association, or mental image so the student instantly recalls the correct answer in the real exam.
+
+Language: Please respond fully in ${targetLangName}.`;
+
+        const explanation = await generateWithGemini(userPrompt, systemPrompt);
+        res.json({ success: true, explanation });
+    } catch (err: any) {
+        console.error('AI Explain Error:', err);
+        res.status(500).json({ error: err.message || 'AI explanation generation failed' });
+    }
+});
+
+app.post('/api/ai/study-coach', async (req: Request, res: Response) => {
+    try {
+        const { attempted, total, accuracy, weakCategories, incorrectCount, mockStats, userState, language } = req.body || {};
+        const lang = (typeof language === 'string' && language.trim()) ? language.trim() : 'de';
+        const isEn = lang === 'en';
+
+        const systemPrompt = `You are an elite academic coach for students taking the German citizenship examination ("Einbürgerungstest / Leben in Deutschland").
+Analyze the student's study performance telemetry and deliver an insightful, personalized diagnostic report and 3-step action plan in ${isEn ? 'English' : 'German'}.
+Keep it concise, highly structured, and actionable.`;
+
+        const userPrompt = `Student Performance Profile:
+- Progress: ${attempted || 0} out of ${total || 310} questions attempted (${Math.round(((attempted || 0) / (total || 310)) * 100)}%)
+- Current Accuracy: ${accuracy || 0}%
+- Incorrect Questions in Queue: ${incorrectCount || 0}
+- Problematic/Weak Categories: ${Array.isArray(weakCategories) && weakCategories.length > 0 ? weakCategories.join(', ') : 'None yet (balanced performance)'}
+- Federal State: ${userState || 'Bundesweit / General'}
+- Mock Exam History: ${mockStats || 'No mock exams taken yet'}
+
+Please generate:
+1. 🎯 **Prüfungsreife-Einschätzung (Readiness Level)**: Rate readiness from 0% to 100% and assign a status (e.g., "Prüfungsbereit", "Auf der Zielgeraden", "Aufbauphase", "Anfänger").
+2. 🔍 **Diagnose & Lernmuster**: Analyze their performance, what areas need attention first, and typical pitfalls for this profile.
+3. 📋 **Ihr 3-Schritte-Erfolgsplan**: Give 3 concrete steps for their next 24-48 hours of preparation (e.g. which specific session to repeat, practicing wrong questions, taking a timed mock exam).
+
+Language: ${isEn ? 'English' : 'German'}.`;
+
+        const report = await generateWithGemini(userPrompt, systemPrompt);
+        res.json({ success: true, report });
+    } catch (err: any) {
+        console.error('AI Study Coach Error:', err);
+        res.status(500).json({ error: err.message || 'AI Study Coach generation failed' });
+    }
+});
+
+app.post('/api/ai/similar-question', async (req: Request, res: Response) => {
+    try {
+        const { question, options, solution, category, language } = req.body || {};
+        const lang = (typeof language === 'string' && language.trim()) ? language.trim() : 'de';
+        const isEn = lang === 'en';
+
+        const systemPrompt = `You are a test-design expert for the German citizenship exam ("Einbürgerungstest / Leben in Deutschland").
+Create a new, high-quality multiple-choice practice question in ${isEn ? 'English' : 'German'} that tests the exact same constitutional concept or historical principle as the provided question, but with fresh phrasing and 4 distinct options (A, B, C, D).
+Return strictly JSON with the following structure:
+{
+  "question": "The question text",
+  "options": {
+    "A": "Option text",
+    "B": "Option text",
+    "C": "Option text",
+    "D": "Option text"
+  },
+  "correctAnswer": "A",
+  "explanation": "Brief explanation why this answer is correct"
+}`;
+        const userPrompt = `Base Question: "${question || ''}"
+Category: ${category || 'Civics / History'}
+Options:
+- A: ${options?.A || options?.a || ''}
+- B: ${options?.B || options?.b || ''}
+- C: ${options?.C || options?.c || ''}
+- D: ${options?.D || options?.d || ''}
+Original Correct Answer: ${solution || ''}
+
+Create a realistic similar practice question testing the same principle. Return ONLY valid JSON.`;
+
+        const raw = await generateWithGemini(userPrompt, systemPrompt);
+        const cleaned = raw.replace(/```json/g, '').replace(/```/g, '').trim();
+        const parsed = JSON.parse(cleaned);
+        res.json({ success: true, item: parsed });
+    } catch (err: any) {
+        console.error('AI Similar Question Error:', err);
+        res.status(500).json({ error: err.message || 'Failed to generate similar question' });
     }
 });
 

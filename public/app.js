@@ -92,6 +92,8 @@ let currentSessionRunStats = {
 };
 
 // Active In-Memory Variables for State Management
+let currentQuestionIndex = 0;
+let userAnswers = {};
 let userProgress = {};
 let answersMap = {};
 let completedSessions = new Set();
@@ -346,24 +348,69 @@ function launchConfetti(mode = 'mild') {
 // -------------------------------------------------------------
 let pendingResetAction = null;
 
-function openResetConfirmModal({ title, desc, onConfirm }) {
+function openResetConfirmModal(config = {}) {
   const modal = document.getElementById('reset-confirm-modal');
   if (!modal) {
-    if (confirm(desc)) onConfirm();
+    if (confirm(config.desc || config.title || "Confirm reset?")) {
+      if (typeof config.onConfirm === 'function') config.onConfirm();
+    }
     return;
   }
+  const isEn = (stateStore && stateStore.appLanguage === 'en');
   const tEl = document.getElementById('reset-confirm-title');
   const dEl = document.getElementById('reset-confirm-desc');
-  if (tEl && title) tEl.textContent = title;
-  if (dEl && desc) dEl.textContent = desc;
+  const listTitle = document.getElementById('reset-confirm-list-title');
+  const item1 = document.getElementById('reset-confirm-item-1');
+  const item2 = document.getElementById('reset-confirm-item-2');
+  const item3 = document.getElementById('reset-confirm-item-3');
+  const cancelBtn = document.getElementById('reset-confirm-cancel-btn');
+  const proceedBtnText = document.getElementById('reset-confirm-proceed-text');
+  const proceedBtn = document.getElementById('reset-confirm-proceed-btn');
 
-  pendingResetAction = onConfirm;
+  const isMaster = config.isMaster === true;
+
+  if (isMaster) {
+    if (tEl) tEl.textContent = config.title || (isEn ? "Master Reset: Reset all training progress?" : "Master Reset: Alle Trainingsdaten zurücksetzen?");
+    if (dEl) dEl.textContent = config.desc || (isEn 
+      ? "Are you sure you want to perform a master reset? This will wipe all 20 sessions, answers, test history, and statistics back to zero. This action cannot be undone."
+      : "Sind Sie sicher, dass Sie einen Master-Reset durchführen möchten? Dadurch werden alle 20 Sessions, Antworten, Prüfungshistorien und Statistiken auf null zurückgesetzt. Diese Aktion kann nicht rückgängig gemacht werden.");
+    if (listTitle) listTitle.textContent = isEn ? "The following will be completely reset to 0:" : "Folgende Daten werden vollständig auf 0 gesetzt:";
+    if (item1) item1.textContent = isEn ? "All 20 BAMF categories & all question answers" : "Alle 20 BAMF-Kategorien & alle Fragen-Antworten";
+    if (item2) item2.textContent = isEn ? "Flagged, wrong, and skipped question queues" : "Gemerkte, fehlerhafte und übersprungene Fragen";
+    if (item3) item3.textContent = isEn ? "All 7-day activity & mock exam history" : "Alle 7-Tage-Aktivitäten & Prüfungshistorien";
+    if (proceedBtnText) proceedBtnText.textContent = isEn ? "Yes, Master Reset All" : "Ja, Master-Reset durchführen";
+    if (proceedBtn) {
+      proceedBtn.className = "px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold shadow-md transition cursor-pointer flex items-center space-x-1.5";
+    }
+  } else {
+    // Single session or continuous reset
+    if (tEl) tEl.textContent = config.title || (isEn ? "Reset session progress?" : "Session-Fortschritt zurücksetzen?");
+    if (dEl) dEl.textContent = config.desc || (isEn 
+      ? "Reset progress only for this session? All other sessions, stats, and mock exams will remain completely intact."
+      : "Möchten Sie den Fortschritt nur für diese Sitzung zurücksetzen? Alle anderen Sessions, Statistiken und Probeprüfungen bleiben vollständig erhalten.");
+    if (listTitle) listTitle.textContent = isEn ? "Changes for this session:" : "Änderungen für diese Session:";
+    if (item1) item1.textContent = isEn ? "Answers for questions in this session will be cleared" : "Antworten für Fragen dieser Session werden zurückgesetzt";
+    if (item2) item2.textContent = isEn ? "Session progress will return to Question 1" : "Session-Fortschritt startet wieder bei Frage 1";
+    if (item3) item3.textContent = isEn ? "All other 19 sessions & master settings remain safe" : "Alle anderen 19 Sessions & Einstellungen bleiben unberührt";
+    if (proceedBtnText) proceedBtnText.textContent = isEn ? "Yes, Reset This Session" : "Ja, nur diese Session zurücksetzen";
+    if (proceedBtn) {
+      proceedBtn.className = "px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-semibold shadow-md transition cursor-pointer flex items-center space-x-1.5";
+    }
+  }
+
+  if (cancelBtn) cancelBtn.textContent = isEn ? "Cancel" : "Abbrechen";
+
+  pendingResetAction = typeof config.onConfirm === 'function' ? config.onConfirm : (isMaster ? executeCompleteReset : null);
   modal.classList.remove('hidden');
+  modal.classList.add('flex');
 }
 
 function closeResetConfirmModal() {
   const modal = document.getElementById('reset-confirm-modal');
-  if (modal) modal.classList.add('hidden');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
   pendingResetAction = null;
 }
 
@@ -386,8 +433,11 @@ function confirmResetSession(sessionId, event) {
   const sName = isEn && session.name_en ? session.name_en : session.name;
 
   openResetConfirmModal({
-    title: dict.resetModalTitle,
-    desc: dict.resetSessionPrompt(sName),
+    isMaster: false,
+    title: isEn ? `Reset Session ${sessionId}?` : `Session ${sessionId} zurücksetzen?`,
+    desc: isEn 
+      ? `Reset progress only for Session ${sessionId} ("${sName}")? All other sessions and settings remain safe.` 
+      : `Fortschritt nur für Session ${sessionId} ("${sName}") zurücksetzen? Alle anderen Sessions und Einstellungen bleiben erhalten.`,
     onConfirm: () => {
       resetSessionProgress(sessionId);
     }
@@ -398,11 +448,13 @@ function confirmResetContinuous(event) {
   if (event) event.stopPropagation();
   soundFX.playTick();
   const isEn = stateStore.appLanguage === 'en';
-  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
 
   openResetConfirmModal({
-    title: dict.resetModalTitle,
-    desc: dict.resetContinuousPrompt,
+    isMaster: false,
+    title: isEn ? "Reset Continuous Practice?" : "Durchgehende Übung zurücksetzen?",
+    desc: isEn 
+      ? "Reset progress for the continuous 300-question run back to Question 1? Other settings remain safe." 
+      : "Fortschritt des 300-Fragen-Laufs auf Frage 1 zurücksetzen? Andere Einstellungen bleiben erhalten.",
     onConfirm: () => {
       resetContinuousPractice();
     }
@@ -417,6 +469,7 @@ function resetSessionProgress(sessionId) {
   // 1. Wipe ONLY answered states for question IDs belonging to this session
   qNums.forEach(id => {
     delete answersMap[id];
+    delete userAnswers[id];
     if (stateStore.userAnswers) delete stateStore.userAnswers[id];
   });
 
@@ -437,6 +490,9 @@ function resetSessionProgress(sessionId) {
   if (stateStore.userProgress) {
     stateStore.userProgress[sessionId] = { answeredQuestionIds: [], completed: false };
   }
+  if (userProgress) {
+    userProgress[sessionId] = { answeredQuestionIds: [], completed: false };
+  }
 
   // 2. Recalculate overall stats directly from remaining userAnswers
   let c = 0;
@@ -454,6 +510,9 @@ function resetSessionProgress(sessionId) {
   renderOfficialSessionsGrid();
   updateSessionCharts();
   soundFX.playTick();
+
+  const isEn = (stateStore && stateStore.appLanguage === 'en');
+  showToast(isEn ? `Session ${sessionId} progress reset.` : `Fortschritt für Session ${sessionId} zurückgesetzt.`);
 }
 
 function resetContinuousPractice() {
@@ -462,6 +521,7 @@ function resetContinuousPractice() {
     const id = String(i);
     qNums.push(id);
     delete answersMap[id];
+    delete userAnswers[id];
     if (stateStore.userAnswers) delete stateStore.userAnswers[id];
   }
 
@@ -483,7 +543,22 @@ function resetContinuousPractice() {
     if (stateStore.userProgress) {
       stateStore.userProgress[s.id] = { answeredQuestionIds: [], completed: false };
     }
+    if (userProgress) {
+      userProgress[s.id] = { answeredQuestionIds: [], completed: false };
+    }
   });
+
+  stateStore.continuousProgress = {
+    answeredQuestionIds: [],
+    lastQuestionNum: null,
+    currentQuestionNum: null,
+    nextQuestionNum: null,
+    completed: false,
+    updatedAt: Date.now()
+  };
+  try {
+    localStorage.removeItem('continuousProgress');
+  } catch (e) {}
 
   let c = 0;
   let inc = 0;
@@ -498,8 +573,12 @@ function resetContinuousPractice() {
   saveStateToStorage();
   updateDashboardTopStats();
   renderOfficialSessionsGrid();
+  updateContinuousCardUI();
   updateSessionCharts();
   soundFX.playTick();
+
+  const isEn = (stateStore && stateStore.appLanguage === 'en');
+  showToast(isEn ? "Continuous practice progress reset." : "Fortschritt der durchgehenden Übung zurückgesetzt.");
 }
 
 // Initialize Store
@@ -527,14 +606,20 @@ function loadStateFromStorage() {
       } catch (e) {}
     }
 
-    const uaRaw = localStorage.getItem('userAnswers');
+    const uaRaw = localStorage.getItem('user_answers') || localStorage.getItem('userAnswers');
     if (uaRaw) {
       try {
-        stateStore.userAnswers = JSON.parse(uaRaw);
+        userAnswers = JSON.parse(uaRaw);
+        stateStore.userAnswers = { ...userAnswers };
         if (!stateStore.answeredQuestionIds || stateStore.answeredQuestionIds.length === 0) {
           stateStore.answeredQuestionIds = Object.keys(stateStore.userAnswers);
         }
       } catch (e) {}
+    }
+
+    const savedIndex = localStorage.getItem('current_question_index');
+    if (savedIndex !== null) {
+      currentQuestionIndex = parseInt(savedIndex, 10) || 0;
     }
 
     const fqRaw = localStorage.getItem('flaggedQuestions');
@@ -578,10 +663,46 @@ function loadStateFromStorage() {
     if (!stateStore.userAnswers) stateStore.userAnswers = {};
     if (!stateStore.skippedQuestions) stateStore.skippedQuestions = [];
     if (!stateStore.mockExamHistory) stateStore.mockExamHistory = [];
+    const mehRaw = localStorage.getItem('mockExamHistory');
+    if (mehRaw) {
+      try {
+        const parsedMeh = JSON.parse(mehRaw);
+        if (Array.isArray(parsedMeh) && parsedMeh.length > 0) {
+          stateStore.mockExamHistory = parsedMeh;
+        }
+      } catch (e) {}
+    }
     if (!stateStore.dailyHistory) stateStore.dailyHistory = {};
 
     // Synchronize stats.attempted with unique answered question count
     stateStore.stats.attempted = stateStore.answeredQuestionIds.length;
+
+    // Load or initialize continuous practice progress
+    const cpRaw = localStorage.getItem('continuousProgress');
+    if (cpRaw) {
+      try {
+        stateStore.continuousProgress = JSON.parse(cpRaw);
+      } catch (e) {
+        stateStore.continuousProgress = null;
+      }
+    }
+    if (!stateStore.continuousProgress || typeof stateStore.continuousProgress !== 'object') {
+      const genAnswered = [];
+      for (let i = 1; i <= 300; i++) {
+        const id = String(i);
+        if ((userAnswers && userAnswers[id]) || (stateStore.userAnswers && stateStore.userAnswers[id]) || (stateStore.answeredQuestionIds && stateStore.answeredQuestionIds.includes(id))) {
+          genAnswered.push(id);
+        }
+      }
+      stateStore.continuousProgress = {
+        answeredQuestionIds: genAnswered,
+        currentQuestionNum: null,
+        lastQuestionNum: genAnswered.length > 0 ? genAnswered[genAnswered.length - 1] : null,
+        nextQuestionNum: null,
+        completed: genAnswered.length >= 300,
+        updatedAt: Date.now()
+      };
+    }
 
     // Synchronize active in-memory variables
     userProgress = { ...(stateStore.sessionProgress || {}) };
@@ -602,11 +723,14 @@ function saveStateToStorage() {
     localStorage.setItem('appLanguage', stateStore.appLanguage || 'de');
     localStorage.setItem('userProgress', JSON.stringify(userProgress || {}));
     localStorage.setItem('userAnswers', JSON.stringify(answersMap || {}));
+    localStorage.setItem('user_answers', JSON.stringify(answersMap || {}));
+    userAnswers = { ...(answersMap || {}) };
     localStorage.setItem('flaggedQuestions', JSON.stringify([...flaggedSet]));
     localStorage.setItem('skippedQuestions', JSON.stringify(skippedQueue || []));
     localStorage.setItem('mockExamHistory', JSON.stringify(stateStore.mockExamHistory || []));
     localStorage.setItem('incorrectQuestionIds', JSON.stringify(stateStore.incorrectQuestionIds || []));
     localStorage.setItem('dailyActivity', JSON.stringify(dailyActivity || {}));
+    localStorage.setItem('continuousProgress', JSON.stringify(stateStore.continuousProgress || {}));
   } catch (e) {
     console.warn("Storage save error:", e);
   }
@@ -650,6 +774,162 @@ function getCategoryProgress(sessionId) {
     completed,
     isStarted
   };
+}
+
+// -------------------------------------------------------------
+// CONTINUOUS PRACTICE (ALL 300 QUESTIONS) HELPERS & UI
+// -------------------------------------------------------------
+// Calculate solved count for continuous practice (Tasks 1 to 300)
+function getContinuousSolvedCount() {
+  const answeredSet = new Set(
+    (stateStore.continuousProgress?.answeredQuestionIds || []).map(String)
+  );
+  for (let i = 1; i <= 300; i++) {
+    const idStr = String(i);
+    if ((answersMap && answersMap[idStr]) || (stateStore.userAnswers && stateStore.userAnswers[idStr]) || (stateStore.answeredQuestionIds && stateStore.answeredQuestionIds.includes(idStr))) {
+      answeredSet.add(idStr);
+    }
+  }
+  return Math.min(300, answeredSet.size);
+}
+
+// Find first unanswered question number in continuous run (1 to 300)
+function findNextUnansweredContinuousNum() {
+  const answeredSet = new Set(
+    (stateStore.continuousProgress?.answeredQuestionIds || []).map(String)
+  );
+  for (let i = 1; i <= 300; i++) {
+    const idStr = String(i);
+    if ((answersMap && answersMap[idStr]) || (stateStore.userAnswers && stateStore.userAnswers[idStr]) || (stateStore.answeredQuestionIds && stateStore.answeredQuestionIds.includes(idStr))) {
+      answeredSet.add(idStr);
+    }
+  }
+  for (let i = 1; i <= 300; i++) {
+    if (!answeredSet.has(String(i))) {
+      return i;
+    }
+  }
+  return 1;
+}
+
+// Update the Continuous Practice Dashboard Card UI
+function updateContinuousCardUI() {
+  const card = document.getElementById('continuous-mode-card');
+  if (!card) return;
+
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  const solvedCount = getContinuousSolvedCount();
+  const totalQuestions = 300;
+  const isCompleted = (solvedCount >= totalQuestions) || !!(stateStore.continuousProgress?.completed);
+  const isInProgress = (solvedCount > 0 && !isCompleted);
+  const percent = totalQuestions > 0 ? Math.min(100, Math.round((solvedCount / totalQuestions) * 100)) : 0;
+
+  // 1. Solved label (shows attempted out of 300, matching session cards)
+  const solvedEl = document.getElementById('continuous-solved-count');
+  if (solvedEl) {
+    solvedEl.textContent = dict.sessionSolved(solvedCount, totalQuestions);
+    if (isCompleted) {
+      solvedEl.className = 'font-bold text-emerald-600 dark:text-emerald-400 text-xs';
+    } else if (isInProgress) {
+      solvedEl.className = 'font-bold text-indigo-600 dark:text-indigo-400 text-xs';
+    } else {
+      solvedEl.className = 'font-medium theme-text-muted text-xs';
+    }
+  }
+
+  // 2. Circular progress ring
+  const circle = document.getElementById('continuous-progress-circle');
+  const percentEl = document.getElementById('continuous-progress-percent');
+  const radius = 18;
+  const circ = 2 * Math.PI * radius; // 113.097
+  const offset = circ - (percent / 100) * circ;
+
+  if (circle) {
+    circle.style.strokeDasharray = `${circ}`;
+    circle.style.strokeDashoffset = `${offset}`;
+    if (isCompleted) {
+      circle.style.stroke = '#10b981';
+      circle.style.opacity = '1';
+    } else if (isInProgress) {
+      circle.style.stroke = '#4f46e5';
+      circle.style.opacity = '1';
+    } else {
+      circle.style.stroke = '#4f46e5';
+      circle.style.opacity = '0.15';
+    }
+  }
+
+  if (percentEl) {
+    percentEl.textContent = `${percent}%`;
+    if (isCompleted) {
+      percentEl.className = 'absolute text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400';
+    } else if (isInProgress) {
+      percentEl.className = 'absolute text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400';
+    } else {
+      percentEl.className = 'absolute text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400 opacity-60';
+    }
+  }
+
+  // 3. Status Badge
+  const badgeEl = document.getElementById('continuous-mode-badge');
+  if (badgeEl) {
+    if (isCompleted) {
+      badgeEl.classList.remove('hidden');
+      badgeEl.textContent = dict.continuousBadgeCompleted || (isEn ? 'COMPLETED' : 'ABGESCHLOSSEN');
+      badgeEl.className = 'inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black tracking-wide bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-xs';
+    } else if (isInProgress) {
+      badgeEl.classList.remove('hidden');
+      badgeEl.textContent = dict.continuousBadgeInProgress || (isEn ? 'IN PROGRESS' : 'IN ARBEIT');
+      badgeEl.className = 'inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide bg-indigo-100 text-indigo-800 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60 shadow-xs';
+    } else {
+      badgeEl.classList.add('hidden');
+    }
+  }
+
+  // 4. Position / Next question indicator
+  const posEl = document.getElementById('continuous-last-position');
+  if (posEl) {
+    if (isCompleted) {
+      posEl.textContent = isEn ? '• All 300 mastered!' : '• Alle 300 gemeistert!';
+    } else if (isInProgress) {
+      let nextNum = stateStore.continuousProgress?.currentQuestionNum;
+      const answeredSet = new Set((stateStore.continuousProgress?.answeredQuestionIds || []).map(String));
+      for (let i = 1; i <= 300; i++) {
+        if ((answersMap && answersMap[String(i)]) || (stateStore.userAnswers && stateStore.userAnswers[String(i)])) {
+          answeredSet.add(String(i));
+        }
+      }
+      if (!nextNum || answeredSet.has(String(nextNum))) {
+        nextNum = findNextUnansweredContinuousNum();
+      }
+      posEl.textContent = isEn ? `• Next: Task ${nextNum}` : `• Nächste: Aufgabe ${nextNum}`;
+    } else {
+      posEl.textContent = '';
+    }
+  }
+
+  // 5. Button Text
+  const btnText = document.getElementById('continuous-mode-btn-text');
+  if (btnText) {
+    if (isCompleted) {
+      btnText.innerHTML = dict.continuousReviewBtn || (isEn ? 'Review &rarr;' : 'Wiederholen &rarr;');
+    } else if (isInProgress) {
+      let nextNum = stateStore.continuousProgress?.currentQuestionNum;
+      const answeredSet = new Set((stateStore.continuousProgress?.answeredQuestionIds || []).map(String));
+      for (let i = 1; i <= 300; i++) {
+        if ((answersMap && answersMap[String(i)]) || (stateStore.userAnswers && stateStore.userAnswers[String(i)])) {
+          answeredSet.add(String(i));
+        }
+      }
+      if (!nextNum || answeredSet.has(String(nextNum))) {
+        nextNum = findNextUnansweredContinuousNum();
+      }
+      btnText.innerHTML = dict.continuousContinueBtn ? dict.continuousContinueBtn(nextNum) : (isEn ? `Continue (Task ${nextNum}) &rarr;` : `Fortsetzen (Aufgabe ${nextNum}) &rarr;`);
+    } else {
+      btnText.innerHTML = dict.continuousModeBtn || (isEn ? 'All 300 &rarr;' : 'Alle 300 &rarr;');
+    }
+  }
 }
 
 // Set Theme
@@ -766,9 +1046,49 @@ const I18N_DICTIONARY = {
     continuousModeTitle: "Durchgehender Übungsmodus (Alle 300 Fragen)",
     continuousModeDesc: "Üben Sie alle 300 allgemeinen BAMF-Fragen nacheinander in einem Durchgang.",
     continuousModeBtn: "Alle 300 &rarr;",
+    continuousContinueBtn: (q) => `Fortsetzen (Aufgabe ${q}) &rarr;`,
+    continuousReviewBtn: "Wiederholen &rarr;",
+    continuousBadgeCompleted: "ABGESCHLOSSEN",
+    continuousBadgeInProgress: "IN ARBEIT",
     continuousModalTitle: "📖 Durchgehender Übungsmodus (Alle 300 Fragen)",
     continuousTaskInfo: (num, total, remaining) => `Aufgabe ${num} von ${total} • Verbleibend: ${remaining}`,
     continuousCompleted: "🎉 Herzlichen Glückwunsch! Sie haben alle 300 BAMF-Fragen erfolgreich im durchgehenden Übungsmodus abgeschlossen!",
+    mockExamSummaryNone: "0 Prüfungen absolviert",
+    mockExamSummaryTaken: (n, last, passed) => `${n} ${n === 1 ? 'Prüfung' : 'Prüfungen'} • Letzte: ${last}/33 (${passed ? 'Bestanden' : 'Nicht bestanden'})`,
+    mockExamHistoryBtn: "Verlauf",
+    examHistoryModalTitle: "BAMF Probeprüfungshistorie & Leistungsverlauf",
+    examHistoryModalSubtitle: "Auswertung aller 33-Fragen-Probeprüfungen mit Trendanalyse (Bestehensgrenze: 17/33)",
+    examHistoryLabelTotal: "Prüfungen",
+    examHistorySubTotal: "absolviert",
+    examHistoryLabelAvg: "Durchschnitt",
+    examHistorySubAvg: "Punkte im Schnitt",
+    examHistoryLabelBest: "Beste Punktzahl",
+    examHistorySubBest: "Persönlicher Rekord",
+    examHistoryLabelRate: "Bestehensquote",
+    examHistorySubRate: "≥ 17 Punkte",
+    examHistoryListTitle: "Historie aller Prüfungsergebnisse",
+    examHistoryThresholdLabel: "BAMF-Bestehensgrenze: 17 / 33",
+    examHistoryEmptyTitle: "Noch keine Probeprüfungen absolviert",
+    examHistoryEmptyDesc: "Starten Sie eine 33-Fragen-BAMF-Probeprüfung unter realen Zeitbedingungen (60 Min., 17 Punkte zum Bestehen), um Ihren Leistungsverlauf zu erfassen.",
+    examHistoryStartNewBtn: "Neue Prüfung starten",
+    examHistoryCloseBtn: "Schließen",
+    examHistoryResetBtn: "Historie zurücksetzen",
+    examHistoryResetConfirm: "Möchten Sie alle gespeicherten Prüfungsergebnisse wirklich zurücksetzen?",
+    trendIncreasingTitle: "Leistung steigt! 📈",
+    trendDecreasingTitle: "Leistung sinkt 📉",
+    trendSteadyTitle: "Leistung ist stabil ➡️",
+    trendFirstTitle: "Erste Prüfung erfasst 🏁",
+    trendNoneTitle: "Noch kein Trend vorhanden",
+    trendIncreasingDetail: (d, prev, curr) => `Hervorragend! Sie haben sich um +${d} Punkte gegenüber der vorherigen Prüfung verbessert (${prev}/33 &rarr; ${curr}/33).`,
+    trendDecreasingDetail: (d, prev, curr) => `Achtung: Ihr Ergebnis ist um ${Math.abs(d)} Punkte gesunken (${prev}/33 &rarr; ${curr}/33). Wiederholen Sie fehlerhafte Aufgaben im Dashboard.`,
+    trendSteadyDetail: (score) => `Konstante Leistung: Sie haben erneut ${score}/33 Punkte erzielt.`,
+    trendFirstDetail: (score) => `Erste Prüfung mit ${score}/33 Punkten abgeschlossen. Absolvieren Sie weitere Tests, um Ihre Leistungsentwicklung zu verfolgen.`,
+    trendNoneDetail: "Absolvieren Sie Probeprüfungen, um Ihren persönlichen Leistungsverlauf zu visualisieren.",
+    mockResultTrendTitle: "Prüfungsverlauf & Leistungsentwicklung",
+    mockResultHistoryHeading: "Bisherige Prüfungen & Fortschritt:",
+    mockResultOpenHistoryBtn: "Vollständige Prüfungshistorie im neuen Fenster anzeigen &rarr;",
+    examStatusPassed: "BESTANDEN",
+    examStatusFailed: "NICHT BESTANDEN",
     sessionsBadge: "📖 BAMF Gesamtfragenkatalog (Teil I, Aufgaben 1–300)",
     sessionsTitle: "Official BAMF Practice Sessions (20 Categories)",
     sessionsDesc: "20 eigenständige Lerneinheiten nach den offiziellen BAMF Themenschwerpunkten mit Skip-Queue & sofortiger Erfolgskontrolle.",
@@ -940,9 +1260,49 @@ const I18N_DICTIONARY = {
     continuousModeTitle: "Continuous Practice (All 300 Questions)",
     continuousModeDesc: "Practice all 300 general BAMF questions in sequence (Tasks 1 to 300) in one continuous session.",
     continuousModeBtn: "All 300 &rarr;",
+    continuousContinueBtn: (q) => `Continue (Task ${q}) &rarr;`,
+    continuousReviewBtn: "Review &rarr;",
+    continuousBadgeCompleted: "COMPLETED",
+    continuousBadgeInProgress: "IN PROGRESS",
     continuousModalTitle: "📖 Continuous Practice (All 300 Questions)",
     continuousTaskInfo: (num, total, remaining) => `Task ${num} of ${total} • Remaining in queue: ${remaining}`,
     continuousCompleted: "🎉 Congratulations! You have successfully completed all 300 BAMF questions in continuous practice mode!",
+    mockExamSummaryNone: "0 exams completed",
+    mockExamSummaryTaken: (n, last, passed) => `${n} ${n === 1 ? 'exam' : 'exams'} • Last: ${last}/33 (${passed ? 'Passed' : 'Failed'})`,
+    mockExamHistoryBtn: "History",
+    examHistoryModalTitle: "BAMF Mock Exam History & Performance Trend",
+    examHistoryModalSubtitle: "Evaluation of all 33-question mock exams with trend analysis (Passing mark: 17/33)",
+    examHistoryLabelTotal: "Exams",
+    examHistorySubTotal: "completed",
+    examHistoryLabelAvg: "Average Score",
+    examHistorySubAvg: "points average",
+    examHistoryLabelBest: "Best Score",
+    examHistorySubBest: "Personal Record",
+    examHistoryLabelRate: "Pass Rate",
+    examHistorySubRate: "≥ 17 points",
+    examHistoryListTitle: "History of All Exam Results",
+    examHistoryThresholdLabel: "BAMF Passing Mark: 17 / 33",
+    examHistoryEmptyTitle: "No mock exams completed yet",
+    examHistoryEmptyDesc: "Start a 33-question BAMF mock exam under real exam conditions (60 min, 17 points to pass) to track your score progression.",
+    examHistoryStartNewBtn: "Start New Exam",
+    examHistoryCloseBtn: "Close",
+    examHistoryResetBtn: "Reset History",
+    examHistoryResetConfirm: "Do you really want to reset all saved mock exam records?",
+    trendIncreasingTitle: "Performance is increasing! 📈",
+    trendDecreasingTitle: "Performance is decreasing 📉",
+    trendSteadyTitle: "Performance is steady ➡️",
+    trendFirstTitle: "First exam recorded 🏁",
+    trendNoneTitle: "No trend available yet",
+    trendIncreasingDetail: (d, prev, curr) => `Great job! You gained +${d} points compared to the previous exam (${prev}/33 &rarr; ${curr}/33). Keep going!`,
+    trendDecreasingDetail: (d, prev, curr) => `Attention: Your score dropped by ${Math.abs(d)} points (${prev}/33 &rarr; ${curr}/33). Review incorrect answers in the dashboard.`,
+    trendSteadyDetail: (score) => `Consistent performance: You scored ${score}/33 points again.`,
+    trendFirstDetail: (score) => `First exam completed with ${score}/33 points. Take more tests to track your learning progression.`,
+    trendNoneDetail: "Complete mock exams to visualize your personal performance trend.",
+    mockResultTrendTitle: "Exam Progression & Performance Trend",
+    mockResultHistoryHeading: "Previous Exams & Progress:",
+    mockResultOpenHistoryBtn: "View full exam history in new window &rarr;",
+    examStatusPassed: "PASSED",
+    examStatusFailed: "FAILED",
     sessionsBadge: "📖 BAMF Complete Question Catalog (Part I, Tasks 1–300)",
     sessionsTitle: "Official BAMF Practice Sessions (20 Categories)",
     sessionsDesc: "20 standalone learning sessions covering the official BAMF topic areas with skip queue & immediate feedback.",
@@ -1074,6 +1434,24 @@ function applyAppLanguage(lang) {
   setTxt('mock-exam-title', dict.mockExamTitle);
   setTxt('mock-exam-desc', dict.mockExamDesc);
   setHtml('mock-exam-btn', dict.mockExamBtn);
+  setTxt('mock-history-btn-text', dict.mockExamHistoryBtn);
+  setTxt('exam-history-modal-title', dict.examHistoryModalTitle);
+  setTxt('exam-history-modal-subtitle', dict.examHistoryModalSubtitle);
+  setTxt('exam-history-label-total', dict.examHistoryLabelTotal);
+  setTxt('exam-history-sub-total', dict.examHistorySubTotal);
+  setTxt('exam-history-label-avg', dict.examHistoryLabelAvg);
+  setTxt('exam-history-sub-avg', dict.examHistorySubAvg);
+  setTxt('exam-history-label-best', dict.examHistoryLabelBest);
+  setTxt('exam-history-sub-best', dict.examHistorySubBest);
+  setTxt('exam-history-label-rate', dict.examHistoryLabelRate);
+  setTxt('exam-history-sub-rate', dict.examHistorySubRate);
+  setTxt('exam-history-list-title', dict.examHistoryListTitle);
+  setTxt('exam-history-reset-btn', dict.examHistoryResetBtn);
+  setTxt('exam-history-start-new-text', dict.examHistoryStartNewBtn);
+  setTxt('exam-history-close-btn', dict.examHistoryCloseBtn);
+  setTxt('mock-result-trend-title', dict.mockResultTrendTitle);
+  setTxt('mock-result-history-heading', dict.mockResultHistoryHeading);
+  setTxt('mock-result-open-history-btn', dict.mockResultOpenHistoryBtn);
 
   // Readiness labels
   setTxt('readiness-score-label', dict.readinessScoreLabel);
@@ -1383,6 +1761,9 @@ function updateDashboardTopStats() {
   if (stateCodeEl) stateCodeEl.textContent = stateObj.code;
   const stateIconEl = document.getElementById('card-state-icon');
   if (stateIconEl) stateIconEl.textContent = stateObj.icon || '🏛️';
+
+  updateContinuousCardUI();
+  renderMockExamCardUI();
 }
 
 // Fetch BAMF Evaluation & Stats
@@ -1865,6 +2246,469 @@ async function startMockExam() {
   }
 }
 
+// -------------------------------------------------------------
+// BAMF MOCK EXAM HISTORY & PERFORMANCE TREND ANALYTICS
+// -------------------------------------------------------------
+function calculateExamTrend(history = []) {
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  const total = history.length;
+  if (total === 0) {
+    return {
+      total: 0,
+      bestScore: 0,
+      avgScore: '0.0',
+      passCount: 0,
+      passRate: 0,
+      trendType: 'none',
+      trendTitle: dict.trendNoneTitle,
+      trendDetail: dict.trendNoneDetail,
+      trendBadge: '0 Tests',
+      trendColor: 'slate',
+      delta: 0,
+      lastScore: 0,
+      prevScore: null
+    };
+  }
+
+  const scores = history.map(h => typeof h.score === 'number' ? h.score : 0);
+  const bestScore = Math.max(...scores);
+  const sumScore = scores.reduce((a, b) => a + b, 0);
+  const avgScore = (sumScore / total).toFixed(1);
+  const passCount = history.filter(h => (h.score >= 17) || h.passed).length;
+  const passRate = Math.round((passCount / total) * 100);
+
+  const lastExam = history[history.length - 1];
+  const lastScore = typeof lastExam.score === 'number' ? lastExam.score : 0;
+
+  if (total === 1) {
+    return {
+      total,
+      bestScore,
+      avgScore,
+      passCount,
+      passRate,
+      trendType: 'first',
+      trendTitle: dict.trendFirstTitle,
+      trendDetail: dict.trendFirstDetail(lastScore),
+      trendBadge: '1. Test',
+      trendColor: 'amber',
+      delta: 0,
+      lastScore,
+      prevScore: null
+    };
+  }
+
+  const prevExam = history[history.length - 2];
+  const prevScore = typeof prevExam.score === 'number' ? prevExam.score : 0;
+  const delta = lastScore - prevScore;
+
+  if (delta > 0) {
+    return {
+      total,
+      bestScore,
+      avgScore,
+      passCount,
+      passRate,
+      trendType: 'increasing',
+      trendTitle: dict.trendIncreasingTitle,
+      trendDetail: dict.trendIncreasingDetail(delta, prevScore, lastScore),
+      trendBadge: `+${delta} ↗`,
+      trendColor: 'emerald',
+      delta,
+      lastScore,
+      prevScore
+    };
+  } else if (delta < 0) {
+    return {
+      total,
+      bestScore,
+      avgScore,
+      passCount,
+      passRate,
+      trendType: 'decreasing',
+      trendTitle: dict.trendDecreasingTitle,
+      trendDetail: dict.trendDecreasingDetail(delta, prevScore, lastScore),
+      trendBadge: `${delta} ↘`,
+      trendColor: 'rose',
+      delta,
+      lastScore,
+      prevScore
+    };
+  } else {
+    return {
+      total,
+      bestScore,
+      avgScore,
+      passCount,
+      passRate,
+      trendType: 'steady',
+      trendTitle: dict.trendSteadyTitle,
+      trendDetail: dict.trendSteadyDetail(lastScore),
+      trendBadge: `±0 ➡️`,
+      trendColor: 'indigo',
+      delta: 0,
+      lastScore,
+      prevScore
+    };
+  }
+}
+
+function renderMockExamCardUI() {
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  const history = stateStore.mockExamHistory || [];
+  const trend = calculateExamTrend(history);
+
+  const summaryEl = document.getElementById('mock-exam-history-summary');
+  const trendEl = document.getElementById('mock-exam-trend-indicator');
+  const badgeEl = document.getElementById('mock-exam-badge');
+
+  if (history.length === 0) {
+    if (summaryEl) summaryEl.textContent = dict.mockExamSummaryNone;
+    if (trendEl) trendEl.textContent = '';
+    if (badgeEl) badgeEl.classList.add('hidden');
+  } else {
+    const lastExam = history[history.length - 1];
+    const isPassed = (lastExam.score >= 17) || lastExam.passed;
+    if (summaryEl) {
+      summaryEl.textContent = dict.mockExamSummaryTaken(history.length, lastExam.score, isPassed);
+    }
+    if (trendEl) {
+      if (trend.trendType === 'increasing') {
+        trendEl.innerHTML = `<span class="text-emerald-600 dark:text-emerald-400 font-bold">• 📈 ${trend.trendTitle}</span>`;
+      } else if (trend.trendType === 'decreasing') {
+        trendEl.innerHTML = `<span class="text-rose-600 dark:text-rose-400 font-bold">• 📉 ${trend.trendTitle}</span>`;
+      } else if (trend.trendType === 'steady') {
+        trendEl.innerHTML = `<span class="text-indigo-600 dark:text-indigo-400 font-bold">• ➡️ ${trend.trendTitle}</span>`;
+      } else {
+        trendEl.innerHTML = `<span class="text-amber-600 dark:text-amber-400 font-bold">• 🏁 ${trend.trendTitle}</span>`;
+      }
+    }
+    if (badgeEl) {
+      badgeEl.classList.remove('hidden');
+      if (isPassed) {
+        badgeEl.className = 'px-2 py-0.5 rounded-full text-[10px] font-black shrink-0 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-700/60';
+        badgeEl.textContent = dict.examStatusPassed;
+      } else {
+        badgeEl.className = 'px-2 py-0.5 rounded-full text-[10px] font-black shrink-0 bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-300/60 dark:border-rose-700/60';
+        badgeEl.textContent = dict.examStatusFailed;
+      }
+    }
+  }
+}
+
+function openExamHistoryModal() {
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  const modal = document.getElementById('exam-history-modal');
+  if (!modal) return;
+
+  const history = stateStore.mockExamHistory || [];
+  const trend = calculateExamTrend(history);
+
+  // Update KPI summary cards
+  const totalEl = document.getElementById('exam-history-stat-total');
+  const avgEl = document.getElementById('exam-history-stat-avg');
+  const bestEl = document.getElementById('exam-history-stat-best');
+  const rateEl = document.getElementById('exam-history-stat-rate');
+  const countBadge = document.getElementById('exam-history-count-badge');
+
+  if (totalEl) totalEl.textContent = trend.total;
+  if (avgEl) avgEl.textContent = `${trend.avgScore} / 33`;
+  if (bestEl) bestEl.textContent = `${trend.bestScore} / 33`;
+  if (rateEl) rateEl.textContent = `${trend.passRate}%`;
+  if (countBadge) countBadge.textContent = `${trend.total} ${trend.total === 1 ? 'Test' : 'Tests'}`;
+
+  // Trend Banner
+  const bannerEl = document.getElementById('exam-history-trend-banner');
+  if (bannerEl) {
+    if (trend.trendType === 'increasing') {
+      bannerEl.className = 'p-4 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/60 bg-emerald-50/70 dark:bg-emerald-950/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs';
+      bannerEl.innerHTML = `
+        <div class="flex items-center space-x-3 min-w-0">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shrink-0 font-bold border border-emerald-300/40">📈</div>
+          <div class="min-w-0">
+            <h4 class="text-sm font-extrabold text-emerald-900 dark:text-emerald-200">${trend.trendTitle}</h4>
+            <p class="text-xs text-emerald-800/90 dark:text-emerald-300/90 mt-0.5">${trend.trendDetail}</p>
+          </div>
+        </div>
+        <div class="px-3 py-1.5 rounded-xl font-mono text-xs font-black bg-emerald-500 text-white shadow-xs shrink-0 self-start sm:self-auto">${trend.trendBadge}</div>
+      `;
+    } else if (trend.trendType === 'decreasing') {
+      bannerEl.className = 'p-4 rounded-2xl border border-rose-200/80 dark:border-rose-900/60 bg-rose-50/70 dark:bg-rose-950/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs';
+      bannerEl.innerHTML = `
+        <div class="flex items-center space-x-3 min-w-0">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/15 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl shrink-0 font-bold border border-rose-300/40">📉</div>
+          <div class="min-w-0">
+            <h4 class="text-sm font-extrabold text-rose-900 dark:text-rose-200">${trend.trendTitle}</h4>
+            <p class="text-xs text-rose-800/90 dark:text-rose-300/90 mt-0.5">${trend.trendDetail}</p>
+          </div>
+        </div>
+        <div class="px-3 py-1.5 rounded-xl font-mono text-xs font-black bg-rose-500 text-white shadow-xs shrink-0 self-start sm:self-auto">${trend.trendBadge}</div>
+      `;
+    } else if (trend.trendType === 'steady') {
+      bannerEl.className = 'p-4 rounded-2xl border border-indigo-200/80 dark:border-indigo-900/60 bg-indigo-50/70 dark:bg-indigo-950/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs';
+      bannerEl.innerHTML = `
+        <div class="flex items-center space-x-3 min-w-0">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl shrink-0 font-bold border border-indigo-300/40">➡️</div>
+          <div class="min-w-0">
+            <h4 class="text-sm font-extrabold text-indigo-900 dark:text-indigo-200">${trend.trendTitle}</h4>
+            <p class="text-xs text-indigo-800/90 dark:text-indigo-300/90 mt-0.5">${trend.trendDetail}</p>
+          </div>
+        </div>
+        <div class="px-3 py-1.5 rounded-xl font-mono text-xs font-black bg-indigo-600 text-white shadow-xs shrink-0 self-start sm:self-auto">${trend.trendBadge}</div>
+      `;
+    } else if (trend.trendType === 'first') {
+      bannerEl.className = 'p-4 rounded-2xl border border-amber-200/80 dark:border-amber-900/60 bg-amber-50/70 dark:bg-amber-950/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs';
+      bannerEl.innerHTML = `
+        <div class="flex items-center space-x-3 min-w-0">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl shrink-0 font-bold border border-amber-300/40">🏁</div>
+          <div class="min-w-0">
+            <h4 class="text-sm font-extrabold text-amber-900 dark:text-amber-200">${trend.trendTitle}</h4>
+            <p class="text-xs text-amber-800/90 dark:text-amber-300/90 mt-0.5">${trend.trendDetail}</p>
+          </div>
+        </div>
+        <div class="px-3 py-1.5 rounded-xl font-mono text-xs font-black bg-amber-500 text-white shadow-xs shrink-0 self-start sm:self-auto">${trend.trendBadge}</div>
+      `;
+    } else {
+      bannerEl.className = 'p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 flex items-center space-x-3';
+      bannerEl.innerHTML = `
+        <div class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-500 flex items-center justify-center text-xl shrink-0">ℹ️</div>
+        <div>
+          <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">${dict.trendNoneTitle}</h4>
+          <p class="text-xs theme-text-muted mt-0.5">${dict.trendNoneDetail}</p>
+        </div>
+      `;
+    }
+  }
+
+  // Render list of exams with progress bars
+  const listContainer = document.getElementById('exam-history-list-container');
+  if (listContainer) {
+    if (history.length === 0) {
+      listContainer.innerHTML = `
+        <div class="p-8 text-center rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 space-y-3">
+          <div class="text-4xl">⏱️</div>
+          <h5 class="text-sm font-bold text-slate-800 dark:text-slate-200">${dict.examHistoryEmptyTitle}</h5>
+          <p class="text-xs theme-text-muted max-w-md mx-auto leading-relaxed">${dict.examHistoryEmptyDesc}</p>
+          <button onclick="closeExamHistoryModal(); startMockExam();" class="mt-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition shadow-sm inline-flex items-center space-x-1.5 cursor-pointer">
+            <span>⏱️</span>
+            <span>${dict.examHistoryStartNewBtn} &rarr;</span>
+          </button>
+        </div>
+      `;
+    } else {
+      const reversed = [...history].map((item, originalIndex) => ({
+        ...item,
+        originalIndex: originalIndex + 1,
+        prevScore: originalIndex > 0 ? history[originalIndex - 1].score : null
+      })).reverse();
+
+      const itemsHtml = reversed.map((exam, revIdx) => {
+        const score = typeof exam.score === 'number' ? exam.score : 0;
+        const total = exam.total || 33;
+        const isPassed = (score >= 17) || exam.passed;
+        const percent = Math.min(100, Math.round((score / total) * 100));
+        
+        let deltaHtml = '';
+        if (exam.prevScore !== null) {
+          const d = score - exam.prevScore;
+          if (d > 0) {
+            deltaHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">+${d} ↗</span>`;
+          } else if (d < 0) {
+            deltaHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400 border border-rose-200/60 dark:border-rose-800/60">${d} ↘</span>`;
+          } else {
+            deltaHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 border border-slate-200 dark:border-slate-700">±0 ➡️</span>`;
+          }
+        } else {
+          deltaHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60">Start</span>`;
+        }
+
+        const dateStr = exam.date ? new Intl.DateTimeFormat(isEn ? 'en-US' : 'de-DE', {
+          dateStyle: 'medium',
+          timeStyle: 'short'
+        }).format(new Date(exam.date)) : '';
+
+        const statusBadge = isPassed
+          ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-700/60">${dict.examStatusPassed}</span>`
+          : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-300/60 dark:border-rose-700/60">${dict.examStatusFailed}</span>`;
+
+        const isLatest = revIdx === 0;
+
+        return `
+          <div class="p-4 rounded-2xl border ${isLatest ? 'border-amber-300/80 dark:border-amber-800/80 bg-gradient-to-r from-amber-50/50 via-white to-amber-50/20 dark:from-amber-950/20 dark:via-slate-900 dark:to-amber-950/10' : 'border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900'} shadow-xs space-y-2.5">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <div class="flex items-center space-x-2">
+                <span class="text-xs font-black ${isLatest ? 'text-amber-700 dark:text-amber-300' : 'text-slate-900 dark:text-slate-100'}">
+                  ${isEn ? `Exam #${exam.originalIndex}` : `Prüfung #${exam.originalIndex}`}
+                </span>
+                ${isLatest ? `<span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase bg-amber-500 text-white shadow-xs">${isEn ? 'LATEST' : 'NEUESTE'}</span>` : ''}
+                <span class="text-[11px] theme-text-muted">• ${dateStr}</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                ${deltaHtml}
+                ${statusBadge}
+              </div>
+            </div>
+
+            <!-- Progress Bar with 17-point threshold marker -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-xs font-bold">
+                <span class="${isPassed ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}">
+                  ${score} / ${total} ${isEn ? 'Points' : 'Punkte'} (${percent}%)
+                </span>
+                <span class="text-[11px] font-normal theme-text-muted font-mono">
+                  ${isPassed ? `+${score - 17} ${isEn ? 'over threshold' : 'über Bestehensgrenze'}` : `${17 - score} ${isEn ? 'needed to pass' : 'fehlten zum Bestehen'}`}
+                </span>
+              </div>
+
+              <!-- Bar Track -->
+              <div class="relative w-full h-3 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden border border-slate-200/70 dark:border-slate-700/70">
+                <div class="h-full rounded-full transition-all duration-500 ${isPassed ? 'bg-gradient-to-r from-emerald-500 to-emerald-600' : 'bg-gradient-to-r from-rose-500 to-rose-600'}" style="width: ${percent}%;"></div>
+                <!-- 17-point marker (17/33 = 51.51%) -->
+                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-900 dark:bg-white z-10 opacity-70" style="left: 51.51%;" title="BAMF-Bestehensgrenze (17 Punkte)"></div>
+              </div>
+              
+              <!-- Threshold helper label -->
+              <div class="flex items-center justify-between text-[10px] theme-text-muted px-0.5">
+                <span>0</span>
+                <span class="font-bold text-slate-700 dark:text-slate-300 font-mono">▲ 17 (${isEn ? 'Pass' : 'Bestehen'})</span>
+                <span>33</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      listContainer.innerHTML = itemsHtml;
+    }
+  }
+
+  modal.classList.remove('hidden');
+}
+
+function closeExamHistoryModal() {
+  const modal = document.getElementById('exam-history-modal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function confirmResetExamHistory() {
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  if (!confirm(dict.examHistoryResetConfirm)) return;
+
+  stateStore.mockExamHistory = [];
+  stateStore.stats.testAttempted = 0;
+  stateStore.stats.testPassed = 0;
+  stateStore.stats.testFailed = 0;
+  saveStateToStorage();
+  updateDashboardTopStats();
+  openExamHistoryModal();
+}
+
+function renderMockResultHistory(stats) {
+  const container = document.getElementById('mock-exam-result-container');
+  if (!container) return;
+
+  const isEn = stateStore.appLanguage === 'en';
+  const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
+  const history = stateStore.mockExamHistory || [];
+  const trend = calculateExamTrend(history);
+
+  const currentScore = stats.correctCount || 0;
+  const isPassed = currentScore >= 17;
+
+  // Status pill
+  const pillEl = document.getElementById('mock-result-status-pill');
+  if (pillEl) {
+    if (isPassed) {
+      pillEl.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-700/60';
+      pillEl.textContent = `✓ ${dict.examStatusPassed} (≥ 17)`;
+    } else {
+      pillEl.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-300/60 dark:border-rose-700/60';
+      pillEl.textContent = `✕ ${dict.examStatusFailed} (< 17)`;
+    }
+  }
+
+  // Trend box
+  const trendIcon = document.getElementById('mock-result-trend-icon');
+  const trendLabel = document.getElementById('mock-result-trend-label');
+  const trendDetail = document.getElementById('mock-result-trend-detail');
+  const trendBadge = document.getElementById('mock-result-trend-badge');
+
+  if (trend.trendType === 'increasing') {
+    if (trendIcon) trendIcon.textContent = '📈';
+    if (trendLabel) trendLabel.textContent = trend.trendTitle;
+    if (trendDetail) trendDetail.textContent = trend.trendDetail;
+    if (trendBadge) {
+      trendBadge.className = 'text-xs font-mono font-bold px-2.5 py-1 rounded-lg shrink-0 ml-2 shadow-xs bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60';
+      trendBadge.textContent = trend.trendBadge;
+    }
+  } else if (trend.trendType === 'decreasing') {
+    if (trendIcon) trendIcon.textContent = '📉';
+    if (trendLabel) trendLabel.textContent = trend.trendTitle;
+    if (trendDetail) trendDetail.textContent = trend.trendDetail;
+    if (trendBadge) {
+      trendBadge.className = 'text-xs font-mono font-bold px-2.5 py-1 rounded-lg shrink-0 ml-2 shadow-xs bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400 border border-rose-200/60 dark:border-rose-800/60';
+      trendBadge.textContent = trend.trendBadge;
+    }
+  } else if (trend.trendType === 'steady') {
+    if (trendIcon) trendIcon.textContent = '➡️';
+    if (trendLabel) trendLabel.textContent = trend.trendTitle;
+    if (trendDetail) trendDetail.textContent = trend.trendDetail;
+    if (trendBadge) {
+      trendBadge.className = 'text-xs font-mono font-bold px-2.5 py-1 rounded-lg shrink-0 ml-2 shadow-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/60';
+      trendBadge.textContent = trend.trendBadge;
+    }
+  } else {
+    if (trendIcon) trendIcon.textContent = '🏁';
+    if (trendLabel) trendLabel.textContent = trend.trendTitle;
+    if (trendDetail) trendDetail.textContent = trend.trendDetail;
+    if (trendBadge) {
+      trendBadge.className = 'text-xs font-mono font-bold px-2.5 py-1 rounded-lg shrink-0 ml-2 shadow-xs bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60';
+      trendBadge.textContent = trend.trendBadge;
+    }
+  }
+
+  // Mini-history of recent exams (up to 4 exams) with progress bars
+  const historyListEl = document.getElementById('mock-result-history-list');
+  if (historyListEl) {
+    const recent = history.slice(-4).reverse();
+    const rowsHtml = recent.map((item, idx) => {
+      const s = typeof item.score === 'number' ? item.score : 0;
+      const t = item.total || 33;
+      const passed = (s >= 17) || item.passed;
+      const pct = Math.min(100, Math.round((s / t) * 100));
+      const dateFormatted = item.date ? new Intl.DateTimeFormat(isEn ? 'en-US' : 'de-DE', {
+        dateStyle: 'short',
+        timeStyle: 'short'
+      }).format(new Date(item.date)) : '';
+
+      return `
+        <div class="p-2.5 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-amber-100 dark:border-amber-900/40 text-xs space-y-1.5 shadow-2xs">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-800 dark:text-slate-200">${isEn ? `Exam #${history.length - idx}` : `Prüfung #${history.length - idx}`}${idx === 0 ? ` (${isEn ? 'current' : 'aktuell'})` : ''}</span>
+            <div class="flex items-center space-x-2">
+              <span class="font-mono font-bold ${passed ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}">${s} / ${t}</span>
+              <span class="text-[10px] theme-text-muted font-mono">${dateFormatted}</span>
+            </div>
+          </div>
+          <!-- Progress bar with 17 mark -->
+          <div class="relative w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+            <div class="h-full rounded-full ${passed ? 'bg-emerald-500' : 'bg-rose-500'}" style="width: ${pct}%;"></div>
+            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-800 dark:bg-white z-10 opacity-70" style="left: 51.51%;"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    historyListEl.innerHTML = rowsHtml;
+  }
+
+  container.classList.remove('hidden');
+}
+
 // Start Federal State Practice Session (Aufgaben 301 to 310)
 async function loadStateQuestions(selectedStateCode) {
   const code = (selectedStateCode || stateStore.userState || 'BY').toUpperCase();
@@ -1929,8 +2773,42 @@ async function startContinuousPractice() {
       return;
     }
 
-    // Initialize FIFO queue with all 300 questions in sequential order
-    sessionQueue = [...questions];
+    // Determine questions answered so far
+    const answeredSet = new Set(
+      (stateStore.continuousProgress?.answeredQuestionIds || []).map(String)
+    );
+    for (let i = 1; i <= 300; i++) {
+      const idStr = String(i);
+      if ((answersMap && answersMap[idStr]) || (stateStore.userAnswers && stateStore.userAnswers[idStr]) || (stateStore.answeredQuestionIds && stateStore.answeredQuestionIds.includes(idStr))) {
+        answeredSet.add(idStr);
+      }
+    }
+
+    // Check where the user left off last time
+    let targetNum = stateStore.continuousProgress?.currentQuestionNum;
+    if (!targetNum || answeredSet.has(String(targetNum))) {
+      targetNum = String(findNextUnansweredContinuousNum());
+    }
+
+    const isAllDone = answeredSet.size >= 300;
+    if (isAllDone) {
+      // If completed all 300, review run from task 1
+      sessionQueue = [...questions];
+    } else {
+      // Find starting point in sequential order so user continues forward from where left off
+      const targetIdx = questions.findIndex(q => String(q.num) === String(targetNum));
+      if (targetIdx !== -1) {
+        const remainingForward = questions.slice(targetIdx).filter(q => !answeredSet.has(String(q.num)));
+        const earlierUnanswered = questions.slice(0, targetIdx).filter(q => !answeredSet.has(String(q.num)));
+        sessionQueue = [...remainingForward, ...earlierUnanswered];
+      } else {
+        sessionQueue = questions.filter(q => !answeredSet.has(String(q.num)));
+      }
+      if (sessionQueue.length === 0) {
+        sessionQueue = [...questions];
+      }
+    }
+
     activeQuestion = null;
     activeQuestionAnswered = false;
     activeQuestionSelectedOpt = null;
@@ -1938,7 +2816,7 @@ async function startContinuousPractice() {
     const isEn = stateStore.appLanguage === 'en';
     const dict = I18N_DICTIONARY[isEn ? 'en' : 'de'];
     currentSessionRunStats = {
-      totalQuestions: questions.length,
+      totalQuestions: 300,
       correctCount: 0,
       incorrectCount: 0,
       sessionName: dict.continuousModalTitle,
@@ -2245,7 +3123,73 @@ function loadNextFromQueue() {
   activeQuestionAnswered = false;
   activeQuestionSelectedOpt = null;
 
+  if (activeQuizMode === 'continuous' && activeQuestion) {
+    if (!stateStore.continuousProgress) {
+      stateStore.continuousProgress = { answeredQuestionIds: [], completed: false };
+    }
+    stateStore.continuousProgress.currentQuestionNum = String(activeQuestion.num);
+    saveStateToStorage();
+    updateContinuousCardUI();
+  }
+
   renderActiveQuestionUI();
+}
+
+// Function to load a question by index in the active session
+function loadQuestion(index) {
+  currentQuestionIndex = (typeof index === 'number' && index >= 0) ? index : 0;
+  try {
+    localStorage.setItem('current_question_index', String(currentQuestionIndex));
+  } catch (e) {}
+
+  if (sessionQueue && sessionQueue.length > 0) {
+    if (currentQuestionIndex < sessionQueue.length) {
+      activeQuestion = sessionQueue[currentQuestionIndex];
+    } else {
+      activeQuestion = sessionQueue[0];
+      currentQuestionIndex = 0;
+    }
+    activeQuestionAnswered = false;
+    activeQuestionSelectedOpt = null;
+    renderActiveQuestionUI();
+  }
+}
+
+// Function to update progress UI
+function updateProgressUI() {
+  updateDashboardStats();
+  if (typeof updateTranslationPopoverContent === 'function') {
+    updateTranslationPopoverContent();
+  }
+}
+
+// Function to render question options in document order
+function renderOptions(question) {
+    const optionsContainer = document.getElementById('options-container');
+    if (!optionsContainer) return;
+    optionsContainer.innerHTML = '';
+
+    // Maintain literal document key/array order (e.g. A, B, C, D or array index)
+    const optionsObj = (question && question.options) ? question.options : {
+        A: question ? question.a : '',
+        B: question ? question.b : '',
+        C: question ? question.c : '',
+        D: question ? question.d : ''
+    };
+    const keys = Object.keys(optionsObj);
+
+    keys.forEach((key) => {
+        const optionText = optionsObj[key];
+        const optionElement = document.createElement('div');
+        optionElement.className = 'option-item';
+        optionElement.innerHTML = `
+            <label class="flex items-center space-x-3 p-3 rounded-lg border hover:bg-gray-50 dark:hover:bg-slate-800 cursor-pointer">
+                <input type="radio" name="answer" value="${key}" class="form-radio text-blue-600">
+                <span class="text-gray-800 dark:text-gray-200 font-medium">${key}: ${optionText}</span>
+            </label>
+        `;
+        optionsContainer.appendChild(optionElement);
+    });
 }
 
 function renderActiveQuestionUI() {
@@ -2284,10 +3228,15 @@ function renderActiveQuestionUI() {
 
   // CRITICAL FIX: The primary question card MUST ALWAYS remain 100% in official German by default!
   const qText = activeQuestion.question;
-  const optA = activeQuestion.a;
-  const optB = activeQuestion.b;
-  const optC = activeQuestion.c;
-  const optD = activeQuestion.d;
+
+  // Ensure options map to A,B,C,D strictly based on the order they appear in question.json (or the source document array) instead of sorting or randomizing them.
+  const optionsObj = activeQuestion.options || {
+    A: activeQuestion.a,
+    B: activeQuestion.b,
+    C: activeQuestion.c,
+    D: activeQuestion.d
+  };
+  activeQuestion.options = optionsObj;
 
   const container = document.getElementById('quiz-question-box');
   if (!container) return;
@@ -2295,6 +3244,7 @@ function renderActiveQuestionUI() {
   const sol = getQuestionSolution(activeQuestion);
   const catInfo = getQuestionCategoryAndSession(activeQuestion);
   const taskBadge = isEn ? `Task ${taskLabel}` : `Aufgabe ${taskLabel}`;
+  const keys = Object.keys(optionsObj);
 
   container.innerHTML = `
     <div class="space-y-4">
@@ -2335,12 +3285,12 @@ function renderActiveQuestionUI() {
         `;
       })()}
 
-      <!-- Options A, B, C, D (Always original official German) -->
-      <div class="space-y-2.5 pt-2">
-        ${renderOptionBtn('a', optA, sol)}
-        ${renderOptionBtn('b', optB, sol)}
-        ${renderOptionBtn('c', optC, sol)}
-        ${renderOptionBtn('d', optD, sol)}
+      <!-- Options Container (Maintains literal document key/array order A, B, C, D) -->
+      <div id="options-container" class="options-container space-y-2.5 pt-2">
+        ${keys.map(key => {
+          const optText = optionsObj[key];
+          return renderOptionBtn(key.toLowerCase(), optText, sol, key.toUpperCase());
+        }).join('')}
       </div>
 
       <!-- Feedback Banner after answering -->
@@ -2358,7 +3308,7 @@ function renderActiveQuestionUI() {
   updateTranslationPopoverContent();
 }
 
-function renderOptionBtn(optKey, optText, solutionKey) {
+function renderOptionBtn(optKey, optText, solutionKey, displayLetter = optKey.toUpperCase()) {
   let styleClass = "border border-slate-200 hover:border-indigo-400 bg-white dark:bg-slate-800";
   let letterBadge = "bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200";
 
@@ -2377,7 +3327,7 @@ function renderOptionBtn(optKey, optText, solutionKey) {
   return `
     <button onclick="soundFX.playTick(); selectOption('${optKey}')" onmouseenter="if (!activeQuestionAnswered) soundFX.playTick();" ${activeQuestionAnswered ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl transition flex items-center space-x-3 ${styleClass} cursor-pointer">
       <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${letterBadge}">
-        ${optKey.toUpperCase()}
+        ${displayLetter}
       </span>
       <span class="text-sm leading-normal flex-1">${optText}</span>
     </button>
@@ -2461,6 +3411,12 @@ function selectOption(optKey) {
     timestamp: Date.now()
   };
   answersMap[qNum] = stateStore.userAnswers[qNum];
+  userAnswers[qNum] = stateStore.userAnswers[qNum];
+  try {
+    localStorage.setItem('user_answers', JSON.stringify(stateStore.userAnswers));
+    localStorage.setItem('userAnswers', JSON.stringify(stateStore.userAnswers));
+    localStorage.setItem('current_question_index', String(currentQuestionIndex));
+  } catch (e) {}
 
   // Record daily activity keyed by "YYYY-MM-DD"
   const todayKey = getTodayDateString();
@@ -2506,6 +3462,31 @@ function selectOption(optKey) {
     if (!stateStore.userProgress) stateStore.userProgress = {};
     stateStore.userProgress[activeSessionId] = sp;
     userProgress[activeSessionId] = sp;
+  } else if (activeQuizMode === 'continuous') {
+    if (!stateStore.continuousProgress) {
+      stateStore.continuousProgress = { answeredQuestionIds: [], completed: false };
+    }
+    if (!stateStore.continuousProgress.answeredQuestionIds) {
+      stateStore.continuousProgress.answeredQuestionIds = [];
+    }
+    if (!stateStore.continuousProgress.answeredQuestionIds.includes(qNum)) {
+      stateStore.continuousProgress.answeredQuestionIds.push(qNum);
+    }
+    stateStore.continuousProgress.lastQuestionNum = qNum;
+    if (sessionQueue.length > 1) {
+      stateStore.continuousProgress.nextQuestionNum = String(sessionQueue[1].num);
+    }
+    if (stateStore.continuousProgress.answeredQuestionIds.length >= 300) {
+      stateStore.continuousProgress.completed = true;
+    }
+    if (!stateStore.sessionProgress) stateStore.sessionProgress = {};
+    stateStore.sessionProgress['continuous-300'] = {
+      answeredQuestionIds: [...stateStore.continuousProgress.answeredQuestionIds],
+      completed: stateStore.continuousProgress.completed
+    };
+    if (!stateStore.userProgress) stateStore.userProgress = {};
+    stateStore.userProgress['continuous-300'] = stateStore.sessionProgress['continuous-300'];
+    userProgress['continuous-300'] = stateStore.sessionProgress['continuous-300'];
   }
 
   // Synchronize category progress for any general BAMF question (Tasks 1 to 300) in any mode
@@ -2535,6 +3516,7 @@ function selectOption(optKey) {
   saveStateToStorage();
   updateDashboardTopStats();
   renderOfficialSessionsGrid();
+  updateContinuousCardUI();
   renderActiveQuestionUI();
 
   // Show Feedback banner
@@ -2616,15 +3598,33 @@ function finishActiveQuiz() {
     const sp = stateStore.sessionProgress[activeSessionId] || { answeredQuestionIds: [], completed: false };
     sp.completed = true;
     stateStore.sessionProgress[activeSessionId] = sp;
+  } else if (activeQuizMode === 'continuous') {
+    if (!stateStore.continuousProgress) {
+      stateStore.continuousProgress = { answeredQuestionIds: [], completed: false };
+    }
+    stateStore.continuousProgress.completed = true;
+    if (!stateStore.sessionProgress) stateStore.sessionProgress = {};
+    stateStore.sessionProgress['continuous-300'] = {
+      answeredQuestionIds: [...(stateStore.continuousProgress.answeredQuestionIds || [])],
+      completed: true
+    };
+    if (userProgress) userProgress['continuous-300'] = stateStore.sessionProgress['continuous-300'];
+    updateContinuousCardUI();
   } else if (activeQuizMode === 'mock') {
     stateStore.stats.testAttempted = (stateStore.stats.testAttempted || 0) + 1;
     const score = currentSessionRunStats.correctCount || 0;
+    const total = currentSessionRunStats.totalQuestions || 33;
     const passed = score >= 17;
+    const percentage = Math.round((score / total) * 100);
     if (!stateStore.mockExamHistory) stateStore.mockExamHistory = [];
     stateStore.mockExamHistory.push({
+      id: 'mock-' + Date.now(),
       date: new Date().toISOString(),
       score,
-      passed
+      total,
+      percentage,
+      passed,
+      stateCode: stateStore.userState || 'BY'
     });
     if (passed) {
       stateStore.stats.testPassed = (stateStore.stats.testPassed || 0) + 1;
@@ -2737,6 +3737,15 @@ function openSessionCompleteModal(stats) {
     soundFX.playFanfare();
   }
 
+  // Handle Mock Exam Results & History
+  const isMock = (activeQuizMode === 'mock') || (stats && stats.sessionName && (stats.sessionName.includes('Mock') || stats.sessionName.includes('Probeprüfung')));
+  if (isMock) {
+    renderMockResultHistory(stats);
+  } else {
+    const mockContainer = document.getElementById('mock-exam-result-container');
+    if (mockContainer) mockContainer.classList.add('hidden');
+  }
+
   // Close active quiz modal and display celebratory completion modal
   closeQuizModal();
   modal.classList.remove('hidden');
@@ -2757,6 +3766,7 @@ function closeSessionCompleteModal() {
   }
   updateDashboardTopStats();
   renderOfficialSessionsGrid();
+  renderMockExamCardUI();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -3083,60 +4093,142 @@ function showToast(message) {
   }, 3500);
 }
 
-// In-app Reset Confirmation Modal Handlers
-function openResetConfirmModal() {
-  const modal = document.getElementById('reset-confirm-modal');
-  if (!modal) return;
-
+// Soft reset: Resets ONLY the active session progress, preserving all other sessions and app settings
+async function resetCurrentSession() {
+  soundFX.playTick();
   const isEn = (stateStore && stateStore.appLanguage === 'en');
-  const titleEl = document.getElementById('reset-confirm-title');
-  const descEl = document.getElementById('reset-confirm-desc');
-  const listTitle = document.getElementById('reset-confirm-list-title');
-  const item1 = document.getElementById('reset-confirm-item-1');
-  const item2 = document.getElementById('reset-confirm-item-2');
-  const item3 = document.getElementById('reset-confirm-item-3');
-  const cancelBtn = document.getElementById('reset-confirm-cancel-btn');
-  const proceedBtnText = document.getElementById('reset-confirm-proceed-text');
+  
+  if (activeQuizMode === 'session' && activeSessionId) {
+    const sId = Number(activeSessionId);
+    resetSessionProgress(sId);
 
-  if (titleEl) titleEl.textContent = isEn ? "Reset all training progress?" : "Alle Trainingsfortschritte zurücksetzen?";
-  if (descEl) descEl.textContent = isEn 
-    ? "Are you sure you want to reset all your progress? This action cannot be undone."
-    : "Sind Sie sicher, dass Sie alle Trainingsfortschritte und Statistiken zurücksetzen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
-  if (listTitle) listTitle.textContent = isEn ? "The following data will be reset to 0:" : "Folgende Daten werden auf 0 gesetzt:";
-  if (item1) item1.textContent = isEn ? "All 20 BAMF categories (reverted back to 0%)" : "Alle 20 BAMF-Kategorien (auf 0% zurückgesetzt)";
-  if (item2) item2.textContent = isEn ? "Answered, flagged, and skipped questions" : "Beantwortete, gemerkte und übersprungene Fragen";
-  if (item3) item3.textContent = isEn ? "7-day activity progress & exam statistics" : "7-Tage-Aktivitätsverlauf & Prüfungsstatistiken";
-  if (cancelBtn) cancelBtn.textContent = isEn ? "Cancel" : "Abbrechen";
-  if (proceedBtnText) proceedBtnText.textContent = isEn ? "Yes, reset all" : "Ja, alles zurücksetzen";
+    // Reload questions for this session from API so sessionQueue has all questions again
+    try {
+      const res = await fetch(`/api/sessions/${sId}`);
+      if (res.ok) {
+        const data = await res.json();
+        const questions = data.questionsList || [];
+        sessionQueue = [...questions];
+        activeQuestion = null;
+        activeQuestionAnswered = false;
+        activeQuestionSelectedOpt = null;
+        currentQuestionIndex = 0;
+        currentSessionRunStats = {
+          totalQuestions: questions.length,
+          correctCount: 0,
+          incorrectCount: 0,
+          sessionName: `${data.icon || '🎯'} Session ${data.id}: ${isEn ? (data.name_en || data.name) : data.name}`,
+          startTime: Date.now()
+        };
+        loadNextFromQueue();
+        showToast(isEn ? `Session ${sId} progress reset to question 1.` : `Fortschritt für Session ${sId} auf Frage 1 zurückgesetzt.`);
+      }
+    } catch (err) {
+      console.warn("Failed to reload session after reset:", err);
+      currentQuestionIndex = 0;
+      loadNextFromQueue();
+    }
+  } else if (activeQuizMode === 'continuous') {
+    resetContinuousPractice();
+    try {
+      const res = await fetch('/api/continuous-practice');
+      if (res.ok) {
+        const data = await res.json();
+        const questions = data.questionsList || [];
+        sessionQueue = [...questions];
+        activeQuestion = null;
+        activeQuestionAnswered = false;
+        activeQuestionSelectedOpt = null;
+        currentQuestionIndex = 0;
+        currentSessionRunStats = {
+          totalQuestions: questions.length,
+          correctCount: 0,
+          incorrectCount: 0,
+          sessionName: isEn ? "Continuous Practice (All 300 Questions)" : "Durchgehende Übung (Alle 300 Fragen)",
+          startTime: Date.now()
+        };
+        loadNextFromQueue();
+        showToast(isEn ? "Continuous practice reset to question 1." : "Durchgehende Übung auf Frage 1 zurückgesetzt.");
+      }
+    } catch (err) {
+      console.warn("Failed to reload continuous practice:", err);
+      currentQuestionIndex = 0;
+      loadNextFromQueue();
+    }
+  } else if (activeQuizMode === 'state') {
+    const code = String(activeSessionId || '').replace('state-', '') || stateStore.userState || 'BY';
+    const qNums = [];
+    for (let i = 1; i <= 10; i++) {
+      qNums.push(`${code}-${i}`);
+    }
+    qNums.forEach(id => {
+      delete answersMap[id];
+      delete userAnswers[id];
+      if (stateStore.userAnswers) delete stateStore.userAnswers[id];
+    });
+    stateStore.answeredQuestionIds = (stateStore.answeredQuestionIds || []).filter(id => !qNums.includes(String(id)));
+    stateStore.incorrectQuestionIds = (stateStore.incorrectQuestionIds || []).filter(id => !qNums.includes(String(id)));
+    
+    // Recalculate stats
+    let c = 0, inc = 0;
+    Object.values(stateStore.userAnswers || {}).forEach(ans => {
+      if (ans && ans.isCorrect) c++;
+      else if (ans) inc++;
+    });
+    stateStore.stats.correct = c;
+    stateStore.stats.incorrect = inc;
+    stateStore.stats.attempted = Object.keys(stateStore.userAnswers || {}).length;
+    saveStateToStorage();
+    updateDashboardTopStats();
 
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-}
-
-function closeResetConfirmModal() {
-  const modal = document.getElementById('reset-confirm-modal');
-  if (modal) {
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
+    try {
+      const res = await fetch(`/api/state-session/${code}`);
+      if (res.ok) {
+        const data = await res.json();
+        const questions = data.questionsList || [];
+        sessionQueue = [...questions];
+        activeQuestion = null;
+        activeQuestionAnswered = false;
+        activeQuestionSelectedOpt = null;
+        currentQuestionIndex = 0;
+        loadNextFromQueue();
+        showToast(isEn ? `State questions for ${code} reset.` : `Landesfragen für ${code} zurückgesetzt.`);
+      }
+    } catch (err) {
+      console.warn("Failed to reload state session:", err);
+      currentQuestionIndex = 0;
+      loadNextFromQueue();
+    }
+  } else if (activeQuizMode === 'mock') {
+    // Restart mock exam with a fresh timer
+    clearInterval(mockTimerInterval);
+    await startMockExam();
+    showToast(isEn ? "Mock exam restarted." : "Probeprüfung neu gestartet.");
+  } else {
+    // For other modes (wrong, skipped, flagged, correct), reload the queue
+    if (sessionQueue && sessionQueue.length > 0) {
+      activeQuestionAnswered = false;
+      activeQuestionSelectedOpt = null;
+      loadNextFromQueue();
+      showToast(isEn ? "Practice session restarted." : "Übungssitzung neu gestartet.");
+    }
   }
 }
 
-// Executes complete wipe of all user data and resets UI to initial pristine state
+// Executes wipe of question progress/answers while preserving app configuration and metadata
 function executeCompleteReset() {
   // Close confirmation modal and settings modal
   closeResetConfirmModal();
   closeSettingsModal();
 
-  // 1. Clear Local Storage completely and remove key backups
-  try {
-    localStorage.clear();
-  } catch (e) {
-    console.warn("localStorage clear error:", e);
-  }
+  // 1. Clear question answers and test history specifically WITHOUT wiping app config, theme, or state
   try {
     [
-      'userProgress',
+      'user_answers',
       'userAnswers',
+      'current_question_index',
+      'session_time_elapsed',
+      'userProgress',
       'incorrectQuestionIds',
       'flaggedQuestions',
       'skippedQuestions',
@@ -3144,15 +4236,17 @@ function executeCompleteReset() {
       'dailyActivity',
       'dailyHistory',
       'sessionProgress',
-      'stateStore',
-      'theme',
-      'language'
+      'continuousProgress'
     ].forEach(k => {
       try { localStorage.removeItem(k); } catch (e) {}
     });
-  } catch (e) {}
+  } catch (e) {
+    console.warn("localStorage removeItem error:", e);
+  }
 
   // 2. Clear In-Memory Variables
+  currentQuestionIndex = 0;
+  userAnswers = {};
   userProgress = {};
   answersMap = {};
   completedSessions = new Set();
@@ -3183,6 +4277,14 @@ function executeCompleteReset() {
   stateStore.mockExamHistory = [];
   stateStore.sessionProgress = {};
   stateStore.dailyHistory = {};
+  stateStore.continuousProgress = {
+    answeredQuestionIds: [],
+    lastQuestionNum: null,
+    currentQuestionNum: null,
+    nextQuestionNum: null,
+    completed: false,
+    updatedAt: Date.now()
+  };
 
   sessionQueue = [];
   activeQuestion = null;
@@ -3204,6 +4306,7 @@ function executeCompleteReset() {
   // 3. Re-calculate metrics and force a clean UI re-render
   updateDashboardTopStats();
   renderOfficialSessionsGrid();
+  updateContinuousCardUI();
   renderCharts();
 
   const isEn = (stateStore && stateStore.appLanguage === 'en');
@@ -3294,6 +4397,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateGreeting();
   updateDashboardTopStats();
   renderOfficialSessionsGrid();
+  updateContinuousCardUI();
   renderCharts();
   fetchBamfStats();
 
@@ -3309,6 +4413,13 @@ document.addEventListener('DOMContentLoaded', () => {
   attachResetButtonListener();
 });
 
+// Bind soft reset to your reset button
+document.getElementById('btn-reset-session')?.addEventListener('click', () => {
+    if (confirm('Are you sure you want to reset your current progress?')) {
+        resetCurrentSession();
+    }
+});
+
 // Document-level delegation ensuring reset button works under all circumstances
 document.addEventListener('click', (e) => {
   const target = e.target.closest('#reset-stats-btn');
@@ -3316,10 +4427,23 @@ document.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
     resetAllData();
+    return;
+  }
+  const resetSessionTarget = e.target.closest('#btn-reset-session');
+  if (resetSessionTarget) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (confirm('Are you sure you want to reset your current progress?')) {
+      resetCurrentSession();
+    }
   }
 });
 
 // Window global function exports
+window.renderOptions = renderOptions;
+window.resetCurrentSession = resetCurrentSession;
+window.loadQuestion = loadQuestion;
+window.updateProgressUI = updateProgressUI;
 window.userProgress = userProgress;
 window.answersMap = answersMap;
 window.completedSessions = completedSessions;
@@ -3351,6 +4475,9 @@ window.confirmResetSession = confirmResetSession;
 window.confirmResetContinuous = confirmResetContinuous;
 window.resetSessionProgress = resetSessionProgress;
 window.resetContinuousPractice = resetContinuousPractice;
+window.getContinuousSolvedCount = getContinuousSolvedCount;
+window.findNextUnansweredContinuousNum = findNextUnansweredContinuousNum;
+window.updateContinuousCardUI = updateContinuousCardUI;
 window.startWrongAnswersPractice = startWrongAnswersPractice;
 window.startSkippedPractice = startSkippedPractice;
 window.startFlaggedPractice = startFlaggedPractice;
